@@ -1,5 +1,5 @@
 @extends('frontend.master')
-@section('content')
+@section('contdent')
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row align-items-center justify-content-center">
@@ -84,7 +84,7 @@
     </div>
 @endsection
 @section('footer_js')
-    <script>
+    {{-- <script>
         $(document).ready(function(){
             $("#track-input-btn").click(function(){
                 var invoice_no = $("#track-input-box").val();
@@ -126,5 +126,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection

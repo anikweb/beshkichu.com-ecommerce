@@ -1,105 +1,86 @@
 @extends('frontend.master')
 
 @section('content')
- <!-- login area start -->
- <div class="login-register-area pt-100px pb-100px">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-md-12 ml-auto mr-auto">
-                <div class="login-register-wrapper">
-                    <div class="login-register-tab-list nav">
-
-                        @if (basicSettings()->new_registration==2)
-                            <a  data-bs-toggle="tab" href="#lg1">
-                                <h4>login</h4>
-                            </a>
-                        @endif
-                        <a class="active" data-bs-toggle="tab" href="#lg2">
-                            <h4>register</h4>
-                        </a>
-                    </div>
-                    <div class="tab-content">
-                        <div id="lg1" class="tab-pane ">
-                            <div class="login-form-container">
-                                <div class="login-register-form">
-                                    <form action="{{ route('login') }}" method="post">
-                                        @csrf
-                                        @error('email')
-                                            <div class="text-danger">
-                                                <i class="fa fa-exclamation-circle"></i>
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                        <input type="text" name="email" class="@error('email') is-invalid @enderror" placeholder="E-mail" />
-                                        @error('password')
-                                            <div class="text-danger">
-                                                <i class="fa fa-exclamation-circle"></i>
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                        <input type="password" class="@error('password')is-invalid @enderror" name="password" placeholder="Password" autocomplete="current-password"  />
-                                        <div class="button-box">
-                                            <div class="login-toggle-btn">
-                                                <input type="checkbox" id="remember" name="remember"/>
-                                                <label class="flote-none" for="remember">Remember me</label>
-                                                <a href="#">Forgot Password?</a>
-                                            </div>
-                                            <button type="submit"><span>Login</span></button>
-                                        </div>
-                                    </form>
-                                    <div class="row mt-3">
-                                        {{-- Github Login --}}
-                                            <div class="col-md-5 mx-auto mt-2 bg-dark p-2 ">
-                                                <a href="{{ url('github/redirect') }}" class="d-inline-block">
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <img  width="20px" src="{{ asset('assets/images/socail-login/255-2558173_github-logo-png-transparent-png.png') }}" alt="github">
-                                                        </div>
-                                                        <div class="col-md-10">
-                                                            <p class="text-white">Continue With Github</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        {{-- Gmail Login
-                                        <div class="col-md-5 mt-2 mx-auto bg-primary p-2 ">
-                                            <a href="" class="d-inline-block">
-                                                <div class="row">
-                                                    <div class="col-md-2 bg">
-                                                        <img width="20px" src="{{ asset('assets/images/socail-login/gmail.png') }}" alt="github">
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <p class="text-white">Continue With Gmail</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div> --}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="lg2" class="tab-pane active">
-                            <div class="login-form-container">
-                                <div class="login-register-form">
-                                    <form action="{{ route('register') }}" method="post">
-                                        @csrf
-                                        <input type="text" name="name" placeholder="Full Name" />
-                                        <input type="email" name="email" placeholder="Email" />
-                                        <input type="password" name="password" placeholder="Password" autocomplete="new-password" />
-                                        <input type="password" name="password_confirmation" placeholder="Confirm Password" />
-                                        <div class="button-box">
-                                            <button type="submit"><span>Register now</span></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+    <div class="breadcrumb-main ">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcrumb-contain">
+                        <div>
+                            <h2>register</h2>
+                            <ul>
+                                <li><a href="{{ route('frontend') }}">home</a></li>
+                                <li><i class="fa fa-angle-double-right"></i></li>
+                                <li><a href="javascript:void(0)">register</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- login area end -->
-
+    <section class="login-page section-big-py-space bg-light">
+        <div class="custom-container">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-4">
+                    <div class="theme-card">
+                        <h3 class="text-center">Create account</h3>
+                        <form class="theme-form" action="{{ route('register') }}" method="post">
+                            @csrf
+                            <div class="form-row">
+                                <div class="col-md-12 form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Last Name">
+                                    @error('name')
+                                        <div class="text-danger">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 form-group">
+                                    <label for="email">email</label>
+                                    <input type="text" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter Email">
+                                    @error('email')
+                                        <div class="text-danger">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') @enderror" id="password" placeholder="Enter your password">
+                                    @error('password')
+                                        <div class="text-danger">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="password_confirmation">Confirm Password</label>
+                                    <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" placeholder="Enter your password">
+                                    @error('password_confirmation')
+                                        <div class="text-danger">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-12 form-group"><button type="submit" class="btn btn-normal">create Account</button></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 ">
+                                    <p>Have you already account? <a href="{{ route('login') }}" class="txt-default">click</a> here to &nbsp;<a href="{{ route('login') }}" class="txt-default">Login</a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
