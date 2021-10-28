@@ -527,7 +527,7 @@
                                             </li>
                                         @else
                                             <li class="mobile-user onhover-dropdown" onclick="openAccount()">
-                                                <a href="{{ route('login') }}">
+                                                <a href="javascript:void(0)">
                                                     <i style="font-size:32px" class="icon-user"></i>
                                                     <span class="d-md-none">Login</span>
                                                 </a>
@@ -806,23 +806,18 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/js/jquery-3.3.1.min.js"></script>
-
-<!-- slick js-->
-    <script src="../assets/js/slick.js"></script>
-
+    <!-- latest jquery-->
+    <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+    <!-- slick js-->
+    <script src="{{ asset('assets/js/slick.js') }}"></script>
     <!-- popper js-->
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-
     <!-- Timer js-->
     <script src="{{ asset('assets/js/menu.js') }}"></script>
-
     <!-- Bootstrap js-->
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-
     <!-- Bootstrap js-->
     <script src="{{ asset('assets/js/bootstrap-notify.min.js') }}"></script>
-
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/slider-animat.js') }}"></script>
