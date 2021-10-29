@@ -1,5 +1,23 @@
 @extends('backend.master')
 @section('content')
+    <div class="breadcrumb-main ">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="breadcrumb-contain">
+                        <div>
+                            <h2>product</h2>
+                            <ul>
+                                <li><a href="#">home</a></li>
+                                <li><i class="fa fa-angle-double-right"></i></li>
+                                <li><a href="#">product</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -18,7 +36,7 @@
     </section>
     <section class="content">
 
-        <!-- Default box -->
+
          <div class="card card-solid">
             <div class="card-body">
             <div class="row">
@@ -140,10 +158,9 @@
                 </div>
             </div>
             <!-- /.card-body -->
-        {{--  </div>  --}}
-        <!-- /.card -->
 
-        </section>
+
+    </section>
 @endsection
 @section('footer_js')
 <script>

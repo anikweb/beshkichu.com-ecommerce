@@ -27,6 +27,7 @@ class FrontController extends Controller
             'productNew' => Product::latest()->limit(8)->get(),
             'wishlistProduct' =>Wishlist::all(),
             'sliders' =>Slider::where('status',1)->latest()->get(),
+            'categories' =>Category::orderBy('name','asc')->get(),
         ]);
     }
     public function productView(){
@@ -78,8 +79,11 @@ class FrontController extends Controller
         $sizes = Product_Attribute::where('product_id',$pid)->where('color_id',$cid)->get();
         $outpot = '';
         foreach ($sizes as $key => $size) {
-            $outpot =  $outpot.'<input class="sizeCheck @error("size_id") is-invalid @enderror" style="margin:5px; cursor: pointer; width: auto; height:auto" data-rPrice="'.$size->regular_price.'" data-price="'.$size->offer_price.'" data-quantity="'.$size->quantity.'" id="size" type="radio" value="'.$size->size_id.'" name="size_id"><label style="cursor: pointer;" for="size">'.' '. $size->size_id .'</label>';
+            $outpot =  $outpot.'<li  class="sizeCheck sizeCheck'.$size->size_id.' @error("size_id") is-invalid @enderror"  data-rPrice="'.$size->regular_price.'"  data-size="'.$size->size_id.'" data-price="'.$size->offer_price.'"><input type="radio" style="display:none" name="size_id">'.$size->size_id.'</li>';;
         }
+        // <ul>
+
+        // </ul>
         return response()->json($outpot);
 
     }

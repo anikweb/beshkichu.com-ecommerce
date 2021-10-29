@@ -799,10 +799,42 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="sub-footer-contain">
-                            <p><span>2018 - 19 </span>copy right by themeforest powered by pixel strap</p>
+                            <p><span>2017-{{ date('y') }} </span>copyright by Beshkichu Sourcing Company</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+         <!-- My account bar start-->
+        <div id="myAccount" class="add_to_cart right account-bar">
+            <a href="javascript:void(0)" class="overlay" onclick="closeAccount()"></a>
+            <div class="cart-inner">
+            <div class="cart_top">
+                <h3>my account</h3>
+                <div class="close-cart">
+                <a href="javascript:void(0)" onclick="closeAccount()">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+                </div>
+            </div>
+            <form class="theme-form" action="{{ route('login') }}"  method="POST">
+                @csrf
+                <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" value="{{ old('email') }}"  class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group">
+                <label for="review">Password</label>
+                <input type="password" name="password" class="form-control" id="review" placeholder="Enter your password">
+                </div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-rounded btn-block ">Login</button>
+                </div>
+                <div>
+                <h5 class="forget-class"><a href="{{ route('password.request') }}" class="d-block">forget password?</a></h5>
+                <h6 class="forget-class"><a href="{{ route('register') }}" class="d-block">new to store? Signup now</a></h6>
+                </div>
+            </form>
             </div>
         </div>
     </footer>
@@ -812,7 +844,7 @@
     <script src="{{ asset('assets/js/slick.js') }}"></script>
     <!-- popper js-->
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <!-- Timer js-->
+    <!-- menu js-->
     <script src="{{ asset('assets/js/menu.js') }}"></script>
     <!-- Bootstrap js-->
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
@@ -820,8 +852,7 @@
     <script src="{{ asset('assets/js/bootstrap-notify.min.js') }}"></script>
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('assets/js/slider-animat.js') }}"></script>
-    <script src="{{ asset('assets/js/timer.js') }}"></script>
+    
     <script src="{{ asset('assets/js/modal.js') }}"></script>
     @yield('footer_js')
 </body>
