@@ -58,71 +58,83 @@
                         </div>
                     </div>
                     <div class="col-lg-6 rtl-text">
-                        <div class="product-right">
-                            <h2>{{ Str::upper($product->name) }}</h2>
-                            <h4><del class="text-danger">{{ '৳'.$product->attribute->max('regular_price') }}</span></h4>
-                            <h3 class="text-info">{{ '৳'.$product->attribute->max('offer_price') }}</h3>
-                            <ul class="image-swatch">
-                                @foreach ($product->imageGallery as $imageGallery)
-                                    <li class="active"><a href="javascript:void(0)"><img width="40px" src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="" class="img-fluid "></a></li>
-                                @endforeach
-                            </ul>
-                            <div class="product-description border-product">
-                                <h6 class="product-title size-text">select color <span><a href="" data-toggle="modal" data-target="#sizemodal">Color chart</a></span></h6>
-                                <div class="size-box">
-                                    <ul>
-                                        @foreach ($product->attribute->unique('color_id') as $color)
-                                            <li class="color_id color_id{{ $color->color_id }}" data-id="{{ $color->color_id }}" data-product="{{ $product->id }}"  style="border-radius:0 !important;height:30px; width:45px;"><a  class="p-2" href="javascript:void(0)">{{ Str::title($color->color->name) }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                <h6 class="product-title size-text sizeName"> {{-- Size name ajax --}}</h6>
-                                <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <form action="{{route('cart.store')}}" method="post">
+                            @csrf
+
+                            <input type="hidden" class="color_id" name="color_id" value="">
+                            <input type="hidden" class="size_id" name="size_id" value="">
+                            <input type="hidden" class="product_id" name="product_id" value="">
+                            <div class="product-right">
+                                <h2>{{ Str::upper($product->name) }}</h2>
+                                <h4><del class="text-danger">{{ '৳'.$product->attribute->max('regular_price') }}</span></h4>
+                                <h3 class="text-info">{{ '৳'.$product->attribute->max('offer_price') }}</h3>
+                                <ul class="image-swatch">
+                                    @foreach ($product->imageGallery as $imageGallery)
+                                        <li class="active"><a href="javascript:void(0)"><img width="40px" src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="" class="img-fluid "></a></li>
+                                    @endforeach
+                                </ul>
+                                <div class="product-description border-product">
+                                    <h6 class="product-title size-text">select color <span><a href="" data-toggle="modal" data-target="#sizemodal">Color chart</a></span></h6>
+                                    <div class="size-box">
+                                        <ul>
+                                            @foreach ($product->attribute->unique('color_id') as $color)
+                                                <li class="color_id color_id{{ $color->color_id }}" data-id="{{ $color->color_id }}" data-product="{{ $product->id }}"  style="border-radius:0 !important;height:30px; width:45px;">
+                                                    {{ Str::title($color->color->name) }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <h6 class="product-title size-text sizeName"> {{-- Size name ajax --}}</h6>
+                                    <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body"><img src="../assets/images/size-chart.jpg" alt="" class="img-fluid "></div>
                                             </div>
-                                            <div class="modal-body"><img src="../assets/images/size-chart.jpg" alt="" class="img-fluid "></div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="size-box ">
-                                    <ul class="size">
-                                       {{-- Sizes Ajax --}}
-                                    </ul>
-                                </div>
+                                    <div class="size-box ">
+                                        <ul class="size">
+                                           {{-- Sizes Ajax --}}
+                                        </ul>
+                                    </div>
 
-                                <h6 class="product-title">quantity</h6>
-                                <div class="qty-box">
-                                    <div class="input-group"><span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
-                                        <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
+                                    <h6 class="product-title">quantity</h6>
+                                    <div class="qty-box">
+                                        <div class="input-group"><span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
+                                            <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
+                                    </div>
+                                </div>
+                                <div class="product-buttons">
+                                    <button type="submit" class="btn btn-normal">Add to Cart</button>
+                                    <a href="#" class="btn btn-normal">buy now</a>
+                                </div>
+                                <div class="border-product">
+                                    <h6 class="product-title">product details</h6>
+                                    <p>{{ $product->summary }}</p>
+                                </div>
+                                <div class="border-product">
+                                    <h6 class="product-title">Category: <span class="badge badge-info">{{ $product->category->name }}</span></h6>
+                                </div>
+                                <div class="border-product">
+                                    <div class="product-icon">
+                                        <ul class="product-social">
+                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                        {{-- <form class="d-inline-block"> --}}
+                                            <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
+                                        {{-- </form> --}}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="product-buttons"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
-                            <div class="border-product">
-                                <h6 class="product-title">product details</h6>
-                                <p>{{ $product->summary }}</p>
-                            </div>
-                            <div class="border-product">
-                                <h6 class="product-title">Category: <span class="badge badge-info">{{ $product->category->name }}</span></h6>
-                            </div>
-                            <div class="border-product">
-                                <div class="product-icon">
-                                    <ul class="product-social">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                    </ul>
-                                    <form class="d-inline-block">
-                                        <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -352,7 +364,9 @@
         $(document).ready(function(){
             $('.color_id').click(function(){
                 var colorId = $(this).attr('data-id');
+                $(".color_id").val(colorId);
                 var productId = $(this).attr('data-product');
+                $(".product_id").val(productId);
                 $(".product-right .size-box ul li").removeClass('active')
                 $(".product-right .size-box ul .color_id"+colorId).addClass('active')
                 // alert(productId);
@@ -373,6 +387,7 @@
                                     var rPrice = $(this).attr('data-rPrice');
                                     var size_id = $(this).attr('data-size');
                                     $('.offer_price').html('৳'+price);
+                                    $('.size_id').val(size_id);
                                     $('.sizeCheck').removeClass('active');
                                     $('.sizeCheck'+size_id).addClass('active');
                                     $('.rPrice').html(rPrice);

@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
 class FrontController extends Controller
 {
     public function index(){
-        if(Cookie::get('jesco_ecommerce') == ''){
-            $cookie_name = 'jesco_ecommerce';
+        if(Cookie::get('beshkichu_com') == ''){
+            $cookie_name = 'beshkichu_com';
             $cookie_value = time().'-'.Str::random(10);
             $cookie_duration = 43200;
             Cookie::queue($cookie_name, $cookie_value, $cookie_duration);
@@ -44,7 +44,7 @@ class FrontController extends Controller
     }
     public function wishlistIndex(){
 
-        $siteCookie = Cookie::get('jesco_ecommerce');
+        $siteCookie = Cookie::get('beshkichu_com');
 
         return view('frontend.pages.wishlist',[
 
@@ -52,7 +52,7 @@ class FrontController extends Controller
         ]);
     }
     public function wishliststore($product_id){
-            $siteCookie = Cookie::get('jesco_ecommerce');
+            $siteCookie = Cookie::get('beshkichu_com');
             $wishlistCheck =  Wishlist::where('cookie_id',$siteCookie)->where('product_id',$product_id)->first();
             if($wishlistCheck){
                 $wishlistCheck->delete();
@@ -70,7 +70,7 @@ class FrontController extends Controller
     }
     public function wishlistRemove($id){
         // return $id;
-        $siteCookie = Cookie::get('jesco_ecommerce');
+        $siteCookie = Cookie::get('beshkichu_com');
         $wishlistCheck =  Wishlist::where('cookie_id',$siteCookie)->where('product_id',$id)->first();
         $wishlistCheck->delete();
         return back()->with('success','Deleted!');
@@ -79,7 +79,7 @@ class FrontController extends Controller
         $sizes = Product_Attribute::where('product_id',$pid)->where('color_id',$cid)->get();
         $outpot = '';
         foreach ($sizes as $key => $size) {
-            $outpot =  $outpot.'<li  class="sizeCheck sizeCheck'.$size->size_id.' @error("size_id") is-invalid @enderror"  data-rPrice="'.$size->regular_price.'"  data-size="'.$size->size_id.'" data-price="'.$size->offer_price.'"><input type="radio" style="display:none" name="size_id">'.$size->size_id.'</li>';;
+            $outpot =  $outpot.'<li  class="sizeCheck sizeCheck'.$size->size_id.'"  data-rPrice="'.$size->regular_price.'"  data-size="'.$size->size_id.'" data-price="'.$size->offer_price.'">'.$size->size_id;
         }
         // <ul>
 

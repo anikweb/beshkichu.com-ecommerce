@@ -33,7 +33,7 @@ class CartController extends Controller
                 return back()->with('error','Voucher ends of limit');
             }
         }
-        $cookieId = Cookie::get('jesco_ecommerce');
+        $cookieId = Cookie::get('beshkichu_com');
         return view('frontend.pages.cart.index',[
             'carts' =>Cart::where('cookie_id',$cookieId)->get(),
             'voucher' => $voucher,
@@ -59,8 +59,9 @@ class CartController extends Controller
     public function store(CartAddForm $request)
     {
         // return $request;
+        // return $cookie_id = Cookie::get('beshkichu_com');
         if($request->size_id){
-            $cookie_id = Cookie::get('jesco_ecommerce');
+            $cookie_id = Cookie::get('beshkichu_com');
             if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->exists()){
                 Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->increment('quantity',$request->quantity);
                 return redirect()->route('cart.index')->with('success','Cart Added!');
@@ -71,7 +72,7 @@ class CartController extends Controller
                 return redirect()->route('cart.index')->with('success','Cart Added!');
             }
         }else{
-            $cookie_id = Cookie::get('jesco_ecommerce');
+            $cookie_id = Cookie::get('beshkichu_com');
         if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',7)->exists()){
                 Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',7)->increment('quantity',$request->quantity);
                 return redirect()->route('cart.index')->with('success','Cart Added!');
@@ -132,13 +133,13 @@ class CartController extends Controller
     }
     public function cartDelete($cart_id)
     {
-        Cart::where('cookie_id',Cookie::get('jesco_ecommerce'))->find($cart_id)->delete();
+        Cart::where('cookie_id',Cookie::get('beshkichu_com'))->find($cart_id)->delete();
         return back();
     }
     public function cartDeleteAll()
     {
         // return 'hello';
-        $carts = Cart::where('cookie_id',Cookie::get('jesco_ecommerce'))->get();
+        $carts = Cart::where('cookie_id',Cookie::get('beshkichu_com'))->get();
         foreach ($carts as  $cart) {
            $cart->delete();
         }
@@ -152,7 +153,7 @@ class CartController extends Controller
     }
     public function quantityUpdate($id,$quantity)
     {
-        $cookieId = Cookie::get('jesco_ecommerce');
+        $cookieId = Cookie::get('beshkichu_com');
         $cart = Cart::where('cookie_id',$cookieId)->find($id);
         $cart->quantity = $quantity;
         $cart->save();
