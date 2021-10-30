@@ -11,4 +11,10 @@ class Wishlist extends Model
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
     }
+    public function size(){
+        return $this->belongsTo(ProductSize::class,'size_id');
+    }
+    public function color(){
+        return $this->belongsTo(ProductColor::class,'color_id');
+    }
 }

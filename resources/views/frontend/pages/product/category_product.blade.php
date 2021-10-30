@@ -7,11 +7,11 @@
                 <div class="col">
                     <div class="breadcrumb-contain">
                         <div>
-                            <h2>Shop</h2>
+                            <h2>{{ $category->name }}</h2>
                             <ul>
                                 <li><a href="{{ route('frontend') }}">home</a></li>
                                 <li><i class="fa fa-angle-double-right"></i></li>
-                                <li><a href="javascript:void(0)">Shop</a></li>
+                                <li><a href="javascript:void(0)">{{ $category->name }}</a></li>
                             </ul>
                         </div>
                     </div>

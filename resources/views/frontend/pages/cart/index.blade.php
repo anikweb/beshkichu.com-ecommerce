@@ -95,7 +95,9 @@
                                         @endphp
                                 </tr>
                             @empty
-
+                                <tr>
+                                    <td colspan="6"><i class="fa fa-exclamation-circle"></i> Empty</td>
+                                </tr>
                             @endforelse
                         </tbody>
                     </table>

@@ -8,5 +8,8 @@
     function basicSettings(){
         return App\Models\BasicSetting::first();
     }
+    function category(){
+        return App\Models\Category::orderBy('name','asc')->get();
+    }
 
 ?>

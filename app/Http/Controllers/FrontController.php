@@ -33,7 +33,16 @@ class FrontController extends Controller
     public function productView(){
         return view('frontend.pages.product.product_list',[
             'productAll' => Product::latest()->get(),
-            'productLatest' => Product::latest()->paginate(12),
+            'productLatest' => Product::latest()->paginate(10),
+        ]);
+    }
+    public function productViewByCatgory($slug){
+        $Category = Category::where('slug',$slug)->first();
+        // $Category->product->get();
+        // return $Category->id;
+        return view('frontend.pages.product.category_product',[
+            'category' =>  Category::where('slug',$slug)->first(),
+            'productLatest' =>  Product::where('category_id',$Category->id)->latest()->paginate(10),
         ]);
     }
     public function productSingle($slug){

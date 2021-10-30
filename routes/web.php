@@ -36,6 +36,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/',[FrontController::class, 'index'])->name('frontend');
 Route::get('/products',[FrontController::class, 'productView'])->name('frontend.product');
+Route::get('/products/category/{category_name}',[FrontController::class, 'productViewByCatgory'])->name('frontend.category.product');
 Route::get('/product/{slug}',[FrontController::class, 'productSingle'])->name('frontend.product.single');
 Route::get('/get/color/size/{cid}/{pid}',[FrontController::class, 'getColorSizeId']);
 Route::get('/wishlist',[FrontController::class, 'wishlistIndex'])->name('frontend.wishlist.index');

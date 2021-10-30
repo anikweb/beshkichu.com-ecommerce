@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="big-deal">
+    <meta name="keywords" content="{{ basicSettings()->key_words }}">
     <meta name="author" content="big-deal">
 
     <!--Google font-->
@@ -42,49 +42,6 @@
 <body>
     <header>
         <div class="mobile-fix-option"></div>
-        <div class="top-header">
-            <div class="custom-container">
-                <div class="row">
-                    <div class="col-xl-5 col-md-7 col-sm-6">
-                        <div class="top-header-left">
-                            <div class="shpping-order">
-                                <h6>free shipping on order over $99 </h6>
-                            </div>
-                            <div class="app-link">
-                                <h6>Download app</h6>
-                                <ul>
-                                    <li><a><i class="fa fa-apple"></i></a></li>
-                                    <li><a><i class="fa fa-android"></i></a></li>
-                                    <li><a><i class="fa fa-windows"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-7 col-md-5 col-sm-6">
-                        <div class="top-header-right">
-                            <div class="top-menu-block">
-                                <ul>
-                                    <li><a href="#">gift cards</a></li>
-                                    <li><a href="#">Notifications</a></li>
-                                    <li><a href="#">help &amp; contact</a></li>
-                                    <li><a href="#">todays deal</a></li>
-                                    <li><a href="#">track order</a></li>
-                                    <li><a href="#">shipping </a></li>
-                                    <li><a href="#">easy returns</a></li>
-                                </ul>
-                            </div>
-                            <div class="language-block">
-                                <div class="language-dropdown">
-                                    <span class="language-dropdown-click">
-                                        <a href="{{ route('register') }}" class="text-white"> Register</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="layout-header2">
             <div class="container">
                 <div class="col-md-12">
@@ -183,36 +140,15 @@
                                 <div class="nav-left">
                                     <nav class="navbar" data-toggle="collapse" data-target="#navbarToggleExternalContent">
                                     <button class="navbar-toggler" type="button" style="">
-                                        <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
+                                        <span class="navbar-icon text-dark"><i class="fa fa-arrow-down "></i></span>
                                     </button>
-                                    <h5 class="mb-0  text-white title-font">Shop by category</h5>
+                                    <h5 class="mb-0  title-font">Shop by category</h5>
                                     </nav>
                                     <div class="collapse  nav-desk" id="navbarToggleExternalContent">
                                     <ul class="nav-cat title-font">
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/01.png') }}" alt="category-product"> <a href="#">western ware</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/02.png') }}" alt="category-product"> <a href="#">TV, Appliances</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/03.png') }}" alt="category-product"> <a href="#">Pets Products</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/04.png') }}" alt="category-product"> <a href="#">Car, Motorbike</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/05.png') }}" alt="category-product"> <a href="#">Industrial Products</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/06.png') }}" alt="category-product"> <a href="#">Beauty, Health Products</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/07.png') }}" alt="category-product"> <a href="#">Grocery Products </a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/08.png') }}" alt="category-product"> <a href="#">Sports</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/09.png') }}" alt="category-product"> <a href="#">Bags, Luggage</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/10.png') }}" alt="category-product"> <a href="#">Movies, Music </a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/11.png') }}" alt="category-product"> <a href="#">Video Games</a></li>
-                                        <li> <img src="{{ asset('assets/images/layout-1/nav-img/12.png') }}" alt="category-product"> <a href="#">Toys, Baby Products</a></li>
-                                        <li>
-                                        <ul class="mor-slide-open" style="display: none;">
-                                            <li> <img src="{{ asset('assets/images/layout-1/nav-img/08.png') }}" alt="category-product"> <a>Sports</a></li>
-                                            <li> <img src="{{ asset('assets/images/layout-1/nav-img/09.png') }}" alt="category-product"> <a>Bags, Luggage</a></li>
-                                            <li> <img src="{{ asset('assets/images/layout-1/nav-img/10.png') }}" alt="category-product"> <a>Movies, Music </a></li>
-                                            <li> <img src="{{ asset('assets/images/layout-1/nav-img/11.png') }}" alt="category-product"> <a>Video Games</a></li>
-                                            <li> <img src="{{ asset('assets/images/layout-1/nav-img/12.png') }}" alt="category-product"> <a>Toys, Baby Products</a></li>
-                                        </ul>
-                                        </li>
-                                        <li>
-                                        <a class="mor-slide-click">more category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up" style="display: none;"></i></a>
-                                        </li>
+                                        @foreach (category() as $category)
+                                            <li> <img src="{{ asset('assets/images/layout-1/nav-img/12.png') }}" alt="category-product"> <a href="{{ route('frontend.category.product',$category->slug) }}">{{ $category->name }}</a></li>
+                                        @endforeach
                                     </ul>
                                     </div>
                                 </div>
@@ -512,6 +448,7 @@
                                                 <ul id="sm-16353491369166194-16" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-15" aria-expanded="false">
                                                     @if (auth()->user()->roles->first()->name == 'Customer')
                                                         <li><a href="{{ route('my-account.index') }}">My Account</a></li>
+                                                        <li><a href="{{ route('my-account.orders.track') }}">Track Order</a></li>
                                                     @else
                                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 
@@ -537,7 +474,7 @@
                                 <ul>
 
                                     <li class="mobile-wishlist" onclick="openWishlist()">
-                                    <a><i class="icon-heart"></i><div class="cart-item"><div>0 item<span>wishlist</span></div></div></a></li>
+                                    <a><i class="icon-heart"></i><div class="cart-item"><div>{{ wishlistItem()->count() }} item<span>wishlist</span></div></div></a></li>
                                     <li class="mobile-search"><a href="#"><i class="icon-search"></i></a>
                                     <div class="search-overlay" style="display: none;">
                                         <div>
@@ -657,10 +594,10 @@
                             <div class="col-lg-4 col-md-12 ">
                                 <div class="footer-left">
                                     <div class="footer-logo">
-                                        <img src="../assets/images/layout-2/logo/logo.png" class="img-fluid  " alt="logo">
+                                        <img src="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" class="img-fluid  " alt="{{ basicSettings()->site_title }}">
                                     </div>
                                     <div class="footer-detail">
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,</p>
+                                        <p>{{ basicSettings()->tagline }}</p>
                                         <ul class="paymant-bottom">
                                             <li><a href="#"><img src="../assets/images/layout-1/pay/1.png" class="img-fluid" alt="pay"></a></li>
                                             <li><a href="#"><img src="../assets/images/layout-1/pay/2.png" class="img-fluid" alt="pay"></a></li>
@@ -857,67 +794,34 @@
       </div>
       <div class="cart_media">
         <ul class="cart_product">
-          <li>
-            <div class="media">
-              <a href="#">
-                <img alt="" class="mr-3" src="../assets/images/layout-2/product/1.jpg">
-              </a>
-              <div class="media-body">
-                <a href="#">
-                  <h4>item name</h4>
-                </a>
-                <h4>
-                  <span>1 x $ 299.00</span>
-                </h4>
-              </div>
-            </div>
-            <div class="close-circle">
-              <a href="#">
-                <i class="ti-trash" aria-hidden="true"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div class="media">
-              <a href="#">
-                <img alt="" class="mr-3" src="../assets/images/layout-2/product/a1.jpg">
-              </a>
-              <div class="media-body">
-                <a href="#">
-                  <h4>item name</h4>
-                </a>
-                <h4>
-                  <span>1 x $ 299.00</span>
-                </h4>
-              </div>
-            </div>
-            <div class="close-circle">
-              <a href="#">
-                <i class="ti-trash" aria-hidden="true"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div class="media">
-              <a href="#"><img alt="" class="mr-3" src="../assets/images/layout-2/product/1.jpg"></a>
-              <div class="media-body">
-                <a href="#">
-                  <h4>item name</h4>
-                </a>
-                <h4><span>1 x $ 299.00</span></h4>
-              </div>
-            </div>
-            <div class="close-circle">
-              <a href="#">
-                <i class="ti-trash" aria-hidden="true"></i>
-              </a>
-            </div>
-          </li>
+            @php
+                $total = 0;
+            @endphp
+            @forelse (cartsItem() as $cart)
+                <li>
+                    <div class="media">
+                        <a href="javascript:void(0)"><img alt="{{ $cart->product->name }}" class="mr-3" src="{{ asset('assets/images/product/'.$cart->product->created_at->format('Y/m/d').'/'.$cart->product->id.'/thumbnail/'.$cart->product->thumbnail) }}"></a>
+                        <div class="media-body">
+                            <a href="#">
+                            <h4>{{ $cart->product->name }}</h4>
+                            </a>
+                            <h4><span>{{ $cart->quantity }} x ৳{{ $total = $total + $cart->product->attribute->where('color_id',$cart->color_id)->where('size_id',$cart->size_id)->first()->offer_price }}</span></h4>
+                        </div>
+                    </div>
+                    {{--  <div class="close-circle">
+                        <a href="#">
+                            <i class="ti-trash" aria-hidden="true"></i>
+                        </a>
+                    </div>  --}}
+                </li>
+            @empty
+            <h5 class="text-center py-2"><i class="fa fa-exclamation-circle"></i> Empty</h5>
+            @endforelse
         </ul>
         <ul class="cart_total">
           <li>
             <div class="total">
-              <h5>subtotal : <span>$299.00</span></h5>
+              <h5>subtotal : <span>৳{{ $total }}</span></h5>
             </div>
           </li>
           <li>
@@ -1002,82 +906,37 @@
       </div>
       <div class="cart_media">
         <ul class="cart_product">
+            @php
+                $total =0
+            @endphp
+            @forelse (wishlistItem() as $wishlist)
           <li>
             <div class="media">
-              <a href="#">
-                <img alt="" class="mr-3" src="../assets/images/layout-1/media-banner/1.jpg">
-              </a>
-              <div class="media-body">
-                <a href="#">
-                  <h4>item name</h4>
-                </a>
-                <h4>
-                  <span>sm</span>
-                  <span>, blue</span>
-                </h4>
-                <h4>
-                  <span>$ 299.00</span>
-                </h4>
-              </div>
-            </div>
-            <div class="close-circle">
-              <a href="#">
-                <i class="ti-trash" aria-hidden="true"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div class="media">
-              <a href="#">
-                <img alt="" class="mr-3" src="../assets/images/layout-1/media-banner/2.jpg">
-              </a>
-              <div class="media-body">
-                <a href="#">
-                  <h4>item name</h4>
-                </a>
-                <h4>
-                  <span>sm</span>
-                  <span>, blue</span>
-                </h4>
-                <h4>
-                  <span>$ 299.00</span>
-                </h4>
-              </div>
-            </div>
-            <div class="close-circle">
-              <a href="#">
-                <i class="ti-trash" aria-hidden="true"></i>
-              </a>
-            </div>
-          </li>
-          <li>
-            <div class="media">
-              <a href="#"><img alt="" class="mr-3" src="../assets/images/layout-1/media-banner/3.jpg"></a>
+              <a href="#"><img alt="{{ $wishlist->product->name }}" class="mr-3" src="{{ asset('assets/images/product/'.$wishlist->product->created_at->format('Y/m/d').'/'.$wishlist->product->id.'/thumbnail/'.$wishlist->product->thumbnail) }}"></a>
               <div class="media-body">
                 <a href="#"><h4>item name</h4></a>
-                <h4>
-                  <span>sm</span>
-                  <span>, blue</span>
-                </h4>
-                <h4><span>$ 299.00</span></h4>
+                <h4><span>৳{{ $total = $total + $wishlist->product->attribute->min('offer_price') }}</span></h4>
               </div>
             </div>
-            <div class="close-circle">
+            {{--  <div class="close-circle">
               <a href="#">
                 <i class="ti-trash" aria-hidden="true"></i>
               </a>
-            </div>
+            </div>  --}}
           </li>
+          @empty
+            <h5 class="text-center py-2"><i class="fa fa-exclamation-circle"></i> Empty</h5>
+          @endforelse
         </ul>
         <ul class="cart_total">
           <li>
             <div class="total">
-              <h5>subtotal : <span>$299.00</span></h5>
+              <h5>subtotal : <span>৳{{  $total }}</span></h5>
             </div>
           </li>
           <li>
             <div class="buttons">
-              <a href="wishlist.html" class="btn btn-normal btn-block  view-cart">view wislist</a>
+              <a href="{{ route('frontend.wishlist.index') }}" class="btn btn-normal btn-block  view-cart">view wislist</a>
             </div>
           </li>
         </ul>
@@ -1087,7 +946,7 @@
   <!-- Add to wishlist bar end-->
 
   <!-- add to  setting bar  start-->
-  <div id="mySetting" class="add_to_cart right">
+  {{--  <div id="mySetting" class="add_to_cart right">
     <a href="javascript:void(0)" class="overlay" onclick="closeSetting()"></a>
     <div class="cart-inner">
       <div class="cart_top">
@@ -1115,11 +974,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>  --}}
   <!-- facebook chat section end -->
 
     <!-- notification product -->
-    <div class="product-notification" id="dismiss">
+    {{--  <div class="product-notification" id="dismiss">
         <span  onclick="dismiss();" class="close" aria-hidden="true">×</span>
         <div class="media">
         <img class="mr-2" src="../assets/images/layout-1/product/5.jpg" alt="Generic placeholder image">
@@ -1128,7 +987,7 @@
             Cras sit amet nibh libero, in gravida nulla.
         </div>
         </div>
-    </div>
+    </div>  --}}
     <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
     <!-- slick js-->
@@ -1143,7 +1002,6 @@
     <script src="{{ asset('assets/js/bootstrap-notify.min.js') }}"></script>
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
-
     <script src="{{ asset('assets/js/modal.js') }}"></script>
     @yield('footer_js')
 </body>
