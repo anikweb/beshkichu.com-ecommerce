@@ -30,7 +30,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
 
     <!-- Theme css -->
-    <link rel="stylesheet" type="text/css" href="../assets/css/color2.css" media="screen" id="color">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color2.css') }}" media="screen" id="color">
     <!-- Add site Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon/'.basicSettings()->icon) }}" type="image/x-icon">
     @yield('inline_style')
@@ -511,10 +511,7 @@
 
                                                 <ul id="sm-16353491369166194-16" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-15" aria-expanded="false">
                                                     @if (auth()->user()->roles->first()->name == 'Customer')
-                                                        <li><a href="{{ route('my-account.index') }}">Profile</a></li>
-                                                        <li><a href="{{ route('my-account.orders') }}">My Orders</a></li>
-                                                        <li><a href="{{ route('my-account.orders.track') }}">Track Order</a></li>
-                                                        <li><a href="#">Security</a></li>
+                                                        <li><a href="{{ route('my-account.index') }}">My Account</a></li>
                                                     @else
                                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 
@@ -935,33 +932,7 @@
   </div>
   <!-- Add to cart bar end-->
 
-  <!--Newsletter modal popup start-->
-  <div class="modal fade bd-example-modal-lg theme-modal" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="news-latter">
-            <div class="modal-bg">
-              <div class="offer-content">
-                <div>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                  <h2>newsletter</h2>
-                  <p>Subscribe to our website mailling list <br> and get a Offer, Just for you!</p>
-                  <form action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-                    <div class="form-group mx-sm-3">
-                      <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required="required">
-                      <button type="submit" class="btn btn-theme btn-normal btn-sm " id="mc-submit">subscribe</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--Newsletter Modal popup end-->
+
 
   <!-- Quick-view modal popup start-->
   <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">

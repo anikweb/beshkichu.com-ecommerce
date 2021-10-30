@@ -79,7 +79,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_a'] = $request->name.'#'.$request->email.'#'.$request->phone.'#'.$request->company.'#'.$request->note;
         $post_data['value_b'] = $request->street_address1.'#'.$request->street_address2.'#'.$request->upazila_id.'#'.$request->district_id.'#'.$request->region_id.'#'.$request->zip_code;
         $post_data['value_c'] = $request->payment_method;
-        $post_data['value_d'] = Cookie::get('jesco_ecommerce');
+        $post_data['value_d'] = Cookie::get('beshkichu_com');
 
         #Before  going to initiate the payment order status need to insert or update as Pending.
         $update_product = DB::table('orders')

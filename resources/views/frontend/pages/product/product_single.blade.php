@@ -21,7 +21,7 @@
                                 <li><i class="fa fa-angle-double-right"></i></li>
                                 <li><a href="{{ route('frontend.product') }}">product</a></li>
                                 <li><i class="fa fa-angle-double-right"></i></li>
-                                <li><a href="#">{{ $product->name }}</a></li>
+                                <li><a href="javascript:void(0)">{{ $product->name }}</a></li>
                             </ul>
                         </div>
                     </div>

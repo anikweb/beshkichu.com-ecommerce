@@ -51,6 +51,7 @@ Route::get('/cart/{voucher}',[CartController::class, 'index']);
 Route::get('/cart/quantity/update/{cart_id}/{quantity}',[CartController::class, 'quantityUpdate']);
 Route::resource('cart', CartController::class);
 // Checkout
+Route::get('/checkout/success/{invoice}',[CheckoutController::class,'checkoutSuccess'])->name('checkout.success');
 Route::get('/get/district/{division_id}',[CheckoutController::class,'getDistrict']);
 Route::get('/get/upazila/{district_id}',[CheckoutController::class,'getUpazila']);
 Route::resource('checkout', CheckoutController::class)->middleware(['auth','isCustomer']);
@@ -65,7 +66,7 @@ Route::get('/my-account/orders/delivered',[MyAccountController::class,'indexDeli
 Route::get('/my-account/orders',[MyAccountController::class,'indexOrders'])->name('my-account.orders')->middleware(['isCustomer','auth','verified']);
 Route::get('/my-account/orders/track',[MyAccountController::class,'indexTrack'])->name('my-account.orders.track')->middleware(['isCustomer','auth','verified']);
 Route::get('/my-account/orders/track/search/{invoice}',[MyAccountController::class,'TrackOrder'])->middleware(['isCustomer','auth','verified']);
-Route::resource('my-account', MyAccountController::class)->middleware(['isCustomer','auth']);
+Route::resource('my-account', MyAccountController::class)->middleware(['isCustomer','auth','verified']);
 // Dashboard
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard')->middleware(['auth','verified','verified']);
 Route::get('/dashboard/get/color/size/{cid}/{pid}',[DashboardController::class, 'getColorSizeId'])->middleware(['auth','verified']);

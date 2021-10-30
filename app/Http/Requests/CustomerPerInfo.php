@@ -25,7 +25,6 @@ class CustomerPerInfo extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
             'mobile' => 'required|numeric',
             'region_id' => 'required',
             'district_id' => 'required',

@@ -73,10 +73,6 @@ class CheckoutController extends Controller
      */
     public function store(BillingInfoAdd $request)
     {
-        // return session()->all();
-        // return Auth::user()->id;
-        // return $request;
-        // return $cookieId = Cookie::get('jesco_ecommerce');
         $billing_details = new BillingDetails;
         $billing_details->user_id = Auth::user()->id;
         $billing_details->name = $request->name;
@@ -109,7 +105,7 @@ class CheckoutController extends Controller
         if(session()->get('s_voucher')){
             Voucher::where('name',session()->get('s_voucher'))->decrement('limit');
         }
-        $cookieId = Cookie::get('jesco_ecommerce');
+        $cookieId = Cookie::get('beshkichu_com');
         foreach (Cart::where('cookie_id',$cookieId)->get() as $key => $cart) {
             $order_detail = new Order_Deatail;
             $order_detail->order_summary_id = $order_summary->id;
@@ -123,7 +119,7 @@ class CheckoutController extends Controller
         if($request->email){
             Mail::to($request->email)->send(new CheckoutConfirmation($request));
         }
-        return redirect()->route('frontend');
+        return redirect()->route('checkout.success',$order_summary->invoice_no);
 
     }
 
@@ -182,5 +178,12 @@ class CheckoutController extends Controller
     {
         $upazila = Upazila::where('district_id',$district_id)->get();
         return response()->json($upazila);
+    }
+    public function checkoutSuccess($invoice){
+        // return $invoice;
+        // $billing = BillingDetails::find($billing_details);
+        return view('frontend.pages.order.success',[
+            'order_summary' => Order_Summary::where('invoice_no',$invoice)->first(),
+        ]);
     }
 }
