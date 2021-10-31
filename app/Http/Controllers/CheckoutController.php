@@ -117,7 +117,15 @@ class CheckoutController extends Controller
             $cart->delete();
         }
         if($request->email){
-            Mail::to($request->email)->send(new CheckoutConfirmation($request));
+            $send_information =[
+                'name' => $request->name,
+                'email' => $request->email,
+                'total_price' =>$order_summary->total_price,
+                'Invoice_no' => $order_summary->invoice_no,
+            ];
+            // $jsonData = json_encode($send_information);
+            // // $jsonData."\n";
+            Mail::to($request->email)->send(new CheckoutConfirmation($send_information));
         }
         return redirect()->route('checkout.success',$order_summary->invoice_no);
 
