@@ -353,11 +353,11 @@
                                     <div class="footer-detail">
                                         <p>{{ basicSettings()->tagline }}</p>
                                         <ul class="paymant-bottom">
-                                            <li><a href="#"><img src="../assets/images/layout-1/pay/1.png" class="img-fluid" alt="pay"></a></li>
-                                            <li><a href="#"><img src="../assets/images/layout-1/pay/2.png" class="img-fluid" alt="pay"></a></li>
-                                            <li><a href="#"><img src="../assets/images/layout-1/pay/3.png" class="img-fluid" alt="pay"></a></li>
-                                            <li><a href="#"><img src="../assets/images/layout-1/pay/4.png" class="img-fluid" alt="pay"></a></li>
-                                            <li><a href="#"><img src="../assets/images/layout-1/pay/5.png" class="img-fluid" alt="pay"></a></li>
+                                            <li><a href="javascript:void(0)"><img src="{{ asset('assets/images/layout-1/pay/1.png') }}" class="img-fluid" alt="pay"></a></li>
+                                            <li><a href="javascript:void(0)"><img src="{{ asset('assets/images/layout-1/pay/2.png') }}" class="img-fluid" alt="pay"></a></li>
+                                            <li><a href="javascript:void(0)"><img src="{{ asset('assets/images/layout-1/pay/3.png') }}" class="img-fluid" alt="pay"></a></li>
+                                            <li><a href="javascript:void(0)"><img src="{{ asset('assets/images/layout-1/pay/4.png') }}" class="img-fluid" alt="pay"></a></li>
+                                            <li><a href="javascript:void(0)"><img src="{{ asset('assets/images/layout-1/pay/5.png') }}" class="img-fluid" alt="pay"></a></li>
                                         </ul>
                                     </div>
                                 </div>
