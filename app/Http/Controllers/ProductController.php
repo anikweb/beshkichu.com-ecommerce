@@ -321,7 +321,7 @@ class ProductController extends Controller
             $imageGallery = ProductImageGallery::find($id);
             $product = Product::find($imageGallery->product_id);
             $oldImage = public_path('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name;
-            if($oldImage){
+            if(file_exists($oldImage)){
                 unlink($oldImage);
             }
             // unlink($oldImage);
