@@ -27,10 +27,10 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-9 my-auto">
-                                    <div class="custom-file mb-3">
-                                        <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" onchange="document.getElementById('image_preview').src = window.URL.createObjectURL(this.files[0])">
-                                        <label class="custom-file-label" for="customFile">Choose Slider Image</label>
-                                      </div>
+                                        <div class="custom-file mb-3">
+                                            <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" onchange="document.getElementById('image_preview').src = window.URL.createObjectURL(this.files[0])">
+                                            <label class="custom-file-label" for="customFile">Choose Slider Image</label>
+                                        </div>
                                       @error('image')
                                         <div class="text-danger">
                                             <i class="fa fa-exclamation-circle"></i>

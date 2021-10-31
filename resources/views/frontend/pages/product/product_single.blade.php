@@ -36,21 +36,21 @@
                     <div class="col-lg-6">
                         <div class="product-slick">
                             <div>
-                                <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/thumbnail/'.$product->thumbnail }}" alt="" class="img-fluid  image_zoom_cls-0">
+                                <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/thumbnail/'.$product->thumbnail }}" alt="{{$product->name}}" class="img-fluid  image_zoom_cls-0">
                             </div>
                             @foreach ($product->imageGallery as $imageGallery)
-                                <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="" class="img-fluid  image_zoom_cls-{{ $loop->index+1 }}">
+                                <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="{{$product->name}}" class="img-fluid  image_zoom_cls-{{ $loop->index+1 }}">
                             @endforeach
                         </div>
                         <div class="row">
                             <div class="col-12 p-0">
                                 <div class="slider-nav">
                                     <div>
-                                        <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/thumbnail/'.$product->thumbnail }}" alt="" class="img-fluid ">
+                                        <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/thumbnail/'.$product->thumbnail }}" alt="{{$product->name}}" class="img-fluid ">
                                     </div>
                                     @foreach ($product->imageGallery as $imageGallery)
                                         <div>
-                                            <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="" class="img-fluid ">
+                                            <img src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="{{$product->name}}" class="img-fluid ">
                                         </div>
                                     @endforeach
                                 </div>
@@ -268,12 +268,12 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="{{ asset('assets/images/product').'/'.$releted_product->created_at->format('Y/m/d/').$releted_product->id.'/thumbnail/'.$releted_product->thumbnail }}" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('assets/images/product').'/'.$releted_product->created_at->format('Y/m/d/').$releted_product->id.'/thumbnail/'.$releted_product->thumbnail }}" class="img-fluid  " alt="{{$product->name}}">
                                             </div>
                                             @foreach ($releted_product->imageGallery as $imageGallery)
                                                 @if ($loop->index ==0)
                                                     <div class="product-back">
-                                                        <img src="{{ asset('assets/images/product').'/'.$releted_product->created_at->format('Y/m/d/').$releted_product->id.'/image_galleries/'.$imageGallery->name }}" class="img-fluid  " alt="product">
+                                                        <img src="{{ asset('assets/images/product').'/'.$releted_product->created_at->format('Y/m/d/').$releted_product->id.'/image_galleries/'.$imageGallery->name }}" class="img-fluid  " alt="{{$product->name}}">
                                                     </div>
                                                 @endif
                                             @endforeach

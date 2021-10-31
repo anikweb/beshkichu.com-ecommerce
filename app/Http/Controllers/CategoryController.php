@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\categoryForm;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 use App\Models\{
     Category,
     Subcategory,
@@ -57,9 +58,16 @@ class CategoryController extends Controller
             $category = new Category;
             $category->name =$request->name;
             $category->slug = Str::slug($request->name);
-            if($category->save()){
-                return back()->with('success','Category Created!');
-            }else{
+            $category->save();
+            if($request->hasFile('image')){
+                $image = $request->file('image');
+                $newImageName = Str::slug($category->name).'-'.date('Y_m_d_h_i_s').time().'.'.$image->getClientOriginalExtension();
+                // Create Dynamic Folder Start
+                $path = public_path('assets/images/layout-2/collection-banner/');
+                // Create Dynamic Folder End
+                Image::make($image)->save($path.$newImageName);
+                $category->image = $newImageName;
+                $category->save();
                 return back()->with('success','Category Created!');
             }
         }else{
@@ -112,13 +120,24 @@ class CategoryController extends Controller
             // Update
             $category->name = $request->name;
             $category->slug = Str::slug($request->name);
-
-            // Redirect
-            if($category->save()){
+            $category->save();
+            if($request->hasFile('image')){
+                // return 'paise';
+                $oldImage = public_path('assets/images/layout-2/collection-banner/'.$category->image);
+                if(file_exists($oldImage)){
+                    unlink($oldImage);
+                }
+                $image = $request->file('image');
+                $newImageName = Str::slug($category->name).'-'.date('Y_m_d_h_i_s').time().'.'.$image->getClientOriginalExtension();
+                // Create Dynamic Folder Start
+                $path = public_path('assets/images/layout-2/collection-banner/');
+                // Create Dynamic Folder End
+                Image::make($image)->save($path.$newImageName);
+                $category->image = $newImageName;
+                $category->save();
                 return redirect()->route('category.edit',$category->slug)->with('success','Category Updated!');
-            }else{
-                return back()->with('error','Failed');
             }
+            return redirect()->route('category.edit',$category->slug)->with('success','Category Updated!');
         }else{
             return abort(404);
         }

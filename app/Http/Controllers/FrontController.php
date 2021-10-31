@@ -27,7 +27,7 @@ class FrontController extends Controller
             'productNew' => Product::latest()->limit(8)->get(),
             'wishlistProduct' =>Wishlist::all(),
             'sliders' =>Slider::where('status',1)->latest()->get(),
-            'categories' =>Category::orderBy('name','asc')->get(),
+            'categories' =>Category::all(),
         ]);
     }
     public function productView(){

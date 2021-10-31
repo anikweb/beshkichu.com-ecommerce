@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="robots" content="index, follow" />
-    <title> @if(Route::is('frontend')) Home @elseif(Route::is('frontend.product')) Products @elseif(Route::is('frontend.product.single')) {{ $product->name }} @elseif(Route::is('frontend.wishlist.index')) Wishlist @elseif(Route::is('cart.index')) Carts @elseif(url('cart/{voucher}')) Carts @elseif(Route::is('checkout.index')) Checkout @elseif(Route::is('my-account.index')) Profile @elseif(Route::is('my-account.personal.information.edit')) Update Profile @elseif(Route::is('my-account.orders')) Orders @elseif(Route::is('my-account.delivered.order')) Delevered Orders @elseif(Route::is('my-account.orders.track')) Track Orders @elseif(Route::is('login')) Login @elseif(Route::is('register')) Register @elseif(Route::is('password.request')) Forgot Password @elseif(Route::is('password.reset')) Reset Password  @endif | {{ basicSettings()->site_title }}</title>
+    <title> @if(Route::is('frontend')) Home @elseif(Route::is('frontend.product')) Products @elseif(Route::is('frontend.category.product')) {{$category->name}} - Products @elseif(Route::is('frontend.product.single')) {{ $product->name }} @elseif(Route::is('frontend.wishlist.index')) Wishlist @elseif(Route::is('cart.index')) Carts  @elseif(Route::is('checkout.index')) Checkout @elseif(Route::is('my-account.index')) Profile @elseif(Route::is('my-account.personal.information.edit')) Update Profile @elseif(Route::is('my-account.orders')) Orders @elseif(Route::is('my-account.delivered.order')) Delevered Orders @elseif(Route::is('my-account.orders.track')) Track Orders @elseif(Route::is('login')) Login @elseif(Route::is('register')) Register @elseif(Route::is('password.request')) Forgot Password @elseif(Route::is('password.reset')) Reset Password  @endif | {{ basicSettings()->site_title }}</title>
     <meta name="description" content="{{ basicSettings()->tagline }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -54,33 +54,17 @@
                                     back <i class="fa fa-angle-right pl-2"></i>
                                 </div>
                                 </li>
-                                <li><a href="#">western ware</a></li>
-                                <li><a href="#">TV, Appliances</a></li>
-                                <li><a href="#">Pets Products</a></li>
-                                <li><a href="#">Car, Motorbike</a></li>
-                                <li><a href="#">Industrial Products</a></li>
-                                <li><a href="#">Beauty, Health Products</a></li>
-                                <li><a href="#">Grocery Products </a></li>
-                                <li><a href="#">Sports</a></li>
-                                <li><a href="#">Bags, Luggage</a></li>
-                                <li><a href="#">Movies, Music </a></li>
-                                <li><a href="#">Video Games</a></li>
-                                <li><a href="#">Toys, Baby Products</a></li>
-                                <li class="mor-slide-open" style="display: none;">
-                                <ul>
-                                    <li><a href="#">Bags, Luggage</a></li>
-                                    <li><a href="#">Movies, Music </a></li>
-                                    <li><a href="#">Video Games</a></li>
-                                    <li><a href="#">Toys, Baby Products</a></li>
-                                </ul>
+                                @foreach (category() as $category)
+                                    <li><a href="{{ route('frontend.category.product',$category->slug) }}">{{ $category->name }}</a></li>
+                                @endforeach
                                 </li>
-                                <li>
+                                {{-- <li>
                                 <a class="mor-slide-click">
-                                    mor category
+                                    more category
                                     <i class="fa fa-angle-down pro-down"></i>
                                     <i class="fa fa-angle-up pro-up" style="display: none;"></i>
                                 </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="logo-block">
@@ -147,7 +131,7 @@
                                     <div class="collapse  nav-desk" id="navbarToggleExternalContent">
                                     <ul class="nav-cat title-font">
                                         @foreach (category() as $category)
-                                            <li> <img src="{{ asset('assets/images/layout-1/nav-img/12.png') }}" alt="category-product"> <a href="{{ route('frontend.category.product',$category->slug) }}">{{ $category->name }}</a></li>
+                                            <li> <img src="{{ asset('assets/images/layout-2/collection-banner/'.$category->image) }}" alt="{{$category->name}}"> <a href="{{ route('frontend.category.product',$category->slug) }}">{{ $category->name }}</a></li>
                                         @endforeach
                                     </ul>
                                     </div>
@@ -170,277 +154,42 @@
                                     <li>
                                         <a href="{{ route('frontend.product') }}" class="dark-menu-item has-submenu" id="sm-16353491369166194-3" aria-haspopup="true" aria-controls="sm-16353491369166194-4" aria-expanded="false">
                                             shop
-                                            {{-- <span class="sub-arrow"></span> --}}
                                         </a>
-                                        {{-- <ul id="sm-16353491369166194-4" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-3" aria-expanded="false">
-                                            <li><a href="category-page(left-sidebar).html">left sidebar</a></li>
-                                            <li><a href="category-page(right-sidebar).html">right sidebar</a></li>
-                                            <li><a href="category-page(no-sidebar).html">no sidebar</a></li>
-                                            <li><a href="category-page(sidebar-popup).html">sidebar popup</a></li>
-                                            <li><a href="category-page(metro).html">metro </a></li>
-                                            <li><a href="category-page(full-width).html">full width </a></li>
-                                            <li><a href="category-page(infinite-scroll).html">infinite scroll</a></li>
-                                            <li><a href="category-page(3-grid).html">3 grid</a></li>
-                                            <li><a href="category-page(6-grid).html">6 grid</a></li>
-                                            <li><a href="category-page(list-view).html">list view</a></li>
-                                        </ul> --}}
                                     </li>
+                                    <li>
+                                        <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">Services<span class="sub-arrow"></span></a>
+                                        <ul id="sm-16353491369166194-16" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-15" aria-expanded="false">
+                                            <li><a href="javascript:void(0)">Sourching</a></li>
+                                        </ul>
+                                    </li>
+
                                     <!--SHOP-END-->
-
-
-                                    <!--product-meu start-->
-                                    <li class="mega"><a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-5" aria-haspopup="true" aria-controls="sm-16353491369166194-6" aria-expanded="false">product
-                                    <span class="sub-arrow"></span></a>
-                                        <ul class="mega-menu full-mega-menu " id="sm-16353491369166194-6" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-5" aria-expanded="false">
-                                        <li>
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>sidebar</h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="product-page(left-sidebar).html">left sidebar</a></li>
-                                                        <li><a href="product-page(right-sidebar).html">right sidebar</a></li>
-                                                        <li><a href="product-page(no-sidebar).html">non sidebar</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>bonus layout</h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="product-page(bundle).html">bundle</a></li>
-                                                        <li><a href="product-page(image-swatch).html">image swatch</a></li>
-                                                        <li><a href="product-page(vertical-tab).html">vertical tab</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>product layout </h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="product-page(4-image).html">4 image </a></li>
-                                                        <li><a href="product-page(sticky).html">sticky</a></li>
-                                                        <li><a href="product-page(accordian).html">accordian</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>thumbnail image</h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="product-page(left-image).html">left image</a></li>
-                                                        <li><a href="product-page(right-image).html">right image</a></li>
-                                                        <li><a href="product-page(image-outside).html">image outside</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>3 column</h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="product-page(3-col-left).html">thumbnail left</a></li>
-                                                        <li><a href="product-page(3-col-right).html">thumbnail right</a></li>
-                                                        <li><a href="product-page(3-column).html">thubnail bottom</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>product element</h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="element-productbox.html">product box</a></li>
-                                                        <li><a href="element-product-slider.html">product slider</a></li>
-                                                        <li><a href="element-no_slider.html">no slider</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                            <div class="row menu-banner">
-                                                <div class="col-lg-6">
-                                                <div>
-                                                    <img src="{{ asset('assets/images/menu-banner1.jpg') }}" alt="menu-banner" class="img-fluid">
-                                                </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                <div>
-                                                    <img src="{{ asset('assets/images/menu-banner2.jpg') }}" alt="menu-banner" class="img-fluid">
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </li>
-                                        </ul>
-                                    </li>
-                                    <!--product-meu end-->
-
-                                    <!--mega-meu start-->
-                                    <li class="mega">
-                                        <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-7" aria-haspopup="true" aria-controls="sm-16353491369166194-8" aria-expanded="false">features<span class="sub-arrow"></span></a>
-                                        <ul class="mega-menu full-mega-menu ratio_landscape" id="sm-16353491369166194-8" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-7" aria-expanded="false">
-                                        <li>
-                                            <div class="container">
-                                            <div class="row">
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>portfolio</h5></div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="grid-2-col.html">portfolio grid 2</a></li>
-                                                        <li><a href="grid-3-col.html">portfolio grid 3</a></li>
-                                                        <li><a href="grid-4-col.html">portfolio grid 4</a></li>
-                                                        <li><a href="grid-6-col.html">portfolio grid 6</a></li><li><a href="masonary-2-grid.html">mesonary grid 2</a></li>
-                                                        <li><a href="masonary-3-grid.html">mesonary grid 3</a></li>
-                                                        <li><a href="masonary-4-grid.html">mesonary grid 4</a></li>
-                                                        <li><a href="masonary-fullwidth.html">mesonary full width</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>add to cart</h5></div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="layout-5.html">cart modal popup</a></li>
-                                                        <li><a href="layout-6.html">qty. counter </a></li>
-                                                        <li><a href="index.html">cart top</a></li>
-                                                        <li><a href="layout-2.html">cart bottom</a></li>
-                                                        <li><a href="layout-3.html">cart left</a></li>
-                                                        <li><a href="layout-4.html">cart right</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>shortcodes</h5></div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="element-title.html">title</a></li>
-                                                        <li><a href="element-banner.html">collection banner</a></li>
-                                                        <li><a href="element-slider.html">home slider</a></li>
-                                                        <li><a href="element-category.html">category</a></li>
-                                                        <li><a href="element-service.html">service</a></li>
-                                                        <li><a href="element-image-ratio.html">image size ratio</a></li>
-                                                        <li><a href="element-tab.html">tab</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box">
-                                                <div class="link-section">
-                                                    <div class="menu-title">
-                                                    <h5>email template</h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="email-order-success.html">order success</a></li>
-                                                        <li><a href="email-order-success-tow.html">order success 2</a></li>
-                                                        <li><a href="email-template.html">email template</a></li>
-                                                        <li><a href="email-template-tow.html">email template 2</a></li>
-                                                    </ul>
-                                                    </div>
-                                                    <div class="menu-title menu-secon-title">
-                                                    <h5>Easy to use</h5>
-                                                    </div>
-                                                    <div class="menu-content">
-                                                    <ul>
-                                                        <li><a href="button.html">element button</a></li>
-                                                        <li><a href="instagram.html">element instagram</a></li>
-                                                    </ul>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                                <div class="col mega-box product ">
-                                                <div class="mega-img">
-                                                    <img src="../assets/images/mega-banner.jpg" alt="menu-banner" class="img-fluid">
-                                                </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </li>
-                                        </ul>
-                                    </li>
-                                    <!--mega-meu end-->
-
-                                    <!--pages-meu start-->
-                                    <li><a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-9" aria-haspopup="true" aria-controls="sm-16353491369166194-10" aria-expanded="false">pages<span class="sub-arrow"></span></a>
-                                        <ul id="sm-16353491369166194-10" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-9" aria-expanded="false">
-                                        <li>
-                                            <a href="#" class="has-submenu" id="sm-16353491369166194-11" aria-haspopup="true" aria-controls="sm-16353491369166194-12" aria-expanded="false">account<span class="sub-arrow"></span></a>
-                                            <ul id="sm-16353491369166194-12" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-11" aria-expanded="false">
-                                            <li><a href="wishlist.html">wishlist</a></li>
-                                            <li><a href="cart.html">cart</a></li>
-                                            <li><a href="dashboard.html">Dashboard</a></li>
-                                            <li><a href="login.html">login</a></li>
-                                            <li><a href="register.html">register</a></li>
-                                            <li><a href="contact.html">contact</a></li>
-                                            <li><a href="forget-pwd.html">forget password</a></li>
-                                            <li><a href="profile.html">profile </a></li>
-                                            <li><a href="checkout.html">checkout</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="about-page.html">about us</a></li>
-                                        <li><a href="search.html">search</a></li>
-                                        <li><a href="typography.html">typography </a></li>
-                                        <li><a href="review.html">review </a></li>
-                                        <li><a href="order-success.html">order success</a></li>
-                                        <li><a href="order-history.html">order history</a></li>
-                                        <li>
-                                            <a href="#" class="has-submenu" id="sm-16353491369166194-13" aria-haspopup="true" aria-controls="sm-16353491369166194-14" aria-expanded="false">compare<span class="sub-arrow"></span></a>
-                                            <ul id="sm-16353491369166194-14" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-13" aria-expanded="false">
-                                            <li><a href="compare.html">compare</a></li>
-                                            <li><a href="compare-2.html">compare-2</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="collection.html">collection</a></li>
-                                        <li><a href="look-book.html">lookbook</a></li>
-                                        <li><a href="404.html">404</a></li>
-                                        <li><a href="coming-soon.html">coming soon </a></li>
-                                        <li><a href="faq.html">FAQ</a></li>
-                                        </ul>
-                                    </li>
-                                    <!--product-end end-->
-
                                     <!--blog-meu start-->
                                         <li>
-                                            <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">blog<span class="sub-arrow"></span></a>
-                                            <ul id="sm-16353491369166194-16" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-15" aria-expanded="false">
-                                            <li><a href="blog(left-sidebar).html">left sidebar</a></li>
-                                            <li><a href="blog(right-sidebar).html">right sidebar</a></li>
-                                            <li><a href="blog(no-sidebar).html">no sidebar</a></li>
-                                            <li><a href="blog-details.html">blog details</a></li>
-                                            </ul>
+                                            <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">blog</a>
                                         </li>
-                                        <!--blog-meu end-->
+
+                                        @guest
+                                            <li>
+                                                <a href="{{ route('my-account.orders.track') }}" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">track order</a>
+                                            </li>
+                                        @else
+                                            @if (auth()->user()->roles->first()->name == 'Customer')
+                                                <li>
+                                                    <a href="{{ route('my-account.orders.track') }}" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">track order</a>
+                                                </li>
+                                            @endif
+                                        @endguest
+                                        <li>
+                                            <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-3" aria-haspopup="true" aria-controls="sm-16353491369166194-4" aria-expanded="false">
+                                                About us
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-3" aria-haspopup="true" aria-controls="sm-16353491369166194-4" aria-expanded="false">
+                                                Contact
+                                            </a>
+                                        </li>
                                         @auth
                                             <li>
                                                 <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">Welcome,{{ Auth::user()->name }}<span class="sub-arrow"></span></a>
@@ -448,7 +197,6 @@
                                                 <ul id="sm-16353491369166194-16" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-15" aria-expanded="false">
                                                     @if (auth()->user()->roles->first()->name == 'Customer')
                                                         <li><a href="{{ route('my-account.index') }}">My Account</a></li>
-                                                        <li><a href="{{ route('my-account.orders.track') }}">Track Order</a></li>
                                                     @else
                                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 
@@ -755,18 +503,30 @@
                 @csrf
                 <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" name="email" value="{{ old('email') }}"  class="form-control" id="email" placeholder="Email">
+                <input type="text" name="email" value="{{ old('email') }}"  class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email">\
+                @error('email')
+                    <div class="text-danger">
+                        <i class="fa fa-exclamation-circle"></i>
+                        {{ $message }}
+                    </div>
+                @enderror
                 </div>
                 <div class="form-group">
                 <label for="review">Password</label>
-                <input type="password" name="password" class="form-control" id="review" placeholder="Enter your password">
+                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="review" placeholder="Enter your password">
+                @error('password')
+                    <div class="text-danger">
+                        <i class="fa fa-exclamation-circle"></i>
+                        {{ $message }}
+                    </div>
+                @enderror
                 </div>
                 <div class="form-group">
                 <button type="submit" class="btn btn-rounded btn-block ">Login</button>
                 </div>
                 <div>
                 <h5 class="forget-class"><a href="{{ route('password.request') }}" class="d-block">forget password?</a></h5>
-                <h6 class="forget-class"><a href="{{ route('register') }}" class="d-block">new to store? Signup now</a></h6>
+                <h6 class="forget-class"><a href="{{ route('register') }}" class="d-block">haven't any account? Signup now</a></h6>
                 </div>
             </form>
             </div>

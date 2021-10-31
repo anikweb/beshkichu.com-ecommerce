@@ -25,6 +25,7 @@ class CategoryForm extends FormRequest
     {
         return [
             'name' => 'required|string|max:20|unique:categories,name',
+            'image' => 'required|mimes:png,jpg,webp,svg,jpeg',
         ];
     }
 }

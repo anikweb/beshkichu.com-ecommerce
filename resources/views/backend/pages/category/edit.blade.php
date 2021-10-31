@@ -24,7 +24,7 @@
                         <h3 class="card-title">Edit</h3>
                    </div>
                    <div class="card-body">
-                        <form action="{{ route('category.update',$category->id) }}" method="POST">
+                        <form action="{{ route('category.update',$category->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method("PUT")
                             <div class="row">
@@ -37,6 +37,26 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <label for="name">Choose Image</label>
+                                            <div class="custom-file mb-3">
+                                                <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="customFile" onchange="document.getElementById('image_preview').src = window.URL.createObjectURL(this.files[0])">
+                                                <label class="custom-file-label" for="customFile">Choose Slider Image</label>
+                                                </div>
+                                            @error('image')
+                                                <div class="text-danger">
+                                                    <i class="fa fa-exclamation-circle"></i>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img id="image_preview" width="300px" src="{{ asset('assets/images/layout-2/collection-banner/'.$category->image) }}" alt="{{ $category->image }}">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-12 mt-2">
                                     <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i> Save Changes</button>
@@ -56,5 +76,9 @@
         @elseif(session('error'))
             toastr["error"]("{{ session('error') }}");
         @endif
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
     </script>
 @endsection

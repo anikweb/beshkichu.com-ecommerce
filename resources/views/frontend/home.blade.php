@@ -4,24 +4,24 @@
 
 <!--top brand panel start-->
 <section class="brand-panel">
-    <div class="brand-panel-box">
-      <div class="brand-panel-contain ">
-        <ul>
-          <li><a href="#">top brand</a></li>
-          <li><a>:</a></li>
-          <li><a href="category-page(left-sidebar).html">aerie</a></li>
-          <li><a href="category-page(left-sidebar).html">baci lingrie</a></li>
-          <li><a href="category-page(left-sidebar).html">gerbe</a></li>
-          <li><a href="category-page(left-sidebar).html">jolidon</a></li>
-          <li><a href="category-page(left-sidebar).html">Wonderbra</a></li>
-          <li><a href="category-page(left-sidebar).html">Ultimo</a></li>
-          <li><a href="category-page(left-sidebar).html">Vassarette </a></li>
-          <li><a href="category-page(left-sidebar).html">Oysho</a></li>
-        </ul>
+      <div class="brand-panel-box">
+        <div class="brand-panel-contain ">
+          <ul>
+            <li><a href="javascript:void(0)">top brand</a></li>
+            <li><a>:</a></li>
+            <li><a href="javascript:void(0)">aerie</a></li>
+            <li><a href="javascript:void(0)">baci lingrie</a></li>
+            <li><a href="javascript:void(0)">gerbe</a></li>
+            <li><a href="javascript:void(0)">jolidon</a></li>
+            <li><a href="javascript:void(0)">Wonderbra</a></li>
+            <li><a href="javascript:void(0)">Ultimo</a></li>
+            <li><a href="javascript:void(0)">Vassarette </a></li>
+            <li><a href="javascript:void(0)">Oysho</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-  </section>
+</section>
   <!--top brand panel end-->
 
   <!--slider start-->
@@ -36,10 +36,10 @@
                         <div class="slider-img">
                             <ul class="layout1-slide-1">
                                 <li id="img-1">
-                                  <img style="max-width:500px;" src="{{ asset('assets/images/slider-image/'.$slider->image)}}" class="img-fluid" alt="slider">
+                                  <img style="max-width:500px;" src="{{ asset('assets/images/slider-image/'.$slider->image)}}" class="img-fluid" alt="{{ $slider->title }}">
                                 </li>
                                 <li id="img-2">
-                                  <img style="max-width:500px;" src="{{ asset('assets/images/slider-image/'.$slider->image)}}" class="img-fluid" alt="slider">
+                                  <img style="max-width:500px;" src="{{ asset('assets/images/slider-image/'.$slider->image)}}" class="img-fluid" alt="{{ $slider->title }}">
                                 </li>
                             </ul>
                         </div>
@@ -77,11 +77,11 @@
 
                     <div class="collection-banner-main banner-1  p-right">
                         <div class="collection-img">
-                        <img src="../assets/images/layout-2/collection-banner/1.jpg" class="img-fluid bg-img  " alt="banner">
+                        <img src="{{ asset('assets/images/layout-2/collection-banner/'.$category->image) }}" class="img-fluid bg-img  " alt="{{ $category->name }}">
                         </div>
                         <div class="collection-banner-contain">
                         <div>
-                            <h4 class="text-white">{{ $category->name }}</h4>
+                            <h4>{{ $category->name }}</h4>
                             {{--  <h4>fashion</h4>  --}}
                             <div class="shop">
 
@@ -149,13 +149,13 @@
                                         <div class="product-box">
                                             <div class="product-imgbox">
                                                 <div class="product-front">
-                                                <img src="{{ asset('assets/images/product/'.$product->created_at->format('Y/m/d').'/'.$product->id.'/thumbnail/'.$product->thumbnail) }}" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('assets/images/product/'.$product->created_at->format('Y/m/d').'/'.$product->id.'/thumbnail/'.$product->thumbnail) }}" class="img-fluid  " alt="{{$product->name}}">
                                                 </div>
                                                 <a href="{{ route('frontend.product.single',$product->slug) }}">
                                                     <div class="product-back">
                                                         @foreach ($product->imageGallery as $imageGallery)
                                                             @if ($loop->index == 0)
-                                                                <img src="{{ asset('assets/images/product/'.$product->created_at->format('Y/m/d').'/'.$product->id.'/image_galleries/'.$imageGallery->name) }}" class="img-fluid  " alt="product">
+                                                                <img src="{{ asset('assets/images/product/'.$product->created_at->format('Y/m/d').'/'.$product->id.'/image_galleries/'.$imageGallery->name) }}" class="img-fluid  " alt="{{$product->name}}">
                                                             @endif
                                                         @endforeach
                                                     </div>

@@ -32,6 +32,7 @@
                                                 <th>#</th>
                                                 <th>Name</th>
                                                 <th>Slug</th>
+                                                <th class="text-center">Image</th>
                                                 <th>Created</th>
                                                 <th>Action</th>
                                             </tr>
@@ -42,6 +43,9 @@
                                                     <td>{{$categories->firstItem() + $loop->index }}</td>
                                                     <td>{{ $category->name }}</td>
                                                     <td>{{ $category->slug }}</td>
+                                                    <td class="text-center">
+                                                        <img width="300px" src="{{ asset('assets/images/layout-2/collection-banner/'.$category->image) }}" alt="">
+                                                    </td>
                                                     <td>{{ $category->created_at->format('d-M-Y, h:i:s A') }}</td>
                                                     <td>
                                                         @can('category edit')
