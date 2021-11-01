@@ -47,7 +47,7 @@
                     <div class="dashboard-right">
                        <div class="card card-primary">
                            <div class="card-header bg-info text-white">
-                            <h3 class="text-center">My Orders</h3>
+                            <h3 class="text-center">My Delivered Orders</h3>
                            </div>
                            <div class="card-body">
                             <div class="table-responsive p-2">

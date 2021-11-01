@@ -448,7 +448,10 @@
                                                                 <ul class="contact-list">
                                                                     <li><i class="fa fa-map-marker"></i><span>{{ contactInformation()->street_address.','.contactInformation()->upazila->name.','.contactInformation()->district->name.','.contactInformation()->division->name.'-'.contactInformation()->zip_code }}</span></li>
                                                                     <li><i class="fa fa-envelope-o"></i><span>email: <a class="text-lowercase" href="mailto:{{ contactInformation()->email }}"> {{ contactInformation()->email }}</a> </span></li>
-                                                                    <li><i class="fa fa-phone"></i><span>call us: {{ contactMobile()[0]->number }}</span></li>
+                                                                    <li><i class="fa fa-phone"></i><span>call us:
+                                                                        @foreach (contactMobile() as $mobile)
+                                                                            <span>{{ $mobile->number }}</span>
+                                                                        @endforeach</span></li>
                                                                     @if (contactInformation()->phone)
                                                                         <li><i class="fa fa-fax"></i><span>Phone  {{ contactInformation()->phone }}</span></li>
                                                                     @endif
@@ -522,7 +525,7 @@
                 @csrf
                 <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" name="email" value="{{ old('email') }}"  class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email">\
+                <input type="text" name="email" value="{{ old('email') }}"  class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email">
                 @error('email')
                     <div class="text-danger">
                         <i class="fa fa-exclamation-circle"></i>

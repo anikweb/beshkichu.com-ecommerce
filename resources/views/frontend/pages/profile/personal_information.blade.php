@@ -48,7 +48,7 @@
                                 <h2>My Dashboard</h2></div>
                             <div class="welcome-msg">
                                 <p>Hello, {{ Auth::user()->name }}!</p>
-                                <p>From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
+                                <p>From your My Account Dashboard you have the ability to view your recent account activity, update your account information and download your order invoice. Select a link below to view or edit information.</p>
                             </div>
                             <div class="box-account box-info">
                                 <div class="box-head">
