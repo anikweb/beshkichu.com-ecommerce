@@ -175,18 +175,7 @@ class CheckoutController extends Controller
     {
         //
     }
-    //Getting District by ajax for checkout billing
-    public function getDistrict($division_id)
-    {
-        $district = District::where('division_id',$division_id)->get();
-        return response()->json($district);
-    }
-    //Getting Upazila by ajax for checkout billing
-    public function getUpazila($district_id)
-    {
-        $upazila = Upazila::where('district_id',$district_id)->get();
-        return response()->json($upazila);
-    }
+
     public function checkoutSuccess($invoice){
         // return $invoice;
         // $billing = BillingDetails::find($billing_details);

@@ -11,5 +11,11 @@
     function category(){
         return App\Models\Category::orderBy('name','asc')->get();
     }
+    function contactInformation(){
+        return App\Models\contact_information::first();
+    }
+    function contactMobile(){
+        return App\Models\contact_mobile::all();
+    }
 
 ?>

@@ -13,6 +13,8 @@ use App\Http\Controllers\{
     WishlistController,
     CartController,
     CheckoutController,
+    ContactInformationController,
+    GetAjaxController,
     MyAccountController,
     OrderController,
     SslCommerzPaymentController,
@@ -53,8 +55,7 @@ Route::get('/cart/quantity/update/{cart_id}/{quantity}',[CartController::class, 
 Route::resource('cart', CartController::class);
 // Checkout
 Route::get('/checkout/success/{invoice}',[CheckoutController::class,'checkoutSuccess'])->name('checkout.success');
-Route::get('/get/district/{division_id}',[CheckoutController::class,'getDistrict']);
-Route::get('/get/upazila/{district_id}',[CheckoutController::class,'getUpazila']);
+
 Route::resource('checkout', CheckoutController::class)->middleware(['auth','isCustomer']);
 
 // Customer Dashboard
@@ -115,7 +116,12 @@ Route::get('/dashboard/orders/canceled',[OrderController::class,'indexCanceled']
 Route::get('dashboard/slider/active/{slider_id}',[SliderController::class,'sliderActive'])->name('slider.active')->middleware(['auth','verified']);
 Route::get('dashboard/slider/deactivate/{slider_id}',[SliderController::class,'sliderDeactivate'])->name('slider.deactivate')->middleware(['auth','verified']);
 Route::resource('dashboard/slider', SliderController::class)->middleware(['auth','verified']);
+// Contact Information
+Route::get('dashboard/contact-information',[ContactInformationController::class, 'index'])->name('contact.information')->middleware(['auth','verified']);
+Route::post('dashboard/contact-information/update',[ContactInformationController::class, 'update'])->name('contact.information.update')->middleware(['auth','verified']);
 // Socialite
+Route::get('/get/district/{division_id}',[GetAjaxController::class,'getDistrict']);
+Route::get('/get/upazila/{district_id}',[GetAjaxController::class,'getUpazila']);
 
 Route::get('github/redirect',[GithubController::class,'githubRedirect']);
 Route::get('github/callback',[GithubController::class,'githubCallback']);

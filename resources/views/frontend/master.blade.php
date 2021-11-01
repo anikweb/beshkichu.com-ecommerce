@@ -257,7 +257,7 @@
                                 <div class="contact-block">
                                     <div>
                                         <i class="fa fa-volume-control-phone"></i>
-                                        <span>call us<span>123-456-76890</span></span>
+                                        <span>call us<span>{{ contactMobile()[0]->number }}</span></span>
                                     </div>
                                 </div>
                                 {{-- <div class="btn-group">
@@ -333,7 +333,7 @@
                     <div class="contact-banner-contain">
                         <div class="contact-banner-img"><img src="../assets/images/layout-1/call-img.png" class="  img-fluid" alt="call-banner"></div>
                             <div> <h3>if you have any question please call us</h3></div>
-                        <div><h2>123-456-7890</h2></div>
+                        <div><h2>{{ contactMobile()[0]->number }}</h2></div>
                     </div>
                 </div>
             </div>
@@ -420,8 +420,19 @@
                                                             <div class="footer-contant">
                                                                 <ul>
                                                                     <li><a href="#">store location</a></li>
-                                                                    <li><a href="#"> my account</a></li>
-                                                                    <li><a href="#"> orders tracking</a></li>
+                                                                    @guest
+                                                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                                                    @else
+
+                                                                        @if (auth()->user()->roles->first()->name == 'Customer')
+                                                                        <li><a href="{{ route('my-account.index') }}"> my account</a></li>
+                                                                        <li><a href="{{ route('my-account.orders.track') }}"> orders tracking</a></li>
+                                                                        @else
+                                                                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                                                        @endif
+                                                                    @endguest
+
+
                                                                     <li><a href="#"> size guide</a></li>
                                                                     <li><a href="#">FAQ </a></li>
                                                                 </ul>
@@ -435,10 +446,12 @@
                                                             </div>
                                                             <div class="footer-contant">
                                                                 <ul class="contact-list">
-                                                                    <li><i class="fa fa-map-marker"></i><span>big deal store demo store <br> <span> india-3654123</span></span></li>
-                                                                    <li><i class="fa fa-phone"></i><span>call us: 123-456-7898</span></li>
-                                                                    <li><i class="fa fa-envelope-o"></i><span>email us: support@bigdeal.com</span></li>
-                                                                    <li><i class="fa fa-fax"></i><span>fax 123456</span></li>
+                                                                    <li><i class="fa fa-map-marker"></i><span>{{ contactInformation()->street_address.','.contactInformation()->upazila->name.','.contactInformation()->district->name.','.contactInformation()->division->name.'-'.contactInformation()->zip_code }}</span></li>
+                                                                    <li><i class="fa fa-envelope-o"></i><span>email: <a class="text-lowercase" href="mailto:{{ contactInformation()->email }}"> {{ contactInformation()->email }}</a> </span></li>
+                                                                    <li><i class="fa fa-phone"></i><span>call us: {{ contactMobile()[0]->number }}</span></li>
+                                                                    @if (contactInformation()->phone)
+                                                                        <li><i class="fa fa-fax"></i><span>Phone  {{ contactInformation()->phone }}</span></li>
+                                                                    @endif
                                                                 </ul>
                                                             </div>
                                                         </div>

@@ -402,6 +402,12 @@
                             <p>Basic Settings</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('contact.information') }}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Contact Information</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
           {{-- Logout  --}}
