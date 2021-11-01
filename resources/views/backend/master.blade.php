@@ -8,7 +8,7 @@
     <meta property="og:title" content="{{ basicSettings()->site_title }}" />
     <meta property="og:description" content="{{ basicSettings()->tagline }}" />
     <meta property="og:image" content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" />
-  <title> @if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider   @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
+  <title> @if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider @elseif(Route::is('contact.information')) Contact Information @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -387,29 +387,35 @@
                 </li>
             @endcan
             {{-- Site Settings  --}}
-            <li class="nav-item @if(Route::is('basic-settings.index')) menu-open @endif">
-                <a href="#" class="nav-link @if(Route::is('basic-settings.index')) active @endif">
-                <i class="nav-icon fas fa-wrench"></i>
-                <p>
-                    Settings
-                    <i class="fas fa-angle-left right"></i>
-                </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item @if(Route::is('basic-settings.index')) active @endif">
-                        <a href="{{ route('basic-settings.index') }}" class="nav-link @if(Route::is('basic-settings.index')) active @endif">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Basic Settings</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('contact.information') }}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Contact Information</p>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            @if (auth()->user()->can('site settings edit')||auth()->user()->can('contact information edit'))
+                <li class="nav-item @if(Route::is('basic-settings.index')||Route::is('contact.information')) menu-open @endif">
+                    <a href="#" class="nav-link @if(Route::is('basic-settings.index')||Route::is('contact.information')) active @endif">
+                    <i class="nav-icon fas fa-wrench"></i>
+                    <p>
+                        Settings
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('site settings edit')
+                            <li class="nav-item">
+                                <a href="{{ route('basic-settings.index') }}" class="nav-link @if(Route::is('basic-settings.index')) active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Basic Settings</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('contact information edit')
+                            <li class="nav-item">
+                                <a href="{{ route('contact.information') }}" class="nav-link @if(Route::is('contact.information')) active @endif">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Contact Information</p>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endif
           {{-- Logout  --}}
           <li class="nav-item">
             <form id="logout_form" action="{{ route('logout') }}" method="POST">
@@ -433,10 +439,10 @@
     </div>
      <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2017-{{ date('y') }} Beshkichu Sourching Company.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
+      {{--  <b>Version</b> 3.1.0  --}}
     </div>
   </footer>
 

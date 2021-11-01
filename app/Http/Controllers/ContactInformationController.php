@@ -14,18 +14,25 @@ class ContactInformationController extends Controller
 {
     public function index()
     {
+
+        if(auth()->user()->can('contact information edit')){
+            return view('backend.pages.contact_information.index',[
+                'divisions' => Division::orderBy('name','asc')->get(),
+                'contact_mobiles' => contact_mobile::latest()->get(),
+                'contact_information' => contact_information::latest()->first(),
+            ]);
+        }else{
+            return abort(404);
+        }
+
         // return 'aschi boss';
-        return view('backend.pages.contact_information.index',[
-            'divisions' => Division::orderBy('name','asc')->get(),
-            'contact_mobiles' => contact_mobile::latest()->get(),
-            'contact_information' => contact_information::latest()->first(),
-        ]);
+
     }
     public function update(ContactInfomationAddForm $request)
     {
         // return $request;
-
-        $contact = contact_information::find($request->contact_id);
+        if(auth()->user()->can('contact information edit')){
+            $contact = contact_information::find($request->contact_id);
         $contact->email = $request->email;
         $contact->phone = $request->phone;
         $contact->division_id= $request->region_id;
@@ -56,6 +63,10 @@ class ContactInformationController extends Controller
 
             }
          }
-         return back();
+            return back();
+        }else{
+            return abort(404);
+        }
+
     }
 }
