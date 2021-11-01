@@ -66,8 +66,8 @@
                             <input type="hidden" class="product_id" name="product_id" value="">
                             <div class="product-right">
                                 <h2>{{ Str::upper($product->name) }}</h2>
-                                <h4><del class="text-danger">{{ '৳'.$product->attribute->max('regular_price') }}</span></h4>
-                                <h3 class="text-info">{{ '৳'.$product->attribute->max('offer_price') }}</h3>
+                                <h4><del class="text-danger rPrice">{{ '৳'.$product->attribute->max('regular_price') }}</span></h4>
+                                <h3 class="text-info offer_price">{{ '৳'.$product->attribute->min('offer_price') }}</h3>
                                 <ul class="image-swatch">
                                     @foreach ($product->imageGallery as $imageGallery)
                                         <li class="active"><a href="javascript:void(0)"><img width="40px" src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="" class="img-fluid "></a></li>
@@ -387,10 +387,10 @@
                                     var rPrice = $(this).attr('data-rPrice');
                                     var size_id = $(this).attr('data-size');
                                     $('.offer_price').html('৳'+price);
+                                    $('.rPrice').html('৳'+rPrice);
                                     $('.size_id').val(size_id);
                                     $('.sizeCheck').removeClass('active');
                                     $('.sizeCheck'+size_id).addClass('active');
-                                    $('.rPrice').html(rPrice);
                                 });
                             // }
                             // if(res =='none'){

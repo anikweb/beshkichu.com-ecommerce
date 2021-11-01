@@ -30,7 +30,7 @@
                             <div class="form-row">
                                 <div class="col-md-12 form-group">
                                     <label for="name">Full Name</label>
-                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Last Name">
+                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Full Name">
                                     @error('name')
                                         <div class="text-danger">
                                             <i class="fa fa-exclamation-circle"></i>
