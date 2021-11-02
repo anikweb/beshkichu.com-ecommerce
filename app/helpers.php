@@ -17,5 +17,8 @@
     function contactMobile(){
         return App\Models\contact_mobile::all();
     }
+    function personalInfo(){
+        return App\Models\CustomerPersonalInformation::where('user_id',Auth::user()->id)->first();
+    }
 
 ?>

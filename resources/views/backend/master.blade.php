@@ -94,10 +94,15 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+            @if (personalInfo()->gender == 'female')
+                <img src="{{ asset('backend/dist/img/user-female.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                @else
+                <img src="{{ asset('backend/dist/img/user-male.jpg') }}" class="img-circle elevation-2" alt="User Image">
+
+            @endif
         </div>
         <div class="info">
-          <a href="{{ route('backend.user') }}" class="d-block">{{ Auth::user()->name }}</a>
+          <a href="{{ route('backend.user') }}" class="d-block">{{ Auth::user()->name }} </a>
           <span class="text-white">({{ Auth::user()->roles->first()->name }})</span>
         </div>
       </div>
