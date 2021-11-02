@@ -42,6 +42,17 @@
     @yield('inline_style')
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
+    <style>
+        .icon-user {
+            color:#fff;
+        }
+        @media (max-width: 900px){
+            .icon-user {
+                color:#000 !important;  
+                font-size: 20px !important;
+            }
+        }
+    </style>
 
 </head>
 

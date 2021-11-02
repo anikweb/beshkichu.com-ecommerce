@@ -12301,6 +12301,11 @@
     direction: ltr;
     text-align: left;
   }
+  .sm,
+  .sm ul,
+  .sm li a {
+color:
+  }
   .sm {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
