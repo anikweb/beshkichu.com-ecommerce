@@ -31,7 +31,7 @@
                                 <li><a href="{{route('my-account.orders')}}">My Orders</a></li>
                                 <li><a href="{{route('my-account.delivered.order')}}">Delevered Order</a></li>
                                 <li><a href="#">Newsletter</a></li>
-                                <li><a href="#">Change Password</a></li>
+                                <li><a href="{{route('my-account.changePassword')}}">Change Password</a></li>
                                 <li class="last"><a href="javascript:void(0)"  onclick="event.preventDefault(); document.getElementById('logout_form').submit()">Log Out</a></li>
                                 <form id="logout_form" action="{{ route('logout') }}" method="POST">
                                 @csrf

@@ -11,6 +11,8 @@
                             <ul>
                                 <li><a href="{{ route('frontend') }}">home</a></li>
                                 <li><i class="fa fa-angle-double-right"></i></li>
+                                <li><a href="{{ route('my-account.index') }}">Personal Information</a></li>
+                                <li><i class="fa fa-angle-double-right"></i></li>
                                 <li><a href="javascript:void(0)">Change password</a></li>
                             </ul>
                         </div>
