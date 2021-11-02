@@ -62,7 +62,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <label for="confirm_password">New Password</label>
+                                    <label for="confirm_password">Confirm Password</label>
                                     <input type="password" name="confirm_password" value="{{ old('confirm_password') }}" class="form-control @error('confirm_password') is-invalid @enderror" id="confirm_password" placeholder="Confirm password">
                                     @error('confirm_password')
                                         <div class="text-danger">

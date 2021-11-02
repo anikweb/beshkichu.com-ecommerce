@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\{
     BasicSettingController,
+    BackendUserController,
     CategoryController,
     DashboardController,
     FrontController,
@@ -74,6 +75,13 @@ Route::resource('my-account', MyAccountController::class)->middleware(['isCustom
 // Dashboard
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard')->middleware(['auth','verified','verified']);
 Route::get('/dashboard/get/color/size/{cid}/{pid}',[DashboardController::class, 'getColorSizeId'])->middleware(['auth','verified']);
+// User
+Route::get('/dashboard/user/profile',[BackendUserController::class, 'index'])->name('backend.user')->middleware(['auth','verified']);
+Route::post('/dashboard/user/profile/choose/action',[BackendUserController::class, 'indexChooseAction'])->name('backend.choose.action')->middleware(['auth','verified']);
+Route::get('/dashboard/user/profile/change/password',[BackendUserController::class, 'changePassword'])->name('backend.change.password')->middleware(['auth','verified']);
+Route::post('/dashboard/user/profile/change/password/update',[BackendUserController::class, 'changePasswordUpdate'])->name('backend.change.password.update')->middleware(['auth','verified']);
+Route::get('/dashboard/user/profile/edit',[BackendUserController::class, 'edit'])->name('backend.user.edit')->middleware(['auth','verified']);
+Route::post('/dashboard/user/profile/edit/update',[BackendUserController::class, 'update'])->name('backend.user.update')->middleware(['auth','verified']);
 // Role Controller
 Route::get('/dashboard/role/assign/user',[RoleController::class, 'assignUser'])->name('assign.user')->middleware(['auth','verified']);
 Route::post('/dashboard/role/assign/user/post',[RoleController::class, 'assignUserPost'])->name('assign.user.post')->middleware(['auth','verified']);

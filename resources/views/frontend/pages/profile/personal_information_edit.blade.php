@@ -77,15 +77,15 @@
                                         </div>
                                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                             <label for="district_id">District</label>
-                                                    <select name="district_id" class="form-control" id="district_id">
-                                                        <option  value="{{ $personalInformation->district_id }}">@if(isset($personalInformation->district->name)){{$personalInformation->district->name}}@endif</option>
-                                                    </select>
+                                            <select name="district_id" class="form-control" id="district_id">
+                                                <option  value="{{ $personalInformation->district_id }}">@if(isset($personalInformation->district->name)){{$personalInformation->district->name}}@endif</option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                             <label for="upazila_id">Upazila</label>
-                                                    <select name="upazila_id" class="form-control" id="upazila_id">
-                                                        <option value="{{ $personalInformation->upazila_id }}">@if(isset($personalInformation->upazila->name)){{ $personalInformation->upazila->name }}@endif</option>
-                                                    </select>
+                                            <select name="upazila_id" class="form-control" id="upazila_id">
+                                                <option value="{{ $personalInformation->upazila_id }}">@if(isset($personalInformation->upazila->name)){{ $personalInformation->upazila->name }}@endif</option>
+                                            </select>
                                         </div>
                                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                             <label for="street_address1">Street Address </label>
