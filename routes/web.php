@@ -59,6 +59,8 @@ Route::get('/checkout/success/{invoice}',[CheckoutController::class,'checkoutSuc
 Route::resource('checkout', CheckoutController::class)->middleware(['auth','isCustomer']);
 
 // Customer Dashboard
+Route::get('/my-account/personal-information/change-password',[MyAccountController::class,'changePassword'])->name('my-account.changePassword')->middleware(['isCustomer','auth','verified']);
+Route::post('/my-account/personal-information/change-password/update',[MyAccountController::class,'changePasswordUpdate'])->name('my-account.changePassword.update')->middleware(['isCustomer','auth','verified']);
 Route::get('/my-account/personal-information',[MyAccountController::class,'indexPersonalOnfo'])->name('my-account.personal.information')->middleware(['isCustomer','auth','verified']);
 Route::get('/my-account/personal-information/{username}/edit',[MyAccountController::class,'editPersonalOnfo'])->name('my-account.personal.information.edit')->middleware(['isCustomer','auth','verified']);
 Route::post('/my-account/personal-information/edit/update',[MyAccountController::class,'updatePersonalOnfo'])->name('my-account.personal.information.update')->middleware(['isCustomer','auth','verified']);

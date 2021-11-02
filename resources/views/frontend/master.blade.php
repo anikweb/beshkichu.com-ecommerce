@@ -48,7 +48,7 @@
         }
         @media (max-width: 900px){
             .icon-user {
-                color:#000 !important;  
+                color:#000 !important;
                 font-size: 20px !important;
             }
         }

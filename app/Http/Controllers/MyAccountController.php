@@ -15,6 +15,7 @@ use App\Http\Requests\{
     CustomerPerInfo,
 };
 use Auth;
+use Illuminate\Support\Facades\Hash;
 use PDF;
 
 class MyAccountController extends Controller
@@ -165,5 +166,25 @@ class MyAccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function changePassword(){
+        // return 'aschi bosss';
+        return view('auth.change-password');
+    }
+    public function changePasswordUpdate(Request $request){
+        // return $request;
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|same:confirm_password',
+            'confirm_password' => 'required',
+        ]);
+        $user = Auth::user();
+        if(Hash::check($request->current_password,$user->password)){
+            $user->password = Hash::make($request->new_password);
+            $user->save();
+            return back()->with('success','Password Changed!');
+        }else{
+            return back()->with('error','Wrong current password');
+        }
     }
 }

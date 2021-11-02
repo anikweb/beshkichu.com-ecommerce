@@ -64,7 +64,7 @@
                                                 <h6>Name: {{ Auth::user()->name }}</h6>
                                                 <h6>Username: {{ $personalInformation->username }}</h6>
                                                 <h6>Email: {{ $personalInformation->user->email }}</h6>
-                                                <h6><a href="#">Change Password</a></h6></div>
+                                                <h6><a href="{{route('my-account.changePassword')}}">Change Password</a></h6></div>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
