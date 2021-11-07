@@ -235,6 +235,104 @@
   </section>
   <!-- slider tab end -->
 
+  <!--title start-->
+<div class="title1 section-my-space" style="background: #002340">
+    <h4 class="text-white">Latest Products</h4>
+  </div>
+  <!--title end-->
+
+  <!--product start-->
+  <section class="product section-pb-space mb--5">
+    <div class="custom-container">
+      <div class="row">
+        <div class="col pr-0">
+          <div class="product-slide-6 no-arrow">
+            @foreach ($productLatest as $product)
+            <div class="product-box">
+                <div class="product-imgbox">
+                    <div class="product-front">
+                    <img src="{{ asset('assets/images/product/'.$product->created_at->format('Y/m/d').'/'.$product->id.'/thumbnail/'.$product->thumbnail) }}" class="img-fluid  " alt="{{$product->name}}">
+                    </div>
+                    <a href="{{ route('frontend.product.single',$product->slug) }}">
+                        <div class="product-back">
+                            @foreach ($product->imageGallery as $imageGallery)
+                                @if ($loop->index == 0)
+                                    <img src="{{ asset('assets/images/product/'.$product->created_at->format('Y/m/d').'/'.$product->id.'/image_galleries/'.$imageGallery->name) }}" class="img-fluid  " alt="{{$product->name}}">
+                                @endif
+                            @endforeach
+                        </div>
+                    </a>
+                    <div class="product-icon icon-inline">
+                    <button onclick="openCart()">
+                        <i class="ti-bag" ></i>
+                    </button>
+                    @php
+                        $w = $wishlistProduct->where('cookie_id',Cookie::get('jesco_ecommerce'))->where('product_id',$product->id)->first();
+                    @endphp
+                    {{--  @if ($w)  --}}
+                       <div class="wishlist-area{{$product->id}}">
+                            <button   type="button" data-id="{{ $product->id }}" title="Add to Wishlist" class="action wishlist add-wishlist">
+                                <i class="ti-heart" aria-hidden="true"></i>
+                            </button>
+                       </div>
+                    {{--  @else
+                        <button href="javascript:void(0)" type="button" data-id="{{ $product->id }}" title="Add to Wishlist" class="action wishlist add-wishlist wishlist-product{{$product->id}}">
+                            <i class="ti-heart" aria-hidden="true"></i>
+                        </button>
+                    @endif  --}}
+                    {{--  <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                        <i class="ti-search" aria-hidden="true"></i>
+                    </a>
+                    <a href="compare.html" title="Compare">
+                        <i class="fa fa-exchange" aria-hidden="true"></i>
+                    </a>  --}}
+                    </div>
+                    <div class="new-label1">
+                    <div>new</div>
+                    </div>
+                    <div class="on-sale1">
+                    on sale
+                    </div>
+                </div>
+                <div class="product-detail detail-inline ">
+                    <div class="detail-title">
+                    <div class="detail-left">
+                        <div class="rating-star">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        </div>
+                        <a href="#">
+                        <h6 class="price-title">
+                            {{ $product->name }}
+                        </h6>
+                        </a>
+                    </div>
+                    <div class="detail-right">
+                        <div class="check-price">
+                            ৳{{ $product->attribute->max('regular_price') }}
+                        </div>
+                        <div class="price">
+                        <div class="price">
+                            ৳{{ $product->attribute->min('offer_price') }}
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--product end-->
   <!--testimonial start-->
   {{--  <section class="testimonial testimonial-inverse">
     <div class="container">

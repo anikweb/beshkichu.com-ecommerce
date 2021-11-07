@@ -94,11 +94,15 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            @if (personalInfo()->gender == 'female')
-                <img src="{{ asset('backend/dist/img/user-female.jpg') }}" class="img-circle elevation-2" alt="User Image">
-                @else
-                <img src="{{ asset('backend/dist/img/user-male.jpg') }}" class="img-circle elevation-2" alt="User Image">
+            @if (isset(personalInfo()->gender))
+                @if (personalInfo()->gender == 'female')
+                    <img src="{{ asset('backend/dist/img/user-female.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                    @else
+                    <img src="{{ asset('backend/dist/img/user-male.jpg') }}" class="img-circle elevation-2" alt="User Image">
 
+                @endif
+            @else
+            <img src="{{ asset('backend/dist/img/user-male.jpg') }}" class="img-circle elevation-2" alt="User Image">
             @endif
         </div>
         <div class="info">

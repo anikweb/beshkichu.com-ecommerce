@@ -113,6 +113,16 @@
                                     <a href="#" class="btn btn-normal">buy now</a>
                                 </div>
                                 <div class="border-product">
+                                    <label for="shipping_method">Estimate Delivery Date
+                                    </label>
+                                    <select name="shipping_method" class="form-control" id="shipping_method">
+                                        <option>MoveOn- Ship for me (Time: {{ $product->delivery_deadline }} Days) ৳{{ $product->shipping_charge }}/KG </option>
+                                    </select>
+                                </div>
+                                <div class="border-product bg-white px-2">
+                                    <p> <i class="text-success fa fa-exclamation-circle"></i>MoveOn- Ship for me শিপমেন্ট সিলেক্টের সময় টোটাল প্রাইসে শিপিং চার্জ যুক্ত থাকেনা, প্রোডাক্ট দেশে আসার পর ওজন করে (প্যাকেট সহ) ওজন অনুসারে প্রতি কেজিতে গুন করে শিপিং চার্জ যুক্ত হবে। এছাড়া টোটাল প্রাইসে দেশের ভিতরে ডেলিভারি চার্জও যুক্ত থাকেনা, এটি ডেলিভারি সময় পেমেন্ট করতে হবে।</p>
+                                </div>
+                                <div class="border-product">
                                     <h6 class="product-title">product details</h6>
                                     <p>{{ $product->summary }}</p>
                                 </div>

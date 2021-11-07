@@ -216,6 +216,55 @@
                             </div>
                         </div>
                         <div class="row">
+                            <hr>
+                            <div class="col-md-6">
+                                <label for="shipping_charge">Shipping Charge (tk/per kg)</label>
+                                <input type="text" name="shipping_charge" id="shipping_charge" class="form-control @error('shipping_charge') is-invalid @enderror" placeholder="Enter Shipping charge">
+                                @error('shipping_charge')
+                                    <div class="text-danger">
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label for="ocen">Delivery Deadline(min-max) :</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <select name="delivery_deadline_min" id="" class="form-control @error('delivery_deadline_min') is-invalid @enderror">
+                                                <option value="">-Select-</option>
+                                                @for ( $i= 1;  $i<=100 ; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                            @error('delivery_deadline_min')
+                                                    <div class="text-danger">
+                                                        <i class="fa fa-exclamation-circle"></i>
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <select name="delivery_deadline_max" id="" class="form-control @error('delivery_deadline_max') is-invalid @enderror">
+                                                <option value="">-Select-</option>
+                                                @for ( $i= 1;  $i<=100 ; $i++)
+                                                    <option value="{{ $i }}">{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                            @error('delivery_deadline_max')
+                                                <div class="text-danger">
+                                                    <i class="fa fa-exclamation-circle"></i>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="multi-field-wrapper">
@@ -278,6 +327,7 @@
                                 </div>
                               </div>
                         </div>
+                        <hr>
                         <div class="row">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-info"><i class="fa fa-plus-circle"></i> Add Product</button>

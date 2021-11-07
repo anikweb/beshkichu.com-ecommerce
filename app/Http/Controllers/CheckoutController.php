@@ -91,7 +91,6 @@ class CheckoutController extends Controller
         // Order Summary
         $order_summary = new Order_Summary;
         $order_summary->billing_id = $billing_details->id;
-        $order_summary->shipping_fee = 20;
         $order_summary->sub_total = session()->get('s_subtotal');
         if(session()->get('s_voucher')){
             $order_summary->voucher_name = session()->get('s_voucher');

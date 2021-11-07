@@ -32,6 +32,8 @@ class CreateProductsTable extends Migration
             $table->string('return')->default('None');
             $table->string('authentic')->nullable();
             $table->string('promotions')->nullable();
+            $table->integer('shipping_charge')->nullable();
+            $table->string('delivery_deadline')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

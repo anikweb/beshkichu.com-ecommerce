@@ -23,8 +23,8 @@ class FrontController extends Controller
             Cookie::queue($cookie_name, $cookie_value, $cookie_duration);
         }
         return view('frontend.home',[
-            'productAll' => Product::limit(8)->get(),
-            'productNew' => Product::latest()->limit(8)->get(),
+            'productAll' => Product::limit(20)->get(),
+            'productLatest' => Product::latest()->limit(20)->get(),
             'wishlistProduct' =>Wishlist::all(),
             'sliders' =>Slider::where('status',1)->latest()->get(),
             'categories' =>Category::all(),

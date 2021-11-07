@@ -31,6 +31,9 @@ class ProductAddForm extends FormRequest
             "gender" => "required",
             "summary" => "required|max:800|min:20",
             "description" => "required|max:1000|min:50",
+            "delivery_deadline_min" => "required",
+            "delivery_deadline_max" => "required",
+            "shipping_charge" => "required",
         ];
     }
 }

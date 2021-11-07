@@ -73,6 +73,7 @@ class ProductController extends Controller
     {
 
         if(auth()->user()->can('product add')){
+            // return $request;
             $product = new Product;
             $product->name =  $request->name;
             // $product->slug = Str::slug($request->name);
@@ -97,6 +98,8 @@ class ProductController extends Controller
             $product->return = $request->return;
             $product->authentic =$request->authentic;
             $product->promotions = $request->promotions;
+            $product->shipping_charge =$request->shipping_charge;
+            $product->delivery_deadline = $request->delivery_deadline_min.'-'.$request->delivery_deadline_max;
             $product->save();
 
             if($request->hasFile('thumbnail')){
