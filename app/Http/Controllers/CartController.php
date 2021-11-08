@@ -61,6 +61,7 @@ class CartController extends Controller
         // return $request;
         // return $cookie_id = Cookie::get('beshkichu_com');
         if($request->size_id){
+            // return 'aschi'
             $cookie_id = Cookie::get('beshkichu_com');
             if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->exists()){
                 Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->increment('quantity',$request->quantity);
@@ -73,7 +74,7 @@ class CartController extends Controller
             }
         }else{
             $cookie_id = Cookie::get('beshkichu_com');
-        if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',7)->exists()){
+            if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',7)->exists()){
                 Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',7)->increment('quantity',$request->quantity);
                 return redirect()->route('cart.index')->with('success','Cart Added!');
             }else{

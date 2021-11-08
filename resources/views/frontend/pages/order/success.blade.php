@@ -48,14 +48,15 @@
                                 <li>subtotal <span>৳{{ $order_summary->sub_total }}</span></li>
                                 @if ($order_summary->discount)
                                     <li>discount <span>-৳{{ $order_summary->discount }}</span></li>
-
                                 @endif
-                                <li>shipping <span>৳20</span></li>
                             </ul>
                         </div>
                         <div class="final-total">
                             <h3>total <span>${{ $order_summary->total_price }}</span></h3></div>
-                    </div>
+                        </div>
+                        <div class="pt-2">
+                            <i class="text-success fa fa-exclamation-circle"></i>MoveOn- Ship for me অর্ডার করার সময় টোটাল প্রাইসে শিপিং চার্জ যুক্ত থাকেনা, প্রোডাক্ট দেশে আসার পর ওজন করে (প্যাকেট সহ) ওজন অনুসারে প্রতি কেজিতে গুন করে (প্রোডাক্ট ভিত্তিক আলাদা আলাদা শিপিং চার্জ হতে পারে) শিপিং চার্জ যুক্ত হবে। এছাড়া টোটাল প্রাইসে দেশের ভিতরে ডেলিভারি চার্জও যুক্ত থাকেনা, এটি ডেলিভারি সময় পেমেন্ট করতে হবে।</p>
+                        </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="row order-success-sec">
@@ -84,7 +85,7 @@
                         <div class="col-md-12">
                             <div class="delivery-sec">
                                 <h3>expected date of delivery</h3>
-                                <h2>october 22, 2018</h2></div>
+                                <h2>20-25 Days</h2></div>
                         </div>
                     </div>
                 </div>

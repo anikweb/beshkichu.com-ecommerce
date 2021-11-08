@@ -95,9 +95,9 @@ class CheckoutController extends Controller
         if(session()->get('s_voucher')){
             $order_summary->voucher_name = session()->get('s_voucher');
             $order_summary->discount = session()->get('s_discount');
-            $order_summary->total_price = (session()->get('s_subtotal') - session()->get('s_discount')) + 20;
+            $order_summary->total_price = (session()->get('s_subtotal') - session()->get('s_discount'));
         }else{
-            $order_summary->total_price = session()->get('s_subtotal') + 20;
+            $order_summary->total_price = session()->get('s_subtotal');
         }
         $order_summary->invoice_no = 'BK'.'-'.uniqid();
         $order_summary->save();
@@ -122,8 +122,6 @@ class CheckoutController extends Controller
                 'total_price' =>$order_summary->total_price,
                 'Invoice_no' => $order_summary->invoice_no,
             ];
-            // $jsonData = json_encode($send_information);
-            // // $jsonData."\n";
             Mail::to($request->email)->send(new CheckoutConfirmation($send_information));
         }
         return redirect()->route('checkout.success',$order_summary->invoice_no);

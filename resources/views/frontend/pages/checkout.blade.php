@@ -121,7 +121,7 @@
                                         <input type="text" name="zip_code" value="@if(isset($cusPerInfo->zip_code)){{$cusPerInfo->zip_code}}@endif" id="zip_code" placeholder="Enter postcode / zip code">
                                     </div>
                                     <div class="form-group col-md-12 col-sm-6 col-xs-12">
-                                        <label for="note">Order notes</label>
+                                        <label for="note">Special Instruction</label>
                                         <textarea placeholder="Additional Messages" name="note" id="note" style="height: 100px"></textarea>
                                     </div>
                                 </div>
@@ -146,6 +146,9 @@
                                         </ul>
                                     @endif
                                 </div>
+                                <div class="pt-2">
+                                    <i class="text-success fa fa-exclamation-circle"></i>MoveOn- Ship for me অর্ডার করার সময় টোটাল প্রাইসে শিপিং চার্জ যুক্ত থাকেনা, প্রোডাক্ট দেশে আসার পর ওজন করে (প্যাকেট সহ) ওজন অনুসারে প্রতি কেজিতে গুন করে (প্রোডাক্ট ভিত্তিক আলাদা আলাদা শিপিং চার্জ হতে পারে) শিপিং চার্জ যুক্ত হবে। এছাড়া টোটাল প্রাইসে দেশের ভিতরে ডেলিভারি চার্জও যুক্ত থাকেনা, এটি ডেলিভারি সময় পেমেন্ট করতে হবে।</p>
+                                </div>
                                 <div class="payment-box">
                                     <div class="upper-box">
                                         <div class="payment-options">
@@ -153,7 +156,7 @@
                                                 <li>
                                                     <div class="radio-option">
                                                         <input type="radio" name="payment_method" id="cod" value="cod" checked="checked">
-                                                        <label for="cod">Cash on Delivery   </label>
+                                                        <label for="cod">Cash on Delivery</label>
                                                     </div>
                                                 </li>
                                                 <li>

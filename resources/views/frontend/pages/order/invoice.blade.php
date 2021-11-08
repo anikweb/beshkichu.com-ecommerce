@@ -146,10 +146,17 @@
   </head>
   <body>
     <header class="clearfix">
-        <h2><span style="color:#ef4836">JE</span>SKO</h2>
-        <p style="padding: 0; margin:0">Address: Mymensingh, Bangladesh</p>
-        <p style="padding: 0; margin:0">Web: jesco.com, E-mail: info@jesco  .com </p>
-        <p style="padding: 0; margin:0">Phone:  01783674575</p>
+        <h2><span style="color:#002340">{{basicSettings()->site_title}}</span></h2>
+        <p style="padding: 0; margin:0">Address: {{contactInformation()->street_address.','.contactInformation()->upazila->name.','.contactInformation()->district->name.','.contactInformation()->division->name}}</p>
+        <p style="padding: 0; margin:0">Web: beshkichu.com, E-mail: {{contactInformation()->email}} </p>
+        <p style="padding: 0; margin:0">
+        Phone:   @foreach (contactMobile() as $item)
+           @if($loop->index !=0)
+            ,
+           @endif
+           {{ $item->number}}
+        @endforeach
+        </p>
         <p style="padding: 0; margin:0">Payment Method: {{ Str::title($billing_Details->payment_method) }} </p>
         <p style="padding: 0 0 10px 0; margin:0">Invoice No:  {{$order_summary->first()->invoice_no }}</p>
       <h1>INVOICE </h1>
@@ -169,10 +176,10 @@
         <thead>
           <tr>
             <th class="service" style="background-color: #57B223; color:#fff; font-size:15px">SL</th>
-            <th class="service">Product </th>
-            <th class="desc">DESCRIPTION</th>
-            <th class="desc">Color</th>
-            <th class="desc">Size</th>
+            <th class="service">PRODUCT </th>
+            <th class="desc">SUMMARY</th>
+            <th class="desc">COLOR</th>
+            <th class="desc">SIZE</th>
             <th>PRICE</th>
             <th>QTY</th>
             <th style="background-color: #57B223; color:#fff; font-size:15px">TOTAL</th>
@@ -186,13 +193,13 @@
 
                     </td>
                     <td class="service">
-                        {{ App\Models\Product::find($order_detail->product_id)->name }}hello
+                        {{ App\Models\Product::find($order_detail->product_id)->name }} <br/> (sku: {{App\Models\Product::find($order_detail->product_id)->sku}})
                     </td>
                     <td class="desc" style="text-align: justify">
-                        {{ Str::limit(App\Models\Product::find($order_detail->product_id)->summary,50) }}
+                        {{ Str::limit(App\Models\Product::find($order_detail->product_id)->summary,30) }}
                     </td>
                     <td class="desc">
-                        {{ App\Models\ProductColor::find($order_detail->color_id)->name }}
+                        {{ Str::title(App\Models\ProductColor::find($order_detail->color_id)->name) }}
                     </td>
                     <td class="desc">
                         {{ $order_detail->size_id }}
@@ -206,23 +213,25 @@
                     </td>
                 </tr>
             @endforeach
-            <tr>
-                <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
-                <td colspan="6">DISCOUNT @if($order_summary->discount !=0) ( <span style="color: rgb(74, 74, 240); font-size:10px">{{ $order_summary->voucher_name }} Coupon Applied</span> ) @endif </td>
-                <td class="total" style="background-color: #57B223; color:#fff; font-size:15px">
-                    @if ($order_summary->discount)
-                        {{ $order_summary->discount.'/-' }}
-                    @else
-                        0
-                    @endif
-                </td>
-            </tr>
+            @if ($order_summary->discount)
+              <tr>
+                  <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
+                  <td colspan="6">DISCOUNT @if($order_summary->discount !=0) ( <span style="color: rgb(74, 74, 240); font-size:10px">{{ $order_summary->voucher_name }} Coupon Applied</span> ) @endif </td>
+                  <td class="total" style="background-color: #57B223; color:#fff; font-size:15px">
+                      @if ($order_summary->discount)
+                          {{ $order_summary->discount.'/-' }}
+                      @else
+                          0
+                      @endif
+                  </td>
+              </tr>
+            @endif
           <tr>
             <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
             <td colspan="6">SHIPPING FEE</td>
             <td class="total" style="background-color: #57B223; color:#fff; font-size:15px">{{ $order_summary->shipping_fee.'/-' }}</td>
           </tr>
-          @if ($billing_Details->payment_method == 'cod')
+          @if ($billing_Details->payment_method == 'cod' && $order_summary->payment_status == 1)
             <tr>
                 <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
                 <td colspan="6" class="grand total">Due</td>
@@ -232,7 +241,7 @@
             <tr>
                 <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
                 <td colspan="6" class="grand total">GRAND TOTAL</td>
-                <td class="grand total" style="background-color: #1d2817; color:#fff; font-size:15px">{{ $order_summary->total_price.'/-' }}</td>
+                <td class="grand total" style="background-color: #1d2817; color:#fff; font-size:15px">{{ $order_summary->total_price+$order_summary->shipping_fee.'/-' }}</td>
             </tr>
             <tr>
                 <td style="background-color: #57B223; color:#fff; font-size:15px"></td>

@@ -115,7 +115,7 @@
                                 <div class="border-product">
                                     <label for="shipping_method">Estimate Delivery Date
                                     </label>
-                                    <select name="shipping_method" class="form-control" id="shipping_method">
+                                    <select name="" class="form-control" id="shipping_method">
                                         <option>MoveOn- Ship for me (Time: {{ $product->delivery_deadline }} Days) ৳{{ $product->shipping_charge }}/KG </option>
                                     </select>
                                 </div>

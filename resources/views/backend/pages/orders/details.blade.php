@@ -76,7 +76,22 @@
                             <p style="padding: 0;margin:0">Email: <strong>{{ $order->billing_details->phone }}</strong> </p>
                             @endif
                             <p style="padding: 0;margin:0">Order Date and time: <strong> {{ $order->billing_details->created_at->format('d-M-Y, h:i A') }} </strong> </p>
-                            <p style="padding: 0 0 15px 0;margin:0">Order Note: <strong>{{ $order->billing_details->note }}</strong> </p>
+                            @if($order->current_status !=4)
+                                <p style="padding: 0;margin:0">Delivery Deadline: <strong> 20-25 Days </strong> </p>
+                            @else
+                                <p style="padding: 0;margin:0">Delivered Date:</p>
+                            @endif
+                            <p style="padding: 0;margin:0">Special Instruction: <strong>{{ $order->billing_details->note }}</strong> </p>
+                            <p style="padding: 0;margin:0">Payment Method: <strong>{{ Str::upper($order->billing_details->payment_method) }}</strong> </p>
+                            <p style="padding: 0 0 15px 0;margin:0">Payment Status: 
+                            <strong>
+                                @if ($order->payment_status==1)
+                                    Unpaid
+                                @else
+                                    Paid
+                                @endif
+                            </strong> </p>
+                            
 
                         </div>
                         <div class="col-md-12">
@@ -91,7 +106,7 @@
                                             <th>Color</th>
                                             <th>Size</th>
                                             <th>Price</th>
-                                            <th>Shipping Charge</th>
+                                            <th>Shipping Charge<em style="font-size:12px; font-weight">(not included in total ammount)</em></th>
                                             <th>QTY</th>
                                             <th>Total</th>
                                         </tr>
@@ -102,21 +117,21 @@
                                         @endphp
                                         @foreach ($order->order_details as $order_details)
                                             <tr>
-                                                <td>{{ $loop->index +1 }}</td>
-                                                <td>{{ $order_details->product->name }}</td>
-                                                <td>
+                                                <td class="text-center">{{ $loop->index +1 }}</td>
+                                                <td class="text-center">{{ $order_details->product->name }}</td>
+                                                <td class="text-center">
                                                     <img src="{{ asset('assets/images/product').'/'.$order_details->product->created_at->format('Y/m/d/').$order_details->product->id.'/thumbnail/'.$order_details->product->thumbnail }}" alt="{{ $order_details->product->name }}" width="80px">
                                                    </td>
-                                                <td>{{ $order_details->product->summary }}</td>
-                                                <td>{{ Str::title($order_details->product->attribute->first()->color->name )}}</td>
-                                                <td>{{ $order_details->product->attribute->first()->size_id}}</td>
-                                                <td>{{ $order_details->product->attribute->first()->offer_price.'/-' }}</td>
-                                                <td>20/-</td>
-                                                <td>{{ $order_details->quantity }}</td>
+                                                <td class="text-center">{{ $order_details->product->summary }}</td>
+                                                <td class="text-center">{{ Str::title($order_details->product->attribute->first()->color->name )}}</td>
+                                                <td class="text-center">{{ $order_details->product->attribute->first()->size_id}}</td>
+                                                <td class="text-center">৳{{ $order_details->product->attribute->first()->offer_price }}</td>
+                                                <td class="text-center">৳{{$order_details->product->shipping_charge}} (per kg) </td>
+                                                <td class="text-center">{{ $order_details->quantity }}</td>
                                                 @php
-                                                    $total = $total + ($order_details->product->attribute->first()->offer_price *  $order_details->quantity)+(20);
+                                                    $total = $total + ($order_details->product->attribute->first()->offer_price *  $order_details->quantity);
                                                 @endphp
-                                                <td>{{ ($order_details->product->attribute->first()->offer_price *  $order_details->quantity)+(20) }}/-</td>
+                                                <td class="text-center">৳{{ ($order_details->product->attribute->first()->offer_price *  $order_details->quantity)  }}</td>
                                             </tr>
 
                                         @endforeach
@@ -124,17 +139,23 @@
                                             <td colspan="9" class="text-right font-weight-bold">Sub Total</td>
                                             <td>{{ $total.'/-' }}</td>
                                         </tr>
+                                        @if ($order->discount)
+                                            <tr>
+                                                <td colspan="9" class="text-right font-weight-bold">Discount</td>
+                                                @if ($order->discount)
+                                                <td>{{ $order->discount.'/-' }}</td>
+                                                @else
+                                                <td>0</td>
+                                                @endif
+                                            </tr>
+                                        @endif
                                         <tr>
-                                            <td colspan="9" class="text-right font-weight-bold">Discount</td>
-                                            @if ($order->discount)
-                                            <td>{{ $order->discount.'/-' }}</td>
-                                            @else
-                                            <td>0</td>
-                                            @endif
+                                            <td colspan="9" class="text-right font-weight-bold">Shipping Charge</td>
+                                            <td>{{ $order->shipping_fee.'/-' }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="9" class="text-right font-weight-bold">Total</td>
-                                            <td>{{ $total - $order->discount.'/-' }}</td>
+                                            <td>{{ ($total - $order->discount) + $order->shipping_fee.'/-' }}</td>
                                         </tr>
                                         <tr>
                                             <td colspan="9" class="text-right font-weight-bold">Payment</td>

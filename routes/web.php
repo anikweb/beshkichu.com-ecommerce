@@ -122,7 +122,9 @@ Route::get('/dashboard/orders/delivered',[OrderController::class,'indexDelivered
 Route::get('/dashboard/orders/details/{invoice_no}',[OrderController::class,'indexDetails'])->name('dashboard.orders.details')->middleware(['auth','verified']);
 Route::get('/dashboard/orders/cancel/{invoice_no}',[OrderController::class,'cancelOrder'])->name('dashboard.orders.cancel')->middleware(['auth','verified']);
 Route::get('/dashboard/orders/canceled',[OrderController::class,'indexCanceled'])->name('dashboard.orders.canceled')->middleware(['auth','verified']);
-
+// Adding Shipping Charge 
+Route::post('/dashboard/orders/shipping-charge/add',[OrderController::class,'addShippingCharge'])->name('dashboard.orders.shipping.add')->middleware(['auth','verified']);
+// Slider 
 Route::get('dashboard/slider/active/{slider_id}',[SliderController::class,'sliderActive'])->name('slider.active')->middleware(['auth','verified']);
 Route::get('dashboard/slider/deactivate/{slider_id}',[SliderController::class,'sliderDeactivate'])->name('slider.deactivate')->middleware(['auth','verified']);
 Route::resource('dashboard/slider', SliderController::class)->middleware(['auth','verified']);
