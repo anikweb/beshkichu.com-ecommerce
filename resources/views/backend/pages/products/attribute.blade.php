@@ -34,10 +34,12 @@
                                             <th class="text-center">Sizes</th>
                                             <th class="text-center">Regular Price</th>
                                             <th class="text-center">Offer Price</th>
-                                            <th class="text-center">Action</th>
+                                            @if (auth()->user()->can('product edit'))
+                                                <th class="text-center">Action</th>
+                                            @endif
                                         </thead>
                                         <tbody>
-                                            @foreach ($attributes as $attribute)
+                                            @forelse ($attributes as $attribute)
                                                 <tr>
                                                     <td class="text-center">{{ $attributes->firstItem() + $loop->index }}</td>
                                                     <td width="160px" class="text-center">
@@ -50,12 +52,20 @@
                                                     </td>
                                                     <td class="text-center">৳{{ $attribute->regular_price }}</td>
                                                     <td class="text-center">৳{{ $attribute->offer_price }}</td>
-                                                    <td class="text-center">
-                                                        <a href="{{ route('products.attribute.edit',$attribute->id) }}" type="button" class="btn btn-primary edit-btn"><i class="fa fa-edit"></i></a>
-                                                        <div class="btn btn-danger"><i class="fa fa-trash"></i></div>
-                                                    </td>
+                                                    @if (auth()->user()->can('product edit'))
+                                                        <td class="text-center">
+                                                            @can('product edit')
+                                                            <a href="{{ route('products.attribute.edit',$attribute->id) }}" type="button" class="btn btn-primary edit-btn"><i class="fa fa-edit"></i></a>
+                                                            @endcan
+                                                            {{-- <a class="btn btn-danger"><i class="fa fa-trash"></i></a> --}}
+                                                        </td>
+                                                    @endif
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td class="text-center" colspan="6"><i class="fa fa-exclamation-circle"></i> No data to show!</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                     <div>
@@ -63,9 +73,11 @@
                                     </div>
                                 </div>
                             </div>
+                            @can('product add')
                             <div class="col-md-12">
                                 <div class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Add New</div>
                             </div>
+                            @endcan
                         </div>
                     </div>
                </div>
@@ -108,7 +120,7 @@
                                     <div class="col-md-12 m-auto">
                                         <div class="form-group">
                                             <label for="size">Size<span class="badge text-danger">*</span> </label>
-                                            <select name="size_id" class="form-control size_input" id="size" multiple="multiple">
+                                            <select name="size_id[]" class="form-control size_input" id="size" multiple="multiple">
                                                 <option value="">None</option>
                                                 @for ($i = 34; $i < 50; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>

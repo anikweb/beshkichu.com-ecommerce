@@ -259,7 +259,7 @@ class ProductController extends Controller
     }
     public function indexAttribute($product_slug)
     {
-        if(auth()->user()->can('product add')){
+        if(auth()->user()->can('product view')){
             $product = Product::where('slug',$product_slug)->first();
             return view('backend.pages.products.attribute',[
                 'product' => $product,
@@ -312,16 +312,17 @@ class ProductController extends Controller
     }
     public function editAttribute($attribute_id)
     {
-        $attribute = Product_Attribute::find($attribute_id);
-        return view('backend.pages.products.edit_attribute',compact('attribute'));
+        if(auth()->user()->can('product edit')){
+            $attribute = Product_Attribute::find($attribute_id);
+            return view('backend.pages.products.edit_attribute',compact('attribute'));
+        }else{
+            return abort(404);
+        }
     }
 
     public function updateAttribute(attributeEditForm $request)
     {
-        if(auth()->user()->can('product add')){
-
-            // return $request;
-            // return $request->attribute_id;
+        if(auth()->user()->can('product edit')){
             $product = Product::find($request->product_id);
             $productAttribute = Product_Attribute::find($request->attribute_id);
             $imageGalleryDB = ProductImageGallery::find($productAttribute->image->id);
@@ -364,8 +365,6 @@ class ProductController extends Controller
                 }
             }
             return back()->with('success','Attribute updated');
-
-            return back()->with('success','new attribute added');
         }else{
             return abort(404);
         }
