@@ -15,7 +15,11 @@ class Product_Attribute extends Model
     public function color(){
         return $this->belongsTo(ProductColor::class,'color_id');
     }
+
+    public function image(){
+        return $this->belongsTo(ProductImageGallery::class,'image_gallery_id');
+    }
     public function size(){
-        return $this->belongsTo(ProductSize::class,'size_id');
+        return $this->hasMany(productSizeAttribute::class,'attribute_id');
     }
 }

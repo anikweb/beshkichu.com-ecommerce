@@ -535,27 +535,31 @@
             <form class="theme-form" action="{{ route('login') }}"  method="POST">
                 @csrf
                 <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" name="email" value="{{ old('email') }}"  class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email">
-                @error('email')
-                    <div class="text-danger">
-                        <i class="fa fa-exclamation-circle"></i>
-                        {{ $message }}
-                    </div>
-                @enderror
+                    <label for="email">Email</label>
+                    <input type="text" name="email" value="{{ old('email') }}"  class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email">
+                    @error('email')
+                        <div class="text-danger">
+                            <i class="fa fa-exclamation-circle"></i>
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                <label for="review">Password</label>
-                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="review" placeholder="Enter your password">
-                @error('password')
-                    <div class="text-danger">
-                        <i class="fa fa-exclamation-circle"></i>
-                        {{ $message }}
-                    </div>
-                @enderror
+                    <label for="review">Password</label>
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="review" placeholder="Enter your password">
+                    @error('password')
+                        <div class="text-danger">
+                            <i class="fa fa-exclamation-circle"></i>
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="form-group">
-                <button type="submit" class="btn btn-rounded btn-block ">Login</button>
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Remeber me</label>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-rounded btn-block ">Login</button>
                 </div>
                 <div>
                 <h5 class="forget-class"><a href="{{ route('password.request') }}" class="d-block">forget password?</a></h5>

@@ -8,21 +8,25 @@
     <meta property="og:title" content="{{ basicSettings()->site_title }}" />
     <meta property="og:description" content="{{ basicSettings()->tagline }}" />
     <meta property="og:image" content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" />
-  <title> @if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider @elseif(Route::is('contact.information')) Contact Information @elseif(Route::is('backend.user')) Profile  @elseif(Route::is('backend.user.edit')) Edit Profile @elseif(Route::is('backend.change.password')) Change Password @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-  {{-- Toastr Nottification --}}
-  <link rel="stylesheet" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
+    <title> @if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider @elseif(Route::is('contact.information')) Contact Information @elseif(Route::is('backend.user')) Profile  @elseif(Route::is('backend.user.edit')) Edit Profile @elseif(Route::is('backend.change.password')) Change Password @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('backend/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="{{ asset('backend/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    {{-- Toastr Nottification --}}
+    <link rel="stylesheet" href="{{ asset('backend/plugins/toastr/toastr.min.css') }}">
+    {{--  Select2   --}}
+    <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
   {{--  Favicon  --}}
   <link rel="shortcut icon" href="{{ asset('assets/images/favicon/'.basicSettings()->icon) }}" type="image/png">
+  @yield('internal_style')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -504,6 +508,8 @@
 {{-- Sweet Aleart  --}}
 {{-- <script src="{{ asset('backend/dist/js/sweetalert.min.js') }}"></script> --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{{--  select2  --}}
+<script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @yield('footer_js')
 </body>
 </html>

@@ -53,7 +53,7 @@
                                                 @endcan
                                             </td>
                                             <td>
-                                                <a href="{{ route('products.image.gallery',$product->slug) }}" class="btn btn-warning text-center"><i class="fa fa-image"></i> Image Gallery </a>
+                                                <a href="{{ route('products.attribute.index',$product->slug) }}" class="btn btn-warning text-center"><i class="fa fa-book"></i> Attribute </a>
                                             </td>
                                             <td>
                                                 <a href="{{ route('product.show',$product->slug) }}" class="btn btn-info text-center"><i class="fa fa-eye"></i> Details</a>

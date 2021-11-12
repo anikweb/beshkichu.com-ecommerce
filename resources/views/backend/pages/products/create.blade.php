@@ -31,7 +31,7 @@
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <label for="name">Name <span>*</span> </label>
-                                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Product Name">
+                                            <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Product Name">
                                             @error('name')
                                                 <div class="text-danger">
                                                     <i class="fa fa-exclamation-circle"></i>
@@ -44,7 +44,7 @@
                                             <select name="category_id" id="category" class="form-control @error('category_id') is-invalid @enderror">
                                                 <option value="">-Select-</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option @if(old('category_id')==$category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('category_id')
@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="subcategory_id">Subcategory <span>*</span></label>
-                                            <select name="subcategory_id" id="subcategory_id" class="form-control @error('subcategory_id') is-invalid @enderror">
+                                            <select name="subcategory_id"  id="subcategory_id" class="form-control @error('subcategory_id') is-invalid @enderror">
                                                 <option value="">-Select-</option>
                                             </select>
                                             @error('subcategory_id')
@@ -85,26 +85,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="image_galleries">Image Gallery <span>*</span></label>
-                                    <input style="padding:3px 0px 0px 5px" type="file" multiple="" name="image_galleries[]" id="image_galleries" class="form-control">
-                                    @error('image_galleries[]')
-                                        <div class="text-danger">
-                                            <i class="fa fa-exclamation-circle"></i>
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="gender">Gender <span>*</span></label>
                                     <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror">
-                                        <option value="none">-None-</option>
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="both">Both</option>
+                                        <option @if(old('gender')=='none') selected @endif value="none">-None-</option>
+                                        <option @if(old('gender')=='male') selected @endif value="male">Male</option>
+                                        <option @if(old('gender')=='female') selected @endif value="female">Female</option>
+                                        <option @if(old('gender')=='both') selected @endif value="both">Both</option>
                                     </select>
                                     @error('gender')
                                         <div class="text-danger">
@@ -121,7 +109,7 @@
                                         <option value="4">None</option>
                                         @foreach ($warranties as $warranty)
                                             @if ($warranty->warranty != 'none')
-                                                <option value="{{ $warranty->id }}">{{ $warranty->warranty }}</option>
+                                                <option @if(old('warranty')==$warranty->id) selected @endif value="{{ $warranty->id }}">{{ $warranty->warranty }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -134,7 +122,7 @@
                                         <option value="6">None</option>
                                         @foreach ($returns as $return)
                                             @if ($return->name != 'none')
-                                                <option value="{{ $return->id }}">{{ $return->name }}</option>
+                                                <option @if(old('return')==$return->id) selected @endif value="{{ $return->id }}">{{ $return->name }}</option>
                                             @endif
                                         @endforeach
                                     </select>
@@ -151,38 +139,38 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="main_upper_material">Main Upper Material</label>
-                                    <input type="text" name="main_upper_material" id="main_upper_material" class="form-control" placeholder="Type Main Upper Material">
+                                    <input type="text" name="main_upper_material" value="{{ old('main_upper_material') }}" id="main_upper_material" class="form-control" placeholder="Type Main Upper Material">
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="outsole_material">Outsole Material</label>
-                                    <input type="text" name="outsole_material" id="outsole_material" class="form-control" placeholder="Enter brand name">
+                                    <input type="text" name="outsole_material" value="{{ old('outsole_material') }}" id="outsole_material" class="form-control" placeholder="Enter brand name">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="brand">Brand</label>
-                                    <input type="text" name="brand" id="brand" class="form-control" placeholder="Enter brand name">
+                                    <input type="text" name="brand" value="{{ old('brand') }}" id="brand" class="form-control" placeholder="Enter brand name">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="origin">Origin</label>
-                                    <input type="text" name="origin" id="origin" class="form-control" placeholder="Enter origin name">
+                                    <input type="text" name="origin" id="origin" value="{{ old('origin') }}" class="form-control" placeholder="Enter origin name">
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="authentic">Authenticity</label>
                                     <select name="authentic" id="authentic" class="form-control">
-                                        <option value="none">-None-</option>
-                                        <option value="50">50% Authentic</option>
-                                        <option value="60">60% Authentic</option>
-                                        <option value="70">70% Authentic</option>
-                                        <option value="80">80% Authentic</option>
-                                        <option value="90">90% Authentic</option>
-                                        <option value="100">100% Authentic</option>
+                                        <option @if(old('authentic')=='none') selected @endif value="none">-None-</option>
+                                        <option @if(old('authentic')=='50') selected @endif value="50">50% Authentic</option>
+                                        <option @if(old('authentic')=='60') selected @endif value="60">60% Authentic</option>
+                                        <option @if(old('authentic')=='70') selected @endif value="70">70% Authentic</option>
+                                        <option @if(old('authentic')=='80') selected @endif value="70">80% Authentic</option>
+                                        <option @if(old('authentic')=='90') selected @endif value="90">90% Authentic</option>
+                                        <option @if(old('authentic')=='100') selected @endif value="100">100% Authentic</option>
                                     </select>
                                 </div>
                             </div>
@@ -191,7 +179,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="summary">Summary <span>*</span></label>
-                                            <textarea name="summary" id="summary"  rows="5" class="form-control @error('summary') is-invalid @enderror" placeholder="Type Summary"></textarea>
+                                            <textarea name="summary" id="summary" value="{{ old('summary') }}" rows="5" class="form-control @error('summary') is-invalid @enderror" placeholder="Type Summary"></textarea>
                                             @error('summary')
                                                 <div class="text-danger">
                                                     <i class="fa fa-exclamation-circle"></i>
@@ -203,7 +191,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="description">Description <span>*</span></label>
-                                            <textarea name="description" id="description"  rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Type Description"></textarea>
+                                            <textarea name="description" id="description" value="{{ old('description') }}"  rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Type Description"></textarea>
                                             @error('description')
                                                 <div class="text-danger">
                                                     <i class="fa fa-exclamation-circle"></i>
@@ -219,7 +207,7 @@
                             <hr>
                             <div class="col-md-6">
                                 <label for="shipping_charge">Shipping Charge (tk/per kg)</label>
-                                <input type="text" name="shipping_charge" id="shipping_charge" class="form-control @error('shipping_charge') is-invalid @enderror" placeholder="Enter Shipping charge">
+                                <input type="number"  name="shipping_charge" value="{{ old('shipping_charge') }}" id="shipping_charge" class="form-control @error('shipping_charge') is-invalid @enderror" placeholder="Enter Shipping charge">
                                 @error('shipping_charge')
                                     <div class="text-danger">
                                         <i class="fa fa-exclamation-circle"></i>
@@ -229,104 +217,40 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="ocen">Delivery Deadline(min-max) :</label>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <select name="delivery_deadline_min" id="" class="form-control @error('delivery_deadline_min') is-invalid @enderror">
-                                                <option value="">-Select-</option>
-                                                @for ( $i= 1;  $i<=100 ; $i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
-                                                @endfor
-                                            </select>
-                                            @error('delivery_deadline_min')
-                                                    <div class="text-danger">
-                                                        <i class="fa fa-exclamation-circle"></i>
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                        </div>
-                                        <div class="col-md-6">
-                                            <select name="delivery_deadline_max" id="" class="form-control @error('delivery_deadline_max') is-invalid @enderror">
-                                                <option value="">-Select-</option>
-                                                @for ( $i= 1;  $i<=100 ; $i++)
-                                                    <option value="{{ $i }}">{{ $i }}</option>
-                                                @endfor
-                                            </select>
-                                            @error('delivery_deadline_max')
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select name="delivery_deadline_min" id="delivery_deadline_min" class="form-control @error('delivery_deadline_min') is-invalid @enderror">
+                                            <option value="">-Select-</option>
+                                            @for ( $i= 1;  $i<=100 ; $i++)
+                                                <option @if(old('delivery_deadline_min')==$i) selected @endif value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                        @error('delivery_deadline_min')
                                                 <div class="text-danger">
                                                     <i class="fa fa-exclamation-circle"></i>
                                                     {{ $message }}
                                                 </div>
                                             @enderror
-                                        </div>
                                     </div>
-
-
+                                    <div class="col-md-6">
+                                        <select name="delivery_deadline_max" id="delivery_deadline_max" class="form-control @error('delivery_deadline_max') is-invalid @enderror">
+                                            <option value="">-Select-</option>
+                                            @for ( $i= 1;  $i<=100 ; $i++)
+                                                <option @if(old('delivery_deadline_max')==$i) selected @endif value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
+                                        </select>
+                                        @error('delivery_deadline_max')
+                                            <div class="text-danger">
+                                                <i class="fa fa-exclamation-circle"></i>
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="multi-field-wrapper">
-                                        <div class="multi-fields">
-                                            <div class="row multi-field form-group my-2">
-                                                <div class="col-md-10">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="color">Color</label>
-                                                                <select name="color[]" class="form-control " id="color">
-                                                                    <option value="8">None</option>
-                                                                    @foreach ($colors as $color)
-                                                                        @if ($color->name !='none')
-                                                                            <option value="{{ $color->id }}">{{ Str::title($color->name) }}</option>
-                                                                        @endif
-                                                                    @endforeach
-                                                                </select>
 
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="size">Size</label>
-                                                                <select name="size[]" class="form-control" id="size">
-                                                                    <option value="">None</option>
-                                                                    @for ($i = 34; $i < 50; $i++)
-                                                                        <option value="{{$i}}">{{$i}}</option>
-                                                                    @endfor
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="rPrice">Regular Price <span class="text-danger">*</span> </label>
-                                                                <input type="text" name="rPrice[]" class="form-control @error('rPrice[]') is-invalid @enderror" id="rPrice">
-                                                                @error('rPrice[]')
-                                                                    <div class="text-danger">
-                                                                        <i class="fa fa-exclamation-circle"></i>
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="form-group">
-                                                                <label for="ofrPrice">Offer Price</label>
-                                                                <input type="text" name="ofrPrice[]" class="form-control @error('ofrPrice[]') is-invalid @enderror" id="ofrPrice">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2 remove-field outline-danger text-white my-auto">
-                                                    <span class="text-danger" style="cursor:pointer"><i class=" fas fa-minus-circle"></i> Remove</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="button" class="add-field btn-sm btn-primary ">Add new field</button>
-                                    </div>
-                                </div>
-                              </div>
-                        </div>
                         <hr>
                         <div class="row">
                             <div class="col-md-12 text-center">
@@ -340,6 +264,20 @@
        </div>
     </div>
 @endsection
+@section('internal_style')
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background: #17a2b8 !important;
+        color: #fff !important;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        color: #fff !important;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 38px !important;
+    }
+</style>
+@endsection
 @section('footer_js')
     <script>
         // Notification
@@ -348,6 +286,17 @@
         @elseif(session('error'))
             toastr["error"]("{{ session('error') }}");
         @endif
+        // select 2
+        $('#gender').select2();
+        $('#warranty').select2();
+        $('#return').select2();
+        $('#promotions').select2();
+        $('#authentic').select2();
+       
+        $('#delivery_deadline_min').select2();
+        $('#delivery_deadline_max').select2();
+        $('#category').select2();
+        $('#subcategory_id').select2();
         $('#category').change(function(){
             var category_id = $('#category').val();
 
@@ -367,20 +316,6 @@
                 }
                 }
             });
-
         });
-        //  Dynamic Field Add/Remove
-        $('.multi-field-wrapper').each(function(){
-        var $wrapper = $('.multi-fields', this);
-        $('.add-field').click(function(){
-            $('.multi-field:first-child').clone(true).appendTo($wrapper).find('input').val('');
-        });
-        $('.remove-field').click(function(){
-            if($('.multi-field', $wrapper).length >1){
-                $(this).parent('.multi-field').remove();
-            }
-        });
-    });
-
     </script>
 @endsection

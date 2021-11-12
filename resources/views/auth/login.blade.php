@@ -48,6 +48,10 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember" id="remember">
+                                <label for="remember">Remember me</label>
+                            </div>
                             <button type="submit" class="btn btn-normal" >LOGIN</button>
                             <a class="float-right txt-default mt-2" href="{{ route('password.request') }}" id="fgpwd">Forgot your password?</a>
                         </form>

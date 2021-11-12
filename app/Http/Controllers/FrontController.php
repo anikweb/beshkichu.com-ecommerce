@@ -8,6 +8,7 @@ use App\Models\{
     Category,
     Product,
     Product_Attribute,
+    productSizeAttribute,
     Slider,
     Wishlist,
 };
@@ -84,15 +85,17 @@ class FrontController extends Controller
         $wishlistCheck->delete();
         return back()->with('success','Deleted!');
     }
-    function getColorSizeId($cid,$pid){
-        $sizes = Product_Attribute::where('product_id',$pid)->where('color_id',$cid)->get();
-        $outpot = '';
-        foreach ($sizes as $key => $size) {
-            $outpot =  $outpot.'<li  class="sizeCheck sizeCheck'.$size->size_id.'"  data-rPrice="'.$size->regular_price.'"  data-size="'.$size->size_id.'" data-price="'.$size->offer_price.'">'.$size->size_id;
+    function getColorSizeId($imid,$pid){
+        $sizes = Product_Attribute::where('product_id',$pid)->where('image_gallery_id',$imid)->get();
+        $outpot ='';
+        foreach ($sizes as $key => $value) {
+            # code...
+            $s = productSizeAttribute::where('attribute_id',$value->id)->get();
+            foreach ($s as $key => $size) {
+                $outpot =  $outpot.'<li  class="sizeCheck sizeCheck'.$size->size_id.'"  data-rPrice="'.$value->regular_price.'"  data-size="'.$size->size_id.'" data-price="'.$value->offer_price.'">'.$size->size_id;
+            }
         }
-        // <ul>
 
-        // </ul>
         return response()->json($outpot);
 
     }

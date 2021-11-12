@@ -10,7 +10,4 @@ class ProductSize extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function attribute(){
-        return $this->hasMany(Product_Attribute::class,'size_id');
-    }
 }

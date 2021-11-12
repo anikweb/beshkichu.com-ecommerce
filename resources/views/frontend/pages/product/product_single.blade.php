@@ -60,7 +60,6 @@
                     <div class="col-lg-6 rtl-text">
                         <form action="{{route('cart.store')}}" method="post">
                             @csrf
-
                             <input type="hidden" class="color_id" name="color_id" value="">
                             <input type="hidden" class="size_id" name="size_id" value="">
                             <input type="hidden" class="product_id" name="product_id" value="">
@@ -70,26 +69,19 @@
                                 <h3 class="text-info offer_price">{{ '৳'.$product->attribute->min('offer_price') }}</h3>
                                 <ul class="image-swatch">
                                     @foreach ($product->imageGallery as $imageGallery)
-                                        <li class="active"><a href="javascript:void(0)"><img width="40px" src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="" class="img-fluid "></a></li>
+                                        <li class="active image_gallery_choose" image-id="{{ $imageGallery->id }}" product-id="{{ $product->id }}">
+                                            <a href="javascript:void(0)"><img width="60px" src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="{{ $product->name }}" class="img-fluid "></a>
+                                        </li>
                                     @endforeach
                                 </ul>
                                 <div class="product-description border-product">
-                                    <h6 class="product-title size-text">select color <span><a href="" data-toggle="modal" data-target="#sizemodal">Color chart</a></span></h6>
-                                    <div class="size-box">
-                                        <ul>
-                                            @foreach ($product->attribute->unique('color_id') as $color)
-                                                <li class="color_id color_id{{ $color->color_id }}" data-id="{{ $color->color_id }}" data-product="{{ $product->id }}"  style="border-radius:0 !important;height:30px; width:45px;">
-                                                    {{ Str::title($color->color->name) }}
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
+
                                     <h6 class="product-title size-text sizeName"> {{-- Size name ajax --}}</h6>
                                     <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Size Chart</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body"><img src="../assets/images/size-chart.jpg" alt="" class="img-fluid "></div>
@@ -116,11 +108,11 @@
                                     <label for="shipping_method">Estimate Delivery Date
                                     </label>
                                     <select name="" class="form-control" id="shipping_method">
-                                        <option>MoveOn- Ship for me (Time: {{ $product->delivery_deadline }} Days) ৳{{ $product->shipping_charge }}/KG </option>
+                                        <option>Beshkichu Sourching Company (Time: {{ $product->delivery_deadline }} Days) ৳{{ $product->shipping_charge }}/KG </option>
                                     </select>
                                 </div>
                                 <div class="border-product bg-white px-2">
-                                    <p> <i class="text-success fa fa-exclamation-circle"></i>MoveOn- Ship for me শিপমেন্ট সিলেক্টের সময় টোটাল প্রাইসে শিপিং চার্জ যুক্ত থাকেনা, প্রোডাক্ট দেশে আসার পর ওজন করে (প্যাকেট সহ) ওজন অনুসারে প্রতি কেজিতে গুন করে শিপিং চার্জ যুক্ত হবে। এছাড়া টোটাল প্রাইসে দেশের ভিতরে ডেলিভারি চার্জও যুক্ত থাকেনা, এটি ডেলিভারি সময় পেমেন্ট করতে হবে।</p>
+                                    <p> <i class="text-success fa fa-exclamation-circle"></i>Beshkichu Sourching Company শিপমেন্ট সিলেক্টের সময় টোটাল প্রাইসে শিপিং চার্জ যুক্ত থাকেনা, প্রোডাক্ট দেশে আসার পর ওজন করে (প্যাকেট সহ) ওজন অনুসারে প্রতি কেজিতে গুন করে শিপিং চার্জ যুক্ত হবে। এছাড়া টোটাল প্রাইসে দেশের ভিতরে ডেলিভারি চার্জও যুক্ত থাকেনা, এটি ডেলিভারি সময় পেমেন্ট করতে হবে।</p>
                                 </div>
                                 <div class="border-product">
                                     <h6 class="product-title">product details</h6>
@@ -372,51 +364,44 @@
 <script src="{{ asset('assets/js/jquery.elevatezoom.js') }}"></script>
     <script>
         $(document).ready(function(){
-            $('.color_id').click(function(){
-                var colorId = $(this).attr('data-id');
-                $(".color_id").val(colorId);
-                var productId = $(this).attr('data-product');
+            // $('.image_gallery_choose').click(function() {
+            //     $(this).attr('style','border:1px solid red');
+            //     var image_id = $(this).attr('image-id');
+            //     alert(image_id);
+            // });
+            $('.image_gallery_choose').click(function(){
+                $('.image_gallery_choose').attr('style','');
+                $(this).attr('style','border:3px solid #002340');
+                var image_id = $(this).attr('image-id');
+                var productId = $(this).attr('product-id');
                 $(".product_id").val(productId);
-                $(".product-right .size-box ul li").removeClass('active')
-                $(".product-right .size-box ul .color_id"+colorId).addClass('active')
-                // alert(productId);
+                $(".product-right .size-box ul li").removeClass('active');
+                $(".product-right .size-box ul .color_id"+image_id).addClass('active');
+                // alert('hello');;
                 $.ajax({
                     type: "GET",
-                    url: "{{ url('get/color/size') }}/"+colorId+'/'+productId,
+                    url: "{{ url('get/color/size') }}/"+image_id+'/'+productId,
                     success:function(res){
                         if(res){
-                            console.log(res);
-                            // if(res !='none'){
-                                $('.sizeName').empty();
-                                $('.sizeName').html('Select Size <span><a href="" data-toggle="modal" data-target="#sizemodal">size chart</a></span>');
-                                $('.size').empty();
-                                $('.size').html(res);
-                                $('.sizeCheck').click(function(){
-                                    var price = $(this).attr('data-price');
-                                    var quantity = $(this).attr('data-quantity');
-                                    var rPrice = $(this).attr('data-rPrice');
-                                    var size_id = $(this).attr('data-size');
-                                    $('.offer_price').html('৳'+price);
-                                    $('.rPrice').html('৳'+rPrice);
-                                    $('.size_id').val(size_id);
-                                    $('.sizeCheck').removeClass('active');
-                                    $('.sizeCheck'+size_id).addClass('active');
-                                });
-                            // }
-                            // if(res =='none'){
-                            //     // $('.size').empty();
-                            //     // $('.sizeName').empty();
-                            //     // $('.sizeName').append('<div class="badge text-white bg-info">Sizes</div>');
-                            //     // // $('.sizeAdd').empty();
-                            //     // $('.size').html(res);
-                            //     // $('.sizeCheck').change(function(){
-                            //         var price = $(this).attr('data-price');
-                            //         var quantity = $(this).attr('data-quantity');
-                            //         var rPrice = $(this).attr('data-rPrice');
-                            //         $('.offer_price').html(price);
-                            //         $('.rPrice').html(rPrice);
-                            //     // });
-                            // }
+                            // console.log(res);
+                            $('.sizeName').empty();
+                            $('.sizeName').html('Select Size <span><a href="" data-toggle="modal" data-target="#sizemodal">size chart</a></span>');
+                            $('.size').empty();
+                            $('.size').html(res);
+                            $('.sizeCheck').click(function(){
+                                var price = $(this).attr('data-price');
+                                var quantity = $(this).attr('data-quantity');
+                                var rPrice = $(this).attr('data-rprice');
+                                var size_id = $(this).attr('data-size');
+                                $('.offer_price').html('৳'+price);
+                                $('.rPrice').html('৳'+rPrice);
+                                $('.size_id').val(size_id);
+                                $('.sizeCheck').removeClass('active');
+                                $('.sizeCheck'+size_id).addClass('active');
+                            });
+                        }else{
+                            $('.sizeName').empty();
+                            $('.size').empty();
                         }
                     }
                 });

@@ -96,9 +96,13 @@ Route::resource('/dashboard/category', CategoryController::class)->middleware(['
 Route::resource('/dashboard/subcategory', SubcategoryController::class)->middleware(['auth','verified']);
 // Product
 Route::get('/products/get/subcategory/{subcategory_id}',[ProductController::class,'getSubcategory'])->name('products.get.subcategory')->middleware(['auth','verified']);
-Route::get('/dashboard/product/image-gallery/{slug}',[ProductController::class,'productImageGallary'])->name('products.image.gallery')->middleware(['auth','verified']);
-Route::get('/dashboard/product/image-gallery/delete/{id}',[ProductController::class,'productImageGallaryDelete'])->name('products.image.gallery.delete')->middleware(['auth','verified']);
-Route::post('/dashboard/product/image-gallery/post',[ProductController::class,'productImageGallaryPost'])->name('products.image.gallery.post')->middleware(['auth','verified']);
+// Route::get('/dashboard/product/image-gallery/{slug}',[ProductController::class,'productImageGallary'])->name('products.image.gallery')->middleware(['auth','verified']);
+// Route::get('/dashboard/product/image-gallery/delete/{id}',[ProductController::class,'productImageGallaryDelete'])->name('products.image.gallery.delete')->middleware(['auth','verified']);
+// Route::post('/dashboard/product/image-gallery/post',[ProductController::class,'productImageGallaryPost'])->name('products.image.gallery.post')->middleware(['auth','verified']);
+Route::get('/dashboard/product/view/attribute/{product_slug}',[ProductController::class,'indexAttribute'])->name('products.attribute.index')->middleware(['auth','verified']);
+Route::post('/dashboard/product/attribute/add',[ProductController::class,'AttributeStore'])->name('products.attribute.store')->middleware(['auth','verified']);
+Route::get('/dashboard/product/attribute/edit/{attribute_id}',[ProductController::class,'editAttribute'])->name('products.attribute.edit')->middleware(['auth','verified']);
+Route::post('/dashboard/product/attribute/update/',[ProductController::class,'updateAttribute'])->name('products.attribute.update')->middleware(['auth','verified']);
 Route::get('/dashboard/product/stockout/{id}',[ProductController::class,'productStockout'])->name('products.stock.out')->middleware(['auth','verified']);
 Route::resource('dashboard/product', ProductController::class);
 
@@ -108,7 +112,6 @@ Route::get('/dashboard/voucher/deactive/{id}',[VoucherController::class, 'vouche
 Route::get('/dashboard/voucher/active/{id}',[VoucherController::class, 'voucherActive'])->name('voucher.active')->middleware('auth');
 Route::get('/dashboard/voucher/deactivated-list',[VoucherController::class, 'voucherDeactivatedList'])->name('voucher.deactivate.list')->middleware(['auth','verified']);
 Route::resource('/dashboard/voucher', VoucherController::class)->middleware(['auth','verified']);
-
 // Wishlist
 Route::get('/dashboard/wishlists',[WishlistController::class,'index'])->name('dashboard.wishlist')->middleware(['auth','verified']);
 // Order
@@ -122,9 +125,9 @@ Route::get('/dashboard/orders/delivered',[OrderController::class,'indexDelivered
 Route::get('/dashboard/orders/details/{invoice_no}',[OrderController::class,'indexDetails'])->name('dashboard.orders.details')->middleware(['auth','verified']);
 Route::get('/dashboard/orders/cancel/{invoice_no}',[OrderController::class,'cancelOrder'])->name('dashboard.orders.cancel')->middleware(['auth','verified']);
 Route::get('/dashboard/orders/canceled',[OrderController::class,'indexCanceled'])->name('dashboard.orders.canceled')->middleware(['auth','verified']);
-// Adding Shipping Charge 
+// Adding Shipping Charge
 Route::post('/dashboard/orders/shipping-charge/add',[OrderController::class,'addShippingCharge'])->name('dashboard.orders.shipping.add')->middleware(['auth','verified']);
-// Slider 
+// Slider
 Route::get('dashboard/slider/active/{slider_id}',[SliderController::class,'sliderActive'])->name('slider.active')->middleware(['auth','verified']);
 Route::get('dashboard/slider/deactivate/{slider_id}',[SliderController::class,'sliderDeactivate'])->name('slider.deactivate')->middleware(['auth','verified']);
 Route::resource('dashboard/slider', SliderController::class)->middleware(['auth','verified']);

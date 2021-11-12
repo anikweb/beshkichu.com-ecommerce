@@ -12,4 +12,7 @@ class ProductImageGallery extends Model
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
     }
+    public function attribute(){
+        return $this->belongsTo(ProductImageGallery::class,'image_gallery_id');
+    }
 }

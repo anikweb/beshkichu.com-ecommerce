@@ -46,18 +46,6 @@
                     <h4>Regular Price : <del class="text-danger regular_price">৳{{ $product->attribute->max('regular_price') }}</del>, Offer Price: <span class="text-success offer_price">৳{{ $product->attribute->min('offer_price') }}</span></h4>
                     <p class="m-0 font-weight-bold">Summary</p>
                     <p>{{ $product->summary }}</p>
-
-                    <hr>
-                    <h4>Available Colors</h4>
-                    @php
-                        $data = $product->attribute->unique('color_id');
-                    @endphp
-                    @foreach ($data as $attribute)
-                        <label class="btn btn-default text-center">
-                            <span class="colorId" data-product="{{ $product->id }}" data-color="{{ $attribute->color_id }}" class="text-xl">{{ Str::title($attribute->color->name) }}</span>
-                            <br>
-                        </label>
-                    @endforeach
                 <h4 class="mt-3">Available Size</h4>
                 @php
                     $data1 = $product->attribute->unique('size_id');
@@ -138,10 +126,10 @@
                             <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
                         </div>
                     </nav>
-                    <div class="tab-content p-3" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> {{ $product->description }}</div>
+                    <div style="overflow: hidden" class="tab-content p-3" id="nav-tabContent">
+                        <div  class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> {{ $product->description }}</div>
 
-                        <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non, posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut molestie, purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et erat. Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur lacinia lacinia. Morbi ac molestie lectus, vitae hendrerit nisl. Nullam metus odio, malesuada in vehicula at, consectetur nec justo. Quisque suscipit odio velit, at accumsan urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien justo porta lectus, at mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper. Donec varius massa at semper posuere. Integer finibus orci vitae vehicula placerat. </div>
+                        <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> ac habitasse platea dictumst. </div>
                     </div>
                 </div>
             </div>
