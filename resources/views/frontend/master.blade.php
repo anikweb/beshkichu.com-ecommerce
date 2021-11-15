@@ -597,19 +597,22 @@
             @forelse (cartsItem() as $cart)
                 <li>
                     <div class="media">
-                        <a href="javascript:void(0)"><img alt="{{ $cart->product->name }}" class="mr-3" src="{{ asset('assets/images/product/'.$cart->product->created_at->format('Y/m/d').'/'.$cart->product->id.'/thumbnail/'.$cart->product->thumbnail) }}"></a>
-                        <div class="media-body">
-                            <a href="#">
-                            <h4>{{ $cart->product->name }}</h4>
+                        <a href="{{ route('frontend.product.single',$cart->image->product->slug) }}">
+                            <img alt="{{ $cart->product->name }}" class="mr-3" src="{{ asset('assets/images/product').'/'.$cart->image->product->created_at->format('Y/m/d/').$cart->image->product->id.'/image_galleries/'.$cart->image->name }}">
                             </a>
-                            <h4><span>{{ $cart->quantity }} x ৳{{ $total = $total + $cart->product->attribute->where('color_id',$cart->color_id)->where('size_id',$cart->size_id)->first()->offer_price }}</span></h4>
+                        </a>
+                        <div class="media-body">
+                            <a href="{{ route('frontend.product.single',$cart->image->product->slug) }}">
+                                <h4>{{ $cart->product->name }}</h4>
+                            </a>
+                            <h4>
+                                @php
+                                    $total += $cart->quantity * $cart->product->attribute->where('color_id',$cart->color_id)->where('image_gallery_id',$cart->image_id)->first()->offer_price;
+                                @endphp
+                                <span>{{ $cart->quantity }} x ৳{{ $cart->product->attribute->where('color_id',$cart->color_id)->where('image_gallery_id',$cart->image_id)->first()->offer_price }}</span>
+                            </h4>
                         </div>
                     </div>
-                    {{--  <div class="close-circle">
-                        <a href="#">
-                            <i class="ti-trash" aria-hidden="true"></i>
-                        </a>
-                    </div>  --}}
                 </li>
             @empty
             <h5 class="text-center py-2"><i class="fa fa-exclamation-circle"></i> Empty</h5>
@@ -624,7 +627,6 @@
           <li>
             <div class="buttons">
               <a href="{{ route('cart.index') }}" class="btn btn-normal btn-xs view-cart">view cart</a>
-              {{-- <a href="#" class="btn btn-normal btn-xs checkout">checkout</a> --}}
             </div>
           </li>
         </ul>

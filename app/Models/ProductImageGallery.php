@@ -15,4 +15,7 @@ class ProductImageGallery extends Model
     public function attribute(){
         return $this->belongsTo(ProductImageGallery::class,'image_gallery_id');
     }
+    public function cart(){
+        return $this->hasMany(Cart::class,'image_id');
+    }
 }

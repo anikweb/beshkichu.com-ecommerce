@@ -19,4 +19,7 @@ class Cart extends Model
     public function color(){
         return $this->belongsTo(ProductColor::class,'color_id');
     }
+    public function image(){
+        return $this->belongsTo(ProductImageGallery::class,'image_id');
+    }
 }

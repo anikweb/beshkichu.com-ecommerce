@@ -18,25 +18,13 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($voucher = '')
+    public function index()
     {
-        if($voucher != ''){
-            if(!Voucher::where('name',$voucher)->exists()){
-                return back()->with('error','Voucher is not exists');
-            }
-            $voucher = Voucher::where('name',$voucher)->first();
-            $currentDate = Carbon::today()->format('Y-m-d');
-            if($voucher->expiry_date < $currentDate){
-                return back()->with('error','Voucher already expired');
-            }
-            if($voucher->limit < 1){
-                return back()->with('error','Voucher ends of limit');
-            }
-        }
+
         $cookieId = Cookie::get('beshkichu_com');
+
         return view('frontend.pages.cart.index',[
             'carts' =>Cart::where('cookie_id',$cookieId)->get(),
-            'voucher' => $voucher,
         ]);
     }
 
@@ -59,32 +47,21 @@ class CartController extends Controller
     public function store(CartAddForm $request)
     {
         // return $request;
-        // return $cookie_id = Cookie::get('beshkichu_com');
-        if($request->size_id){
-            // return 'aschi'
-            $cookie_id = Cookie::get('beshkichu_com');
-            if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->exists()){
-                Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->increment('quantity',$request->quantity);
-                return redirect()->route('cart.index')->with('success','Cart Added!');
-            }else{
-                Cart::create($request->except('_tocken')+[
-                    'cookie_id' => $cookie_id,
-                ]);
-                return redirect()->route('cart.index')->with('success','Cart Added!');
-            }
-        }else{
-            $cookie_id = Cookie::get('beshkichu_com');
-            if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',7)->exists()){
-                Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('color_id',$request->color_id)->where('size_id',7)->increment('quantity',$request->quantity);
-                return redirect()->route('cart.index')->with('success','Cart Added!');
-            }else{
-                Cart::create($request->except('_tocken')+[
-                    'cookie_id' => $cookie_id,
-                    'size_id' => 7,
-                ]);
-                return redirect()->route('cart.index')->with('success','Cart Added!');
-            }
+        if(!$request->size_id){
+            return back()->with('size_error','Image and size must be selected simultaneously.');
         }
+        $cookie_id = Cookie::get('beshkichu_com');
+        if(Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('image_id',$request->image_id)->where('size_id',$request->size_id)->exists()){
+            Cart::where('cookie_id',$cookie_id)->where('product_id',$request->product_id)->where('image_id',$request->image_id)->where('size_id',$request->size_id)->increment('quantity',$request->quantity);
+            return redirect()->route('cart.index')->with('success','Cart Added!');
+        }else{
+            Cart::create($request->except('_tocken')+[
+                'cookie_id' => $cookie_id,
+                'size_id' => $request->size_id,
+            ]);
+            return redirect()->route('cart.index')->with('success','Cart Added!');
+        }
+        return 'added';
 
     }
 
@@ -159,9 +136,24 @@ class CartController extends Controller
         $cart->quantity = $quantity;
         $cart->save();
 
-        $product = Product_Attribute::where('product_id',$cart->product_id)->where('color_id',$cart->color_id)->where('size_id',$cart->size_id)->first()->offer_price;
-        // $product = {'cart_id':1};
+        $product = Product_Attribute::where('product_id',$cart->product_id)->where('image_gallery_id',$cart->image_id)->first()->offer_price;
 
         return response()->json($product);
+
+    }
+    public function totalPriceCart($id)
+    {
+        // $cookieId = Cookie::get('beshkichu_com');
+        // $carts = Cart::where('cookie_id',$cookieId);
+
+        // $s = 's';
+        // foreach ($carts as $key => $cart) {
+        //     $s =  $s.'ff';
+        // }
+        // // $s = 'd';
+        // // $s = Product_Attribute::where('product_id',$cart->product_id);
+
+        // return response()->json($s);
+
     }
 }

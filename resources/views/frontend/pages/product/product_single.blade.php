@@ -60,7 +60,7 @@
                     <div class="col-lg-6 rtl-text">
                         <form action="{{route('cart.store')}}" method="post">
                             @csrf
-                            <input type="hidden" class="color_id" name="color_id" value="">
+                            <input type="hidden" class="image_id" name="image_id" value="">
                             <input type="hidden" class="size_id" name="size_id" value="">
                             <input type="hidden" class="product_id" name="product_id" value="">
                             <div class="product-right">
@@ -70,11 +70,19 @@
                                 <ul class="image-swatch">
                                     @foreach ($product->imageGallery as $imageGallery)
                                         <li class="active image_gallery_choose" image-id="{{ $imageGallery->id }}" product-id="{{ $product->id }}">
-                                            <a href="javascript:void(0)"><img width="60px" src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="{{ $product->name }}" class="img-fluid "></a>
+                                            <a href="javascript:void(0)">
+                                                <img width="60px" src="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name }}" alt="{{ $product->name }}" class="img-fluid ">
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
                                 <div class="product-description border-product">
+                                    @error('image_id')
+                                        <div class="text-danger error-msg">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
 
                                     <h6 class="product-title size-text sizeName"> {{-- Size name ajax --}}</h6>
                                     <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -93,12 +101,23 @@
                                            {{-- Sizes Ajax --}}
                                         </ul>
                                     </div>
-
+                                    @if (session('size_error'))
+                                        <div class="text-danger error-msg size_id-error">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ session('size_error') }}
+                                        </div>
+                                    @endif
                                     <h6 class="product-title">quantity</h6>
                                     <div class="qty-box">
                                         <div class="input-group"><span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
                                             <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
                                     </div>
+                                    @error('quantity')
+                                        <div class="text-danger error-msg">
+                                            <i class="fa fa-exclamation-circle"></i>
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="product-buttons">
                                     <button type="submit" class="btn btn-normal">Add to Cart</button>
@@ -205,7 +224,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
                         </div>
                         <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
@@ -369,12 +387,16 @@
             //     var image_id = $(this).attr('image-id');
             //     alert(image_id);
             // });
+
             $('.image_gallery_choose').click(function(){
+                $('.error-msg').hide();
+
                 $('.image_gallery_choose').attr('style','');
                 $(this).attr('style','border:3px solid #002340');
                 var image_id = $(this).attr('image-id');
                 var productId = $(this).attr('product-id');
                 $(".product_id").val(productId);
+                $(".image_id").val(image_id);
                 $(".product-right .size-box ul li").removeClass('active');
                 $(".product-right .size-box ul .color_id"+image_id).addClass('active');
                 // alert('hello');;

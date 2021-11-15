@@ -53,6 +53,7 @@ Route::get('cart/delete/all',[CartController::class, 'cartDeleteAll'])->name('ca
 Route::get('cart/delete/{slug}',[CartController::class, 'cartDelete'])->name('cart.delete');
 Route::get('/cart/{voucher}',[CartController::class, 'index']);
 Route::get('/cart/quantity/update/{cart_id}/{quantity}',[CartController::class, 'quantityUpdate']);
+Route::get('/cart/quantity/total-price/{cart_id}',[CartController::class, 'totalPriceCart']);
 Route::resource('cart', CartController::class);
 // Checkout
 Route::get('/checkout/success/{invoice}',[CheckoutController::class,'checkoutSuccess'])->name('checkout.success');
