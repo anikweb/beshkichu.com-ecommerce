@@ -17,7 +17,7 @@ class CreateOrderDeatailsTable extends Migration
             $table->id();
             $table->foreignId('order_summary_id');
             $table->foreignId('product_id');
-            $table->foreignId('color_id');
+            $table->foreignId('image_id');
             $table->foreignId('size_id');
             $table->foreignId('quantity');
             $table->timestamps();

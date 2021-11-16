@@ -83,7 +83,7 @@
                             @endif
                             <p style="padding: 0;margin:0">Special Instruction: <strong>{{ $order->billing_details->note }}</strong> </p>
                             <p style="padding: 0;margin:0">Payment Method: <strong>{{ Str::upper($order->billing_details->payment_method) }}</strong> </p>
-                            <p style="padding: 0 0 15px 0;margin:0">Payment Status: 
+                            <p style="padding: 0 0 15px 0;margin:0">Payment Status:
                             <strong>
                                 @if ($order->payment_status==1)
                                     Unpaid
@@ -91,7 +91,7 @@
                                     Paid
                                 @endif
                             </strong> </p>
-                            
+
 
                         </div>
                         <div class="col-md-12">
@@ -101,9 +101,9 @@
                                         <tr>
                                             <th>SL</th>
                                             <th>Product</th>
-                                            <th>Thumbnail</th>
+                                            <th>Image</th>
                                             <th>Summary</th>
-                                            <th>Color</th>
+
                                             <th>Size</th>
                                             <th>Price</th>
                                             <th>Shipping Charge<em style="font-size:12px; font-weight">(not included in total ammount)</em></th>
@@ -120,28 +120,26 @@
                                                 <td class="text-center">{{ $loop->index +1 }}</td>
                                                 <td class="text-center">{{ $order_details->product->name }}</td>
                                                 <td class="text-center">
-                                                    <img src="{{ asset('assets/images/product').'/'.$order_details->product->created_at->format('Y/m/d/').$order_details->product->id.'/thumbnail/'.$order_details->product->thumbnail }}" alt="{{ $order_details->product->name }}" width="80px">
+                                                    <img src="{{ asset('assets/images/product').'/'.$order_details->product->created_at->format('Y/m/d/').$order_details->product->id.'/image_galleries/'.$order_details->image->name }}" alt="{{ $order_details->product->name }}" width="80px">
                                                    </td>
                                                 <td class="text-center">{{ $order_details->product->summary }}</td>
-                                                <td class="text-center">{{ Str::title($order_details->product->attribute->first()->color->name )}}</td>
-                                                <td class="text-center">{{ $order_details->product->attribute->first()->size_id}}</td>
-                                                <td class="text-center">৳{{ $order_details->product->attribute->first()->offer_price }}</td>
+                                                <td class="text-center">{{ $order_details->size_id}}</td>
+                                                <td class="text-center">৳{{ $order_details->product->attribute->where('image_gallery_id',$order_details->image_id)->first()->offer_price }}</td>
                                                 <td class="text-center">৳{{$order_details->product->shipping_charge}} (per kg) </td>
                                                 <td class="text-center">{{ $order_details->quantity }}</td>
                                                 @php
-                                                    $total = $total + ($order_details->product->attribute->first()->offer_price *  $order_details->quantity);
+                                                    $total = $total + ($order_details->product->attribute->where('image_gallery_id',$order_details->image_id)->first()->offer_price *  $order_details->quantity);
                                                 @endphp
-                                                <td class="text-center">৳{{ ($order_details->product->attribute->first()->offer_price *  $order_details->quantity)  }}</td>
+                                                <td class="text-center">৳{{ ($order_details->product->attribute->where('image_gallery_id',$order_details->image_id)->first()->offer_price *  $order_details->quantity)  }}</td>
                                             </tr>
-
                                         @endforeach
                                         <tr>
-                                            <td colspan="9" class="text-right font-weight-bold">Sub Total</td>
+                                            <td colspan="8" class="text-right font-weight-bold">Sub Total</td>
                                             <td>{{ $total.'/-' }}</td>
                                         </tr>
                                         @if ($order->discount)
                                             <tr>
-                                                <td colspan="9" class="text-right font-weight-bold">Discount</td>
+                                                <td colspan="8" class="text-right font-weight-bold">Discount</td>
                                                 @if ($order->discount)
                                                 <td>{{ $order->discount.'/-' }}</td>
                                                 @else
@@ -149,16 +147,18 @@
                                                 @endif
                                             </tr>
                                         @endif
+                                        @if ($order->shipping_fee)
+                                            <tr>
+                                                <td colspan="8" class="text-right font-weight-bold">Shipping Charge</td>
+                                                <td>{{ $order->shipping_fee.'/-' }}</td>
+                                            </tr>
+                                        @endif
                                         <tr>
-                                            <td colspan="9" class="text-right font-weight-bold">Shipping Charge</td>
-                                            <td>{{ $order->shipping_fee.'/-' }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="9" class="text-right font-weight-bold">Total</td>
+                                            <td colspan="8" class="text-right font-weight-bold">Total</td>
                                             <td>{{ ($total - $order->discount) + $order->shipping_fee.'/-' }}</td>
                                         </tr>
                                         <tr>
-                                            <td colspan="9" class="text-right font-weight-bold">Payment</td>
+                                            <td colspan="8" class="text-right font-weight-bold">Payment</td>
                                             <td>
                                                 @if ($order->payment_status == 1)
                                                     Unpaid

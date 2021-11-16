@@ -109,7 +109,7 @@ class CheckoutController extends Controller
             $order_detail = new Order_Deatail;
             $order_detail->order_summary_id = $order_summary->id;
             $order_detail->product_id = $cart->product_id;
-            $order_detail->color_id = $cart->color_id;
+            $order_detail->image_id = $cart->image_id;
             $order_detail->size_id = $cart->size_id;
             $order_detail->quantity = $cart->quantity;
             $order_detail->save();

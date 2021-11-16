@@ -178,7 +178,6 @@
             <th class="service" style="background-color: #57B223; color:#fff; font-size:15px">SL</th>
             <th class="service">PRODUCT </th>
             <th class="desc">SUMMARY</th>
-            <th class="desc">COLOR</th>
             <th class="desc">SIZE</th>
             <th>PRICE</th>
             <th>QTY</th>
@@ -199,24 +198,21 @@
                         {{ Str::limit(App\Models\Product::find($order_detail->product_id)->summary,30) }}
                     </td>
                     <td class="desc">
-                        {{ Str::title(App\Models\ProductColor::find($order_detail->color_id)->name) }}
-                    </td>
-                    <td class="desc">
                         {{ $order_detail->size_id }}
                     </td>
                     <td>
-                        {{ App\Models\Product::find($order_detail->product_id)->attribute->where('color_id',$order_detail->color_id)->where('size_id',$order_detail->size_id)->first()->offer_price.'/-' }}
+                        {{ App\Models\Product_Attribute::where('product_id',$order_detail->product_id)->where('image_gallery_id',$order_detail->image_id)->first()->offer_price.'/-' }}
                     </td>
                     <td>{{ $order_detail->quantity }}</td>
                     <td style="background-color: #57B223; color:#fff; font-size:15px">
-                        {{ App\Models\Product::find($order_detail->product_id)->attribute->where('color_id',$order_detail->color_id)->where('size_id',$order_detail->size_id)->first()->offer_price *$order_detail->quantity.'/-' }}
+                        {{ App\Models\Product_Attribute::where('product_id',$order_detail->product_id)->where('image_gallery_id',$order_detail->image_id)->first()->offer_price *$order_detail->quantity.'/-' }}
                     </td>
                 </tr>
             @endforeach
             @if ($order_summary->discount)
               <tr>
                   <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
-                  <td colspan="6">DISCOUNT @if($order_summary->discount !=0) ( <span style="color: rgb(74, 74, 240); font-size:10px">{{ $order_summary->voucher_name }} Coupon Applied</span> ) @endif </td>
+                  <td colspan="5">DISCOUNT @if($order_summary->discount !=0) ( <span style="color: rgb(74, 74, 240); font-size:10px">{{ $order_summary->voucher_name }} Coupon Applied</span> ) @endif </td>
                   <td class="total" style="background-color: #57B223; color:#fff; font-size:15px">
                       @if ($order_summary->discount)
                           {{ $order_summary->discount.'/-' }}
@@ -228,24 +224,24 @@
             @endif
           <tr>
             <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
-            <td colspan="6">SHIPPING FEE</td>
+            <td colspan="5">SHIPPING FEE</td>
             <td class="total" style="background-color: #57B223; color:#fff; font-size:15px">{{ $order_summary->shipping_fee.'/-' }}</td>
           </tr>
           @if ($billing_Details->payment_method == 'cod' && $order_summary->payment_status == 1)
             <tr>
                 <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
-                <td colspan="6" class="grand total">Due</td>
+                <td colspan="5" class="grand total">Due</td>
                 <td class="grand total" style="background-color: #1d2817; color:#fff; font-size:15px">{{ $order_summary->total_price.'/-' }}</td>
             </tr>
           @endif
             <tr>
                 <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
-                <td colspan="6" class="grand total">GRAND TOTAL</td>
+                <td colspan="5" class="grand total">GRAND TOTAL</td>
                 <td class="grand total" style="background-color: #1d2817; color:#fff; font-size:15px">{{ $order_summary->total_price+$order_summary->shipping_fee.'/-' }}</td>
             </tr>
             <tr>
                 <td style="background-color: #57B223; color:#fff; font-size:15px"></td>
-                <td colspan="6" class="grand total">Payment</td>
+                <td colspan="5" class="grand total">Payment</td>
                 @if ($order_summary->payment_status == 1)
                     <td class="grand total" style="background-color: #57B223; color:#fff; font-size:18px">Unpaid</td>
                 @elseif ($order_summary->payment_status == 2)

@@ -17,6 +17,7 @@ class BackendUserController extends Controller
             'users' => CustomerPersonalInformation::where('user_id',Auth::user()->id)->first(),
         ]);
     }
+
     public function indexChooseAction(Request $request)
     {
         if($request->action == 1){
@@ -75,6 +76,6 @@ class BackendUserController extends Controller
         $CusPerInfo->zip_code = $request->zip_code;
         $CusPerInfo->save();
 
-        return redirect()->back()->with('success','Updated!');
+        return redirect()->route('backend.user')->with('success','Updated!');
     }
 }

@@ -28,17 +28,26 @@
                                 <div class="col-3 order_detail">
                                     <div>
                                         <h4>Product Name</h4>
-                                        <h5>{{ $order->product->name }}</h5></div>
+                                        <h5 class="text-center">{{ $order->product->name }}</h5>
+                                    </div>
                                 </div>
-                                <div class="col-3 order_detail">
+                                <div class="col-2 order_detail">
+                                    <div>
+                                        <h4>Size</h4>
+                                        <h5 class="text-center">{{ $order->size_id }}</h5>
+                                    </div>
+                                </div>
+                                <div class="col-2 order_detail">
                                     <div>
                                         <h4>quantity</h4>
-                                        <h5>{{ $order->quantity }}</h5></div>
+                                        <h5 class="text-center">{{ $order->quantity }}</h5>
+                                    </div>
                                 </div>
-                                <div class="col-3 order_detail">
+                                <div class="col-2 order_detail">
                                     <div>
                                         <h4>price</h4>
-                                        <h5>৳{{ $order->product->attribute->first()->offer_price}}</h5></div>
+                                        <h5 class="text-center">৳{{ $order->product->attribute->where('image_gallery_id',$order->image_id)->first()->offer_price}}</h5>
+                                    </div>
                                 </div>
                             </div>
 
@@ -63,9 +72,9 @@
                         <div class="col-sm-6">
                             <h4>summery</h4>
                             <ul class="order-detail">
-                                <li>Invoice No: {{ $order_summary->invoice_no }}</li>
-                                <li>Order Date: {{ $order_summary->created_at->format('d-M-y, h:i A') }}</li>
-                                <li>Order Total: ৳{{ $order_summary->total_price }}</li>
+                                <li><strong>Invoice No:</strong> {{ $order_summary->invoice_no }}</li>
+                                <li><strong>Order Date:</strong> {{ $order_summary->created_at->format('d-M-y, h:i A') }}</li>
+                                <li><strong>Order Total:</strong> ৳{{ $order_summary->total_price }}</li>
                             </ul>
                         </div>
                         <div class="col-sm-6">

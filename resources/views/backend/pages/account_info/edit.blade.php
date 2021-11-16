@@ -30,7 +30,7 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <td class="font-weight-bold">Name</td>
+                                            <td class="font-weight-bold" width="300px">Name</td>
                                             <td>
                                                 <input type="text" name="name" value="{{ $users->user->name }}" id="name" class="form-control @error('name') is-invalid @enderror">
                                                 @error('name')
@@ -42,7 +42,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Username</td>
+                                            <td class="font-weight-bold" width="300px">Username</td>
                                             <td>
                                                 <input type="text" name="username" value="{{ $users->username }}" id="username" class="form-control @error('username') is-invalid @enderror">
                                                 @error('username')
@@ -54,7 +54,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Mobile</td>
+                                            <td class="font-weight-bold" width="300px">Mobile</td>
                                             <td>
                                                 <input type="text" name="mobile" value="@if(isset($users->mobile)){{$users->mobile}}@endif" id="mobile" class="form-control @error('mobile') is-invalid @enderror">
                                                 @error('mobile')
@@ -66,7 +66,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Date of Birth</td>
+                                            <td class="font-weight-bold" width="300px">Date of Birth</td>
                                             <td>
                                                 <input type="date" name="birth_date" value="@if(isset($users->birth_date)){{$users->birth_date}}@endif" id="birth_date" class="form-control @error('birth_date') is-invalid @enderror">
                                                 @error('birth_date')
@@ -78,7 +78,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Gender</td>
+                                            <td class="font-weight-bold" width="300px">Gender</td>
                                             <td>
                                                 <select name="gender" id="gender" class="form-control">
                                                     <option @if ($users->gender == 'male') selected @endif value="male">Male</option>
@@ -94,7 +94,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Region</td>
+                                            <td class="font-weight-bold" width="300px">Region</td>
                                             <td>
                                                 <select class="form-control @error('region_id') is-invalid @enderror" name="region_id" id="region_id">
                                                     @foreach ($regions as $region)
@@ -110,7 +110,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">District</td>
+                                            <td class="font-weight-bold" width="300px">District</td>
                                             <td>
                                                 <select name="district_id" class="form-control @error('district_id') is-invalid @enderror" id="district_id">
                                                     @if (isset($users->district_id))
@@ -128,7 +128,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Upazila</td>
+                                            <td class="font-weight-bold" width="300px">Upazila</td>
                                             <td>
                                                 <select name="upazila_id" class="form-control @error('upazila_id') is-invalid @enderror" id="upazila_id">
                                                     @if (isset($users->upazila_id))
@@ -146,7 +146,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Street Address</td>
+                                            <td class="font-weight-bold" width="300px">Street Address</td>
                                             <td>
                                                 <input type="text" name="street_address1" value="@if(isset($users->street_address1)){{$users->street_address1}}@endif" id="street_address1" class="form-control @error('street_address1') is-invalid @enderror">
                                                 @error('street_address1')
@@ -165,7 +165,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="font-weight-bold">Zip Code</td>
+                                            <td class="font-weight-bold" width="300px">Zip Code</td>
                                             <td>
                                                 <input type="text" name="zip_code" value="@if(isset($users->zip_code)){{$users->zip_code}}@endif" id="street_address1" class="form-control @error('zip_code') is-invalid @enderror">
                                                 @error('zip_code')
@@ -187,6 +187,20 @@
        </div>
     </div>
 @endsection
+@section('internal_style')
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background: #17a2b8 !important;
+        color: #fff !important;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        color: #fff !important;
+    }
+    .select2-container--default .select2-selection--single {
+        height: 38px !important;
+    }
+</style>
+@endsection
 @section('footer_js')
     <script>
         @if (session('success'))
@@ -194,6 +208,10 @@
         @elseif(session('error'))
             toastr["error"]("{{ session('error') }}");
         @endif
+        $('#region_id').select2();
+        $('#district_id').select2();
+        $('#upazila_id').select2();
+        $('#gender').select2();
         $("#region_id").change(function(){
                 var region_id = $("#region_id").val();
                 // alert(region_id);

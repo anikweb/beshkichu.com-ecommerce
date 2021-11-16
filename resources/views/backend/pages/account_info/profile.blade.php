@@ -92,8 +92,8 @@
                                         <p class=" m-0">Region: <span class="font-weight-bold">@if (isset($users->region->name)) {{ $users->region->name }} @endif</span></p>
                                         <p class=" m-0">District: <span class="font-weight-bold">@if (isset($users->district->name)) {{ $users->district->name }} @endif</span></p>
                                         <p class=" m-0">Upazila: <span class="font-weight-bold">@if (isset($users->upazila->name)) {{ $users->upazila->name }} @endif</span></p>
-                                        <p class=" m-0">Street Address1: <span class="font-weight-bold">{{ $users->street_adress1 }}</span></p>
-                                        <p class=" m-0">Street Address2: <span class="font-weight-bold">{{ $users->street_adress2 }}</span></p>
+                                        <p class=" m-0">Street Address1: <span class="font-weight-bold">{{ $users->street_address1 }}</span></p>
+                                        <p class=" m-0">Street Address2: <span class="font-weight-bold">{{ $users->street_address2 }}</span></p>
                                         <p class=" m-0">Zip Code: <span class="font-weight-bold">{{ $users->zip_code }}</span></p>
                                     </td>
                                 </tr>
@@ -113,5 +113,6 @@
         @elseif(session('error'))
             toastr["error"]("{{ session('error') }}");
         @endif
+
     </script>
 @endsection

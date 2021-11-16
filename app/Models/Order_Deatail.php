@@ -14,4 +14,7 @@ class Order_Deatail extends Model
     public function product(){
         return $this->belongsTo(Product::class,'product_id');
     }
+    public function image(){
+        return $this->belongsTo(ProductImageGallery::class,'image_id');
+    }
 }
