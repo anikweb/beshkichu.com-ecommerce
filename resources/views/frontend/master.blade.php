@@ -10,7 +10,7 @@
     <meta property="og:description" content="{{ basicSettings()->tagline }}" />
     <meta property="og:image" content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" />
 
-    <title> @if(Route::is('frontend')) Home @elseif(Route::is('frontend.product')) Products @elseif(Route::is('frontend.category.product')) {{$category->name}} - Products @elseif(Route::is('frontend.product.single')) {{ $product->name }} @elseif(Route::is('frontend.wishlist.index')) Wishlist @elseif(Route::is('cart.index')) Carts  @elseif(Route::is('checkout.index')) Checkout @elseif(Route::is('checkout.success')) Success @elseif(Route::is('my-account.index')) Profile @elseif(Route::is('my-account.personal.information.edit')) Update Profile @elseif(Route::is('my-account.orders')) Orders @elseif(Route::is('my-account.delivered.order')) Delevered Orders @elseif(Route::is('my-account.orders.track')) Track Orders @elseif(Route::is('login')) Login @elseif(Route::is('register')) Register @elseif(Route::is('password.request')) Forgot Password @elseif(Route::is('password.reset')) Reset Password @elseif(Route::is('my-account.changePassword')) Change Password  @endif | {{ basicSettings()->site_title }}</title>
+    <title> @if(Route::is('frontend')) Home | @elseif(Route::is('frontend.product')) Products | @elseif(Route::is('frontend.category.product')) {{$category->name}} - Products | @elseif(Route::is('frontend.product.single')) {{ $product->name }} | @elseif(Route::is('frontend.wishlist.index')) Wishlist | @elseif(Route::is('cart.index')) Carts | @elseif(Route::is('checkout.index')) Checkout | @elseif(Route::is('checkout.success')) Success | @elseif(Route::is('my-account.index')) Profile | @elseif(Route::is('my-account.personal.information.edit')) Update Profile | @elseif(Route::is('my-account.orders')) Orders | @elseif(Route::is('my-account.delivered.order')) Delevered Orders | @elseif(Route::is('my-account.orders.track')) Track Orders | @elseif(Route::is('login')) Login | @elseif(Route::is('register')) Register | @elseif(Route::is('password.request')) Forgot Password | @elseif(Route::is('password.reset')) Reset Password | @elseif(Route::is('my-account.changePassword')) Change Password | @endif  {{ basicSettings()->site_title }}</title>
     <meta name="description" content="{{ basicSettings()->tagline }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,6 +57,7 @@
 </head>
 
 <body>
+
     <header>
         <div class="mobile-fix-option"></div>
         <div class="layout-header2">
@@ -235,11 +236,13 @@
                                     </ul>
                                 </nav>
                                 </div>
-                                <div class="icon-block">
+                                {{-- Wislist  --}}
+                                {{-- <div class="icon-block">
                                 <ul>
 
                                     <li class="mobile-wishlist" onclick="openWishlist()">
-                                    <a><i class="icon-heart"></i><div class="cart-item"><div>{{ wishlistItem()->count() }} item<span>wishlist</span></div></div></a></li>
+                                    <a>
+                                        <i class="icon-heart"></i><div class="cart-item"><div>{{ wishlistItem()->count() }} item<span>wishlist</span></div></div></a></li>
                                     <li class="mobile-search"><a href="#"><i class="icon-search"></i></a>
                                     <div class="search-overlay" style="display: none;">
                                         <div>
@@ -262,7 +265,7 @@
                                     <li class="mobile-setting mobile-setting-hover" onclick="openSetting()"><a href="#"><i class="icon-settings"></i></a>
                                     </li>
                                 </ul>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="category-right">
                                 <div class="contact-block">
@@ -342,7 +345,7 @@
             <div class="row">
                 <div class="col">
                     <div class="contact-banner-contain">
-                        <div class="contact-banner-img"><img src="../assets/images/layout-1/call-img.png" class="  img-fluid" alt="call-banner"></div>
+                        <div class="contact-banner-img"><img src="{{ asset('assets/images/layout-1/call-img.png') }}" class="  img-fluid" alt="call-banner"></div>
                             <div> <h3>if you have any question please call us</h3></div>
                         <div><h2>{{ contactMobile()[0]->number }}</h2></div>
                     </div>
@@ -692,7 +695,7 @@
   <!-- Add to account bar end-->
 
   <!-- Add to wishlist bar -->
-  <div id="wishlist_side" class="add_to_cart right">
+  {{-- <div id="wishlist_side" class="add_to_cart right">
     <a href="javascript:void(0)" class="overlay" onclick="closeWishlist()"></a>
     <div class="cart-inner">
       <div class="cart_top">
@@ -717,11 +720,11 @@
                 <h4><span>৳{{ $total = $total + $wishlist->product->attribute->min('offer_price') }}</span></h4>
               </div>
             </div>
-            {{--  <div class="close-circle">
+             <div class="close-circle">
               <a href="#">
                 <i class="ti-trash" aria-hidden="true"></i>
               </a>
-            </div>  --}}
+            </div>
           </li>
           @empty
             <h5 class="text-center py-2"><i class="fa fa-exclamation-circle"></i> Empty</h5>
@@ -741,7 +744,7 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!-- Add to wishlist bar end-->
 
   <!-- add to  setting bar  start-->

@@ -176,9 +176,9 @@
                         <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-toggle="tab" href="#top-contact" role="tab" aria-selected="false">Video</a>
                             <div class="material-border"></div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" id="review-top-tab" data-toggle="tab" href="#top-review" role="tab" aria-selected="false">Write Review</a>
+                        {{-- <li class="nav-item"><a class="nav-link" id="review-top-tab" data-toggle="tab" href="#top-review" role="tab" aria-selected="false">Write Review</a>
                             <div class="material-border"></div>
-                        </li>
+                        </li> --}}
                     </ul>
                     <div class="tab-content nav-material" id="top-tabContent">
                         <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
@@ -193,8 +193,8 @@
                                             <tr>
                                                 <td>Main Upper Material</td>
                                                 <td>{{ $product->main_upper_material }}</td>
-                                                <td class="font-weight-bold">Main Upper Material</td>
-                                                <td>{{ $product->main_upper_material }}</td>
+                                                <td class="font-weight-bold">Outsole Material</td>
+                                                <td>{{ $product->outsole_material }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Brand</td>

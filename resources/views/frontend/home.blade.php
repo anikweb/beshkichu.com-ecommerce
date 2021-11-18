@@ -142,7 +142,7 @@
             <div class="tab-content-cls ">
                 @foreach ($categories as $category)
                     @if ($category->product->first())
-                        <div id="tab-{{ $loop->index +1 }}" class="tab-content @if($loop->index==0) active default @endif ">
+                        <div id="tab-{{ $loop->index +1 }}" class="tab-content @if($loop->index== 0) active default @endif ">
                             <div class="product-slide-6 product-m no-arrow">
                                 @foreach ($category->product as $product)
                                     <div>
@@ -161,18 +161,18 @@
                                                     </div>
                                                 </a>
                                                 <div class="product-icon icon-inline">
-                                                <button onclick="openCart()">
+                                                <a href="{{ route('frontend.product.single',$product->slug) }}">
                                                     <i class="ti-bag" ></i>
-                                                </button>
+                                                </a>
                                                 @php
                                                     $w = $wishlistProduct->where('cookie_id',Cookie::get('jesco_ecommerce'))->where('product_id',$product->id)->first();
                                                 @endphp
                                                 {{--  @if ($w)  --}}
-                                                   <div class="wishlist-area{{$product->id}}">
+                                                   {{-- <div class="wishlist-area{{$product->id}}">
                                                         <button   type="button" data-id="{{ $product->id }}" title="Add to Wishlist" class="action wishlist add-wishlist">
                                                             <i class="ti-heart" aria-hidden="true"></i>
                                                         </button>
-                                                   </div>
+                                                   </div> --}}
                                                 {{--  @else
                                                     <button href="javascript:void(0)" type="button" data-id="{{ $product->id }}" title="Add to Wishlist" class="action wishlist add-wishlist wishlist-product{{$product->id}}">
                                                         <i class="ti-heart" aria-hidden="true"></i>
@@ -237,7 +237,7 @@
 
   <!--title start-->
 <div class="title1 section-my-space" style="background: #002340">
-    <h4 class="text-white">Latest Products</h4>
+    <h4 class="text-white">Latest Products (Retail)</h4>
   </div>
   <!--title end-->
 
@@ -263,18 +263,18 @@
                         </div>
                     </a>
                     <div class="product-icon icon-inline">
-                    <button onclick="openCart()">
+                    <a href="{{ route('frontend.product.single',$product->slug) }}">
                         <i class="ti-bag" ></i>
-                    </button>
+                    </a>
                     @php
                         $w = $wishlistProduct->where('cookie_id',Cookie::get('jesco_ecommerce'))->where('product_id',$product->id)->first();
                     @endphp
                     {{--  @if ($w)  --}}
-                       <div class="wishlist-area{{$product->id}}">
+                       {{-- <div class="wishlist-area{{$product->id}}">
                             <button   type="button" data-id="{{ $product->id }}" title="Add to Wishlist" class="action wishlist add-wishlist">
                                 <i class="ti-heart" aria-hidden="true"></i>
                             </button>
-                       </div>
+                       </div> --}}
                     {{--  @else
                         <button href="javascript:void(0)" type="button" data-id="{{ $product->id }}" title="Add to Wishlist" class="action wishlist add-wishlist wishlist-product{{$product->id}}">
                             <i class="ti-heart" aria-hidden="true"></i>
@@ -328,6 +328,12 @@
 
             </div>
           </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12  text-center">
+          <a class="btn btn-custom"  href="{{ route('frontend.product') }}">See All</a>
         </div>
       </div>
     </div>
@@ -427,6 +433,16 @@
         .wishlist-active{
             background: #000 !important;
             color: #fff !important;
+        }
+        .btn-custom{
+            background: #002340 !important;
+            color:#fff !important;
+            border:3px solid #002340 !important;
+        }
+        .btn-custom:hover{
+            background: #002391  !important;
+            color:#fff !important;
+            border:3px solid #002340;
         }
     </style>
 @endsection
