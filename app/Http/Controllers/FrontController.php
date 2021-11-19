@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\{
     Category,
+    Faq,
     Product,
     Product_Attribute,
     productSizeAttribute,
@@ -95,9 +96,12 @@ class FrontController extends Controller
                 $outpot =  $outpot.'<li  class="sizeCheck sizeCheck'.$size->size_id.'"  data-rPrice="'.$value->regular_price.'"  data-size="'.$size->size_id.'" data-price="'.$value->offer_price.'">'.$size->size_id;
             }
         }
-
         return response()->json($outpot);
-
+    }
+    function faqIndex(){
+        return view('frontend.pages.faq.faq',[
+            'faqs' => Faq::latest()->get(),
+        ]);
     }
 
 }

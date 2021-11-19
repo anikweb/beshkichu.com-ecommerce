@@ -28,7 +28,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="name">Enter Name</label>
-                                    <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name of Role">
+                                    <input type="text" name="name" value="{{ old('name') }}" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Name of Category">
                                     @error('name')
                                         <div class="text-danger">
                                             <i class="fa fa-exclamation-circle"></i>

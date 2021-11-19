@@ -15,13 +15,14 @@ use App\Http\Controllers\{
     CartController,
     CheckoutController,
     ContactInformationController,
+    FaqController,
     GetAjaxController,
     MyAccountController,
     OrderController,
     SslCommerzPaymentController,
     SliderController,
+    Wishlist,
 };
-use App\Models\Wishlist;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -44,6 +45,7 @@ Route::get('/product/{slug}',[FrontController::class, 'productSingle'])->name('f
 Route::get('/get/color/size/{cid}/{pid}',[FrontController::class, 'getColorSizeId']);
 Route::get('/wishlist',[FrontController::class, 'wishlistIndex'])->name('frontend.wishlist.index');
 Route::get('/wishlist/remove/{id}',[FrontController::class, 'wishlistRemove'])->name('frontend.wishlist.remove');
+Route::get('/faq',[FrontController::class, 'faqIndex'])->name('frontend.faq.index');
 
 // wishlist add by ajax
 Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
@@ -135,6 +137,11 @@ Route::resource('dashboard/slider', SliderController::class)->middleware(['auth'
 // Contact Information
 Route::get('dashboard/contact-information',[ContactInformationController::class, 'index'])->name('contact.information')->middleware(['auth','verified']);
 Route::post('dashboard/contact-information/update',[ContactInformationController::class, 'update'])->name('contact.information.update')->middleware(['auth','verified']);
+// Dashboard FAQ
+Route::get('dashboard/faq/trash',[FaqController::class, 'indexTrash'])->name('faq.trash.index')->middleware(['auth','verified']);
+Route::get('dashboard/faq/trash/restore/{faq}',[FaqController::class, 'restoreTrash'])->name('faq.trash.restore')->middleware(['auth','verified']);
+Route::post('dashboard/faq/trash/permanent-delete',[FaqController::class, 'permanetDestroyTrash'])->name('faq.trash.destroy')->middleware(['auth','verified']);
+Route::resource('dashboard/faq', FaqController::class)->middleware(['auth','verified']);
 // Socialite
 Route::get('/get/district/{division_id}',[GetAjaxController::class,'getDistrict']);
 Route::get('/get/upazila/{district_id}',[GetAjaxController::class,'getUpazila']);

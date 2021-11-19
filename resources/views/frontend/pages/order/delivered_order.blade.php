@@ -68,7 +68,7 @@
                                                     <td>{{ $billing->created_at->format('D-M-y, h:i A') }}</td>
                                                     <td>
                                                         @foreach ($billing->order_summary as $order_summary)
-                                                        {{ '৳'.$order_summary->total_price }}
+                                                        {{ '৳'.($order_summary->total_price+$order_summary->shipping_fee) }}
                                                         @endforeach
                                                     </td>
                                                     <td><a href="{{ route('my-account.invoice.download',$billing->id) }}" class="view"><i class="fa fa-download"></i> Download Invoice</a></td>

@@ -47,15 +47,13 @@ class RoleController extends Controller
     public function create()
     {
         if(auth()->user()->can('role management')){
-            // Permission::create(['name' => 'site settings edit']);
-            // Permission::create(['name' => 'contact information edit']);
-            // Permission::create(['name' => 'slider view']);
-            // Permission::create(['name' => 'slider edit']);
-            // Permission::create(['name' => 'slider trash']);
-            // Permission::create(['name' => 'slider trash restore']);
-            // Permission::create(['name' => 'slider activate']);
-            // Permission::create(['name' => 'slider actives view']);
-            // Permission::create(['name' => 'slider deactivates view']);
+            // Permission::create(['name' => 'faq view']);
+            // Permission::create(['name' => 'faq add']);
+            // Permission::create(['name' => 'faq edit']);
+            // Permission::create(['name' => 'faq trash']);
+            // Permission::create(['name' => 'faq trash restore']);
+            // Permission::create(['name' => 'faq trash view']);
+            // Permission::create(['name' => 'faq trash delete']);
             // return 'added';
             return view('backend.pages.role.create',[
                 'permissions' => Permission::orderBy('name','asc')->get(),
