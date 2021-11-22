@@ -204,37 +204,6 @@ class ProductController extends Controller
                 $product->thumbnail = $newThumbnailName;
                 $product->save();
             }
-            if($request->attrId == [null]){
-                foreach ($product->attribute as $attribute) {
-                    $attribute->delete();
-                }
-            }else{
-                foreach ($product->attribute as $attribute) {
-                    $arraySearch = in_array($attribute->id,$request->attrId);
-                    if($arraySearch != 1){
-                        $attribute->delete();
-                    }
-                }
-            }
-            foreach($request->attrId as $key => $attrId){
-                if($attrId !=''){
-                    $attr = Product_Attribute::findOrFail($attrId);
-                    $attr->product_id = $product->id;
-                    $attr->color_id = $request->color[$key];
-                    $attr->size_id= $request->size[$key];
-                    $attr->regular_price = $request->rPrice[$key];
-                    $attr->offer_price = $request->ofrPrice[$key];
-                    $attr->save();
-                }else{
-                    $attr = new Product_Attribute;
-                    $attr->product_id = $product->id;
-                    $attr->color_id = $request->color[$key];
-                    $attr->size_id = $request->size[$key];
-                    $attr->regular_price = $request->rPrice[$key];
-                    $attr->offer_price = $request->ofrPrice[$key];
-                    $attr->save();
-                }
-            }
             return redirect()->route('product.edit',$product->slug)->with('success','Updated');
         }else{
             return abort(404);
@@ -369,62 +338,4 @@ class ProductController extends Controller
             return abort(404);
         }
     }
-
-    // public function productImageGallary($slug)
-    // {
-    //     if(auth()->user()->can('product view')){
-    //         return view('backend.pages.products.image_gallery',[
-    //             'product' => Product::where('slug',$slug)->first(),
-    //         ]);
-    //     }else{
-    //         return abort(404);
-    //     }
-    // }
-    // public function productImageGallaryPost(Request $request)
-    // {
-    //     if(auth()->user()->can('product edit')){
-    //         if($request->hasFile('imageGalleries')){
-    //             // return 'ase';
-    //             // return 'ase';
-    //             foreach($request->file('imageGalleries') as $key => $imageGalleries) {
-
-    //                 $product = Product::find($request->product_id);
-    //                 $imageGalleryDB = new ProductImageGallery;
-
-    //                 $newImageGalleriesName = Str::slug($product->name).'-'.date('Y_m_d').Str::random(5).'.'.$imageGalleries->getClientOriginalExtension();
-    //                 // Create Dynamic Folder Start
-    //                 $path1 = public_path('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/';
-    //                 File::makeDirectory($path1, $mode = 0777, true, true);
-
-    //                 // Create Dynamic Folder End
-
-    //                 Image::make($imageGalleries)->save($path1.$newImageGalleriesName);
-    //                 $imageGalleryDB->product_id = $product->id;
-    //                 $imageGalleryDB->name = $newImageGalleriesName;
-    //                 $imageGalleryDB->save();
-    //             }
-    //             return back()->with('success','Image Added!');
-    //         }else{
-    //             return back()->with('error','failed');
-    //         }
-    //     }else{
-    //         return abort(404);
-    //     }
-    // }
-    // public function productImageGallaryDelete($id)
-    // {
-    //     if(auth()->user()->can('product delete')){
-    //         $imageGallery = ProductImageGallery::find($id);
-    //         $product = Product::find($imageGallery->product_id);
-    //         $oldImage = public_path('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/image_galleries/'.$imageGallery->name;
-    //         if(file_exists($oldImage)){
-    //             unlink($oldImage);
-    //         }
-    //         // unlink($oldImage);
-    //         $imageGallery->delete();
-    //         return back();
-    //     }else{
-    //         return abort(404);
-    //     }
-    // }
 }
