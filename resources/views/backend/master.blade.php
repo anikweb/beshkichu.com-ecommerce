@@ -407,6 +407,28 @@
                             </ul>
                         </li>
                     @endcan
+                    {{--  About   --}}
+                    {{-- @can('faq view') --}}
+                        <li class="nav-item">
+                            <a href="javascript:void(0)" class="nav-link">
+                                <i class="nav-icon fas fa-address-card"></i>
+                            <p>
+                                About
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                {{-- @can('faq view') --}}
+                                    <li class="nav-item">
+                                        <a href="{{ route('about.index') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>View</p>
+                                        </a>
+                                    </li>
+                                {{-- @endcan --}}
+                            </ul>
+                        </li>
+                    {{-- @endcan --}}
                     {{-- Role management --}}
                     @can('role management')
                         <li class="nav-item @if(Route::is('role.create')||Route::is('role.edit')||Route::is('role.index')||Route::is('role.show')||Route::is('assign.user')||Route::is('create.user')) menu-open @endif">

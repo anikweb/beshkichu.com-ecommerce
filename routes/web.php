@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
+    AboutController,
     BasicSettingController,
     BackendUserController,
     CategoryController,
@@ -142,6 +143,10 @@ Route::get('dashboard/faq/trash',[FaqController::class, 'indexTrash'])->name('fa
 Route::get('dashboard/faq/trash/restore/{faq}',[FaqController::class, 'restoreTrash'])->name('faq.trash.restore')->middleware(['auth','verified']);
 Route::post('dashboard/faq/trash/permanent-delete',[FaqController::class, 'permanetDestroyTrash'])->name('faq.trash.destroy')->middleware(['auth','verified']);
 Route::resource('dashboard/faq', FaqController::class)->middleware(['auth','verified']);
+
+// Dashboard About
+Route::post('dashboard/about/image/update',[AboutController::class,'imageUpdate'])->name('about.image.update')->middleware(['auth','verified']);
+Route::resource('dashboard/about', AboutController::class)->middleware(['auth','verified']);
 // Socialite
 Route::get('/get/district/{division_id}',[GetAjaxController::class,'getDistrict']);
 Route::get('/get/upazila/{district_id}',[GetAjaxController::class,'getUpazila']);
