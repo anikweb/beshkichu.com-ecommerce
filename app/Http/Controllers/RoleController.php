@@ -47,7 +47,7 @@ class RoleController extends Controller
     public function create()
     {
         if(auth()->user()->can('role management')){
-            // Permission::create(['name' => 'faq view']);
+            // Permission::create(['name' => 'about edit']);
             // Permission::create(['name' => 'faq add']);
             // Permission::create(['name' => 'faq edit']);
             // Permission::create(['name' => 'faq trash']);

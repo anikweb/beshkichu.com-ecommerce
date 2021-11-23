@@ -24,19 +24,20 @@
 
                 </div>
                 <div class="card-body mx-auto">
-                    <img id="image_preview" class="img-responsive w-100" src="{{ asset('assets/images/about-image/'.$about->image) }}" alt="">
+                    <img id="image_preview" class="img-responsive w-100" src="{{ asset('assets/images/about-image/'.$about->image) }}" alt="{{ basicSettings()->site_title }}">
                     @error('image')
                         <div class="text-danger">
                             <i class="fa fa-exclamation-circle"></i>
                             {{ $message }}
                         </div>
                     @enderror
-                    <form action="{{ route('about.image.update') }}" method="POST" class="mt-2">
+                    <form action="{{ route('about.image.update') }}" method="POST" class="mt-2" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="about_id" value="{{ $about->id }}">
-                        <label for="image" class="btn btn-primary mt-2">Change</label>
+                        <label for="image" class="btn btn-primary mt-2 image-choose-btn"> <i class="fa fa-exchange-alt"></i> Choose New</label>
                         <input onchange="document.getElementById('image_preview').src = window.URL.createObjectURL(this.files[0])" class="d-none" type="file" name="image" id="image">
-                        <button type="submit" class="btn btn-success"> Update</button>
+                        <button type="submit" class="btn btn-success image-active-btn"><i class="fa fa-save"></i> Update</button>
+                        <button type="button" class="btn btn-success disabled image-deactive-btn"> <i class="fa fa-save"></i> Update</button>
                     </form>
 
                 </div>
@@ -118,5 +119,10 @@
         @elseif(session('error'))
             toastr["error"]("{{ session('error') }}");
         @endif
+        $(".image-active-btn").hide();
+        $(".image-choose-btn").click(function(){
+            $(".image-active-btn").show();
+            $(".image-deactive-btn").hide();
+        });
     </script>
 @endsection

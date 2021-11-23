@@ -9,7 +9,7 @@
     <meta property="og:title" content="{{ basicSettings()->site_title }}" />
     <meta property="og:description" content="{{ basicSettings()->tagline }}" />
     <meta property="og:image" content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" />
-    <title> @if(Route::is('frontend')) Home | @elseif(Route::is('frontend.product')) Products | @elseif(Route::is('frontend.category.product')) {{$category->name}} - Products | @elseif(Route::is('frontend.product.single')) {{ $product->name }} | @elseif(Route::is('frontend.wishlist.index')) Wishlist | @elseif(Route::is('cart.index')) Carts | @elseif(Route::is('checkout.index')) Checkout | @elseif(Route::is('checkout.success')) Success | @elseif(Route::is('my-account.index')) Profile | @elseif(Route::is('my-account.personal.information.edit')) Update Profile | @elseif(Route::is('my-account.orders')) Orders | @elseif(Route::is('my-account.delivered.order')) Delevered Orders | @elseif(Route::is('my-account.orders.track')) Track Orders | @elseif(Route::is('login')) Login | @elseif(Route::is('register')) Register | @elseif(Route::is('password.request')) Forgot Password | @elseif(Route::is('password.reset')) Reset Password | @elseif(Route::is('my-account.changePassword')) Change Password | @elseif(Route::is('frontend.faq.index')) FAQ | @endif  {{ basicSettings()->site_title }}</title>
+    <title> @if(Route::is('frontend')) Home | @elseif(Route::is('frontend.product')) Products | @elseif(Route::is('frontend.category.product')) {{$category->name}} - Products | @elseif(Route::is('frontend.product.single')) {{ $product->name }} | @elseif(Route::is('frontend.wishlist.index')) Wishlist | @elseif(Route::is('cart.index')) Carts | @elseif(Route::is('checkout.index')) Checkout | @elseif(Route::is('checkout.success')) Success | @elseif(Route::is('my-account.index')) Profile | @elseif(Route::is('my-account.personal.information.edit')) Update Profile | @elseif(Route::is('my-account.orders')) Orders | @elseif(Route::is('my-account.delivered.order')) Delevered Orders | @elseif(Route::is('my-account.orders.track')) Track Orders | @elseif(Route::is('login')) Login | @elseif(Route::is('register')) Register | @elseif(Route::is('password.request')) Forgot Password | @elseif(Route::is('password.reset')) Reset Password | @elseif(Route::is('my-account.changePassword')) Change Password | @elseif(Route::is('frontend.faq.index')) FAQ | @elseif(Route::is('frontend.about.index')) About | @endif  {{ basicSettings()->site_title }}</title>
     <meta name="description" content="{{ basicSettings()->tagline }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -204,7 +204,7 @@
                                             @endif
                                         @endguest
                                         <li>
-                                            <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-3" aria-haspopup="true" aria-controls="sm-16353491369166194-4" aria-expanded="false">
+                                            <a href="{{ route('frontend.about.index') }}" class="dark-menu-item has-submenu" id="sm-16353491369166194-3" aria-haspopup="true" aria-controls="sm-16353491369166194-4" aria-expanded="false">
                                                 About us
                                             </a>
                                         </li>
@@ -422,7 +422,7 @@
                                                             </div>
                                                             <div class="footer-contant">
                                                                 <ul>
-                                                                    <li><a href="#">about us</a></li>
+                                                                    <li><a href="{{ route('frontend.about.index') }}">about us</a></li>
                                                                     <li><a href="#">contact us</a></li>
                                                                     <li><a href="#">terms &amp; conditions</a></li>
                                                                     <li><a href="#">returns &amp; exchanges</a></li>

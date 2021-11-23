@@ -47,6 +47,7 @@ Route::get('/get/color/size/{cid}/{pid}',[FrontController::class, 'getColorSizeI
 Route::get('/wishlist',[FrontController::class, 'wishlistIndex'])->name('frontend.wishlist.index');
 Route::get('/wishlist/remove/{id}',[FrontController::class, 'wishlistRemove'])->name('frontend.wishlist.remove');
 Route::get('/faq',[FrontController::class, 'faqIndex'])->name('frontend.faq.index');
+Route::get('/about',[FrontController::class, 'aboutIndex'])->name('frontend.about.index');
 
 // wishlist add by ajax
 Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);

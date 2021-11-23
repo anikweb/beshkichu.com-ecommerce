@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\{
+    About,
     Category,
     Faq,
     Product,
@@ -101,6 +102,11 @@ class FrontController extends Controller
     function faqIndex(){
         return view('frontend.pages.faq.faq',[
             'faqs' => Faq::latest()->get(),
+        ]);
+    }
+    function aboutIndex(){
+        return view('frontend.pages.about.about',[
+            'about' => About::first(),
         ]);
     }
 
