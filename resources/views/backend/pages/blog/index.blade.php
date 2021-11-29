@@ -55,13 +55,14 @@
                                                         @endphp
                                                     </td>
                                                     <td style="width:10%">{{ $blog->created_at->format('d-M-Y, h:i:s A') }}</td>
-                                                    <td style="width:10%">
+                                                    <td style="width:13%">
                                                         <a class="btn btn-info" href="{{ route('blog.edit',$blog->id) }}"><i class="fa fa-edit"></i></a>
                                                         <button data-id="{{ $blog->id }}" type="submit" class="btn btn-danger blog_delete_btn"><i class="fa fa-trash"></i></button>
-                                                        <form id="blog_delete_form{{$blog->id}}" action="{{ route('blog.destroy',$blog->id) }}" method="POST">
+                                                        <form class="d-inline" id="blog_delete_form{{$blog->id}}" action="{{ route('blog.destroy',$blog->id) }}" method="POST">
                                                             @csrf
                                                             @method("DELETE")
                                                         </form>
+                                                        <a title="details" target="_blank" class="btn btn-primary" href="{{ route('frontend.blog.show',$blog->slug) }}"> <i class="fa fa-link"></i> </a>
                                                     </td>
                                                 </tr>
                                             @empty

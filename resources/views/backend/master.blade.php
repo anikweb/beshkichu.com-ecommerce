@@ -8,7 +8,7 @@
             <meta property="og:title" content="{{ basicSettings()->site_title }}" />
             <meta property="og:description" content="{{ basicSettings()->tagline }}" />
             <meta property="og:image" content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" />
-            <title> @if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details   @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('about.index')) About @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider @elseif(Route::is('contact.information')) Contact Information @elseif(Route::is('backend.user')) Profile  @elseif(Route::is('backend.user.edit')) Edit Profile @elseif(Route::is('backend.change.password')) Change Password  @elseif(Route::is('products.attribute.index')) Attributes @elseif(Route::is('products.attribute.edit')) Edit Attributes @elseif(Route::is('faq.create')) Create FAQ @elseif(Route::is('faq.edit')) Edit FAQ @elseif(Route::is('faq.index')) FAQs @elseif(Route::is('faq.trash.index'))  FAQs Trash @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
+            <title> @if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details   @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('about.index')) About @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider @elseif(Route::is('contact.information')) Contact Information @elseif(Route::is('backend.user')) Profile  @elseif(Route::is('backend.user.edit')) Edit Profile @elseif(Route::is('backend.change.password')) Change Password  @elseif(Route::is('products.attribute.index')) Attributes @elseif(Route::is('products.attribute.edit')) Edit Attributes @elseif(Route::is('faq.create')) Create FAQ @elseif(Route::is('faq.edit')) Edit FAQ @elseif(Route::is('faq.index')) FAQs @elseif(Route::is('faq.trash.index'))  FAQs Trash @elseif(Route::is('blog.index'))  Blogs @elseif(Route::is('blog.edit'))  Edit Blog @elseif(Route::is('blog.create'))  Create Blog @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
             <!-- Google Font: Source Sans Pro -->
             <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
             <!-- Font Awesome -->
@@ -239,9 +239,9 @@
                         </li>
                     @endcan
                     {{-- Blog --}}
-                    {{-- @can('product view') --}}
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
+                    @can('blog management')
+                        <li class="nav-item @if(Route::is('blog.create')||Route::is('blog.edit')||Route::is('blog.index')||Route::is('blog.show')) menu-open @endif">
+                            <a href="#" class="nav-link @if(Route::is('blog.create')||Route::is('blog.edit')||Route::is('blog.index')||Route::is('blog.show')) active @endif">
                             <i class="nav-icon fas fa-blog"></i>
                             <p>
                                 Blog
@@ -250,20 +250,20 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route('blog.create') }}" class="nav-link @if (Route::is('product.create'))active @endif">
+                                    <a href="{{ route('blog.create') }}" class="nav-link @if (Route::is('blog.create')) active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Create</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('blog.index') }}" class="nav-link">
+                                    <a href="{{ route('blog.index') }}" class="nav-link @if (Route::is('blog.index')||Route::is('blog.edit')) active @endif">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>View List</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                    {{-- @endcan --}}
+                    @endcan
                     {{--  Vouchers   --}}
                     @if (auth()->user()->can('voucher actives view')||auth()->user()->can('voucher deactivates view'))
                         <li class="nav-item @if (Route::is('voucher.create')||Route::is('voucher.deactivate.list')||Route::is('voucher.edit')||Route::is('voucher.index')||Route::is('voucher.trash.index')) menu-open @endif">

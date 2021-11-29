@@ -19,9 +19,13 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('backend.pages.blog.index',[
-            'blogs' =>blog::latest()->paginate('10'),
-        ]);
+        if(auth()->user()->can('blog management')){
+            return view('backend.pages.blog.index',[
+                'blogs' =>blog::latest()->paginate('10'),
+            ]);
+        }else{
+            return abort(404);
+        }
     }
 
     /**
@@ -31,9 +35,13 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.blog.create',[
-            'categories' => Category::orderBy('name','asc')->get(),
-        ]);
+        if(auth()->user()->can('blog management')){
+            return view('backend.pages.blog.create',[
+                'categories' => Category::orderBy('name','asc')->get(),
+            ]);
+        }else{
+            return abort(404);
+        }
     }
 
     /**
@@ -44,31 +52,30 @@ class BlogController extends Controller
      */
     public function store(BlogAddForm $request)
     {
-        $blog  = new blog;
-        $blog->user_id = Auth::user()->id;
-        $blog->category_id = $request->category_id;
-        $blog->title = $request->title;
-        $blog->slug = Str::slug($request->title);
-        $blog->description = $request->description;
-        $blog->save();
-
-        if($request->hasFile('feature_image')){
-            // $oldImage = public_path('assets/images/blog/'.$blog->image);
-            // if(file_exists($oldImage)){
-            //     unlink($oldImage);
-            // }
-            $image = $request->file('feature_image');
-            $newImageName = Str::slug($blog->title).'_'.date('Y_m_d_h_i_s').time().'.'.$image->getClientOriginalExtension();
-            $path = public_path('assets/images/blog/');
-            Image::make($image)->save($path.$newImageName,80);
-            $blog->image = $newImageName;
+        if(auth()->user()->can('blog management')){
+            $blog  = new blog;
+            $blog->user_id = Auth::user()->id;
+            $blog->category_id = $request->category_id;
+            $blog->title = $request->title;
+            $blog->slug = Str::slug($request->title);
+            $blog->description = $request->description;
             $blog->save();
-            return back()->with('success','Image Updated!');
+            if($request->hasFile('feature_image')){
+                // $oldImage = public_path('assets/images/blog/'.$blog->image);
+                // if(file_exists($oldImage)){
+                //     unlink($oldImage);
+                // }
+                $image = $request->file('feature_image');
+                $newImageName = Str::slug($blog->title).'_'.date('Y_m_d_h_i_s').time().'.'.$image->getClientOriginalExtension();
+                $path = public_path('assets/images/blog/');
+                Image::make($image)->save($path.$newImageName,80);
+                $blog->image = $newImageName;
+                $blog->save();
+            }
+            return redirect()->route('blog.index')->with('success','Blog Posted!');
         }else{
-            return back()->with('error','Failed to update image!');
+            return abort(404);
         }
-
-        return 'added';
     }
 
     /**
@@ -90,10 +97,15 @@ class BlogController extends Controller
      */
     public function edit(blog $blog)
     {
-        return view('backend.pages.blog.edit',[
-            'categories' => Category::orderBy('name','asc')->get(),
-            'blog' => $blog,
-        ]);
+        if(auth()->user()->can('blog management')){
+            return view('backend.pages.blog.edit',[
+                'categories' => Category::orderBy('name','asc')->get(),
+                'blog' => $blog,
+            ]);
+        }else{
+            return abort(404);
+        }
+
     }
 
     /**
@@ -105,25 +117,30 @@ class BlogController extends Controller
      */
     public function update(BlogAddForm $request, blog $blog)
     {
-        $blog->category_id = $request->category_id;
-        $blog->title = $request->title;
-        $blog->slug = Str::slug($request->title);
-        $blog->description = $request->description;
+        if(auth()->user()->can('blog management')){
+            $blog->category_id = $request->category_id;
+            $blog->title = $request->title;
+            $blog->slug = Str::slug($request->title);
+            $blog->description = $request->description;
 
-        if($request->hasFile('feature_image')){
-            $oldImage = public_path('assets/images/blog/'.$blog->image);
-            if(file_exists($oldImage)){
-                unlink($oldImage);
+            if($request->hasFile('feature_image')){
+                $oldImage = public_path('assets/images/blog/'.$blog->image);
+                if(file_exists($oldImage)){
+                    unlink($oldImage);
+                }
+                $image = $request->file('feature_image');
+                $newImageName = Str::slug($blog->title).'_'.date('Y_m_d_h_i_s').time().'.'.$image->getClientOriginalExtension();
+                $path = public_path('assets/images/blog/');
+                Image::make($image)->save($path.$newImageName,80);
+                $blog->image = $newImageName;
+
             }
-            $image = $request->file('feature_image');
-            $newImageName = Str::slug($blog->title).'_'.date('Y_m_d_h_i_s').time().'.'.$image->getClientOriginalExtension();
-            $path = public_path('assets/images/blog/');
-            Image::make($image)->save($path.$newImageName,80);
-            $blog->image = $newImageName;
-
+            $blog->save();
+            return redirect()->route('blog.index')->with('success','Blog Updated!');
+        }else{
+            return abort(404);
         }
-        $blog->save();
-        return redirect()->route('blog.index')->with('success','Blog Updated!');
+
     }
 
     /**
@@ -134,7 +151,12 @@ class BlogController extends Controller
      */
     public function destroy(blog $blog)
     {
-        $blog->delete();
-        return back()->with('success','Blog Deleted!');
+        if(auth()->user()->can('blog management')){
+            $blog->delete();
+            return back()->with('success','Blog Deleted!');
+        }else{
+            return abort(404);
+        }
+
     }
 }
