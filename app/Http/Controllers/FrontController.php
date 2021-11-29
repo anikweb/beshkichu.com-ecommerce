@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\{
     About,
+    blog,
     Category,
     Faq,
     Product,
@@ -107,6 +108,16 @@ class FrontController extends Controller
     function aboutIndex(){
         return view('frontend.pages.about.about',[
             'about' => About::first(),
+        ]);
+    }
+    function blogIndex(){
+        return view('frontend.pages.blog.index',[
+            'blogs' => blog::latest()->paginate(10),
+        ]);
+    }
+    function blogShow($slug){
+        return view('frontend.pages.blog.show',[
+            'blog' => blog::where('slug',$slug)->first(),
         ]);
     }
 

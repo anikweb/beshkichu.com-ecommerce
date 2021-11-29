@@ -189,7 +189,7 @@
                                     <!--SHOP-END-->
                                     <!--blog-meu start-->
                                         <li>
-                                            <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">blog</a>
+                                            <a href="{{ route('frontend.blog.index') }}" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">blog</a>
                                         </li>
 
                                         @guest
@@ -231,8 +231,8 @@
                                                 </ul>
                                             </li>
                                         @else
-                                            <li class="mobile-user onhover-dropdown" onclick="openAccount()">
-                                                <a href="javascript:void(0)">
+                                            <li class="mobile-user onhover-dropdown">
+                                                <a href="{{ route('login') }}">
                                                     <i style="font-size:32px" class="icon-user"></i>
                                                     <span class="d-md-none">Login</span>
                                                 </a>
@@ -465,7 +465,7 @@
                                                             </div>
                                                             <div class="footer-contant">
                                                                 <ul class="contact-list">
-                                                                    <li><i class="fa fa-map-marker"></i><span>{{ contactInformation()->street_address.','.contactInformation()->upazila->name.','.contactInformation()->district->name.','.contactInformation()->division->name.'-'.contactInformation()->zip_code }}</span></li>
+                                                                    <li><i class="fa fa-map-marker"></i><span>{{ contactInformation()->street_address.','.contactInformation()->upazila->name.','.contactInformation()->division->name.'-'.contactInformation()->zip_code }}</span></li>
                                                                     <li><i class="fa fa-envelope-o"></i><span>email: <a class="text-lowercase" href="mailto:{{ contactInformation()->email }}"> {{ contactInformation()->email }}</a> </span></li>
                                                                     <li><i class="fa fa-phone"></i><span>call us:
                                                                         @foreach (contactMobile() as $mobile)
@@ -529,7 +529,7 @@
             </div>
         </div>
          <!-- My account bar start-->
-        <div id="myAccount" class="add_to_cart right account-bar">
+        {{-- <div id="myAccount" class="add_to_cart right account-bar">
             <a href="javascript:void(0)" class="overlay" onclick="closeAccount()"></a>
             <div class="cart-inner">
             <div class="cart_top">
@@ -575,7 +575,7 @@
                 </div>
             </form>
             </div>
-        </div>
+        </div> --}}
     </footer>
     <!-- tap to top -->
     <div class="tap-top">

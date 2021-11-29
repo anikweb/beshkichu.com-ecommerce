@@ -238,6 +238,32 @@
                             </ul>
                         </li>
                     @endcan
+                    {{-- Blog --}}
+                    {{-- @can('product view') --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-blog"></i>
+                            <p>
+                                Blog
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('blog.create') }}" class="nav-link @if (Route::is('product.create'))active @endif">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('blog.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {{-- @endcan --}}
                     {{--  Vouchers   --}}
                     @if (auth()->user()->can('voucher actives view')||auth()->user()->can('voucher deactivates view'))
                         <li class="nav-item @if (Route::is('voucher.create')||Route::is('voucher.deactivate.list')||Route::is('voucher.edit')||Route::is('voucher.index')||Route::is('voucher.trash.index')) menu-open @endif">
@@ -568,6 +594,7 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         {{--  select2  --}}
         <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
         @yield('footer_js')
         </body>
         </html>

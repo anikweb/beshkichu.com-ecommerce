@@ -582,6 +582,7 @@ class ComposerStaticInit3819b40bfeebfafd7891abef523ea543
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\AboutController' => __DIR__ . '/../..' . '/app/Http/Controllers/AboutController.php',
         'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
         'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
@@ -669,6 +670,7 @@ class ComposerStaticInit3819b40bfeebfafd7891abef523ea543
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Voucher' => __DIR__ . '/../..' . '/app/Models/Voucher.php',
         'App\\Models\\Wishlist' => __DIR__ . '/../..' . '/app/Models/Wishlist.php',
+        'App\\Models\\blog' => __DIR__ . '/../..' . '/app/Models/blog.php',
         'App\\Models\\contact_information' => __DIR__ . '/../..' . '/app/Models/contact_information.php',
         'App\\Models\\contact_mobile' => __DIR__ . '/../..' . '/app/Models/contact_mobile.php',
         'App\\Models\\productSizeAttribute' => __DIR__ . '/../..' . '/app/Models/productSizeAttribute.php',

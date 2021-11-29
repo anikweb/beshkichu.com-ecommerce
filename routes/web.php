@@ -4,6 +4,7 @@ use App\Http\Controllers\{
     AboutController,
     BasicSettingController,
     BackendUserController,
+    BlogController,
     CategoryController,
     DashboardController,
     FrontController,
@@ -48,6 +49,8 @@ Route::get('/wishlist',[FrontController::class, 'wishlistIndex'])->name('fronten
 Route::get('/wishlist/remove/{id}',[FrontController::class, 'wishlistRemove'])->name('frontend.wishlist.remove');
 Route::get('/faq',[FrontController::class, 'faqIndex'])->name('frontend.faq.index');
 Route::get('/about',[FrontController::class, 'aboutIndex'])->name('frontend.about.index');
+Route::get('/blogs',[FrontController::class, 'blogIndex'])->name('frontend.blog.index');
+Route::get('/blogs/{slug}',[FrontController::class, 'blogShow'])->name('frontend.blog.show');
 
 // wishlist add by ajax
 Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
@@ -148,6 +151,9 @@ Route::resource('dashboard/faq', FaqController::class)->middleware(['auth','veri
 // Dashboard About
 Route::post('dashboard/about/image/update',[AboutController::class,'imageUpdate'])->name('about.image.update')->middleware(['auth','verified']);
 Route::resource('dashboard/about', AboutController::class)->middleware(['auth','verified']);
+
+// Dashboard Blog
+Route::resource('dashboard/blog', BlogController::class)->middleware(['auth','verified']);
 // Socialite
 Route::get('/get/district/{division_id}',[GetAjaxController::class,'getDistrict']);
 Route::get('/get/upazila/{district_id}',[GetAjaxController::class,'getUpazila']);

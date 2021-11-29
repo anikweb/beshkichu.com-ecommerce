@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Http\\Controllers\\AboutController' => $baseDir . '/app/Http/Controllers/AboutController.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
     'App\\Http\\Controllers\\Auth\\EmailVerificationNotificationController' => $baseDir . '/app/Http/Controllers/Auth/EmailVerificationNotificationController.php',
@@ -95,6 +96,7 @@ return array(
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Voucher' => $baseDir . '/app/Models/Voucher.php',
     'App\\Models\\Wishlist' => $baseDir . '/app/Models/Wishlist.php',
+    'App\\Models\\blog' => $baseDir . '/app/Models/blog.php',
     'App\\Models\\contact_information' => $baseDir . '/app/Models/contact_information.php',
     'App\\Models\\contact_mobile' => $baseDir . '/app/Models/contact_mobile.php',
     'App\\Models\\productSizeAttribute' => $baseDir . '/app/Models/productSizeAttribute.php',
