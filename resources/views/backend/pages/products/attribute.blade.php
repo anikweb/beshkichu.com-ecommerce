@@ -122,9 +122,15 @@
                                             <label for="size">Size<span class="badge text-danger">*</span> </label>
                                             <select name="size_id[]" class="form-control size_input" id="size" multiple="multiple">
                                                 <option value="">None</option>
-                                                @for ($i = 34; $i < 50; $i++)
+                                                @for ($i = 20; $i < 50; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
+                                                    <option value="S">S</option>
+                                                    <option value="M">M</option>
+                                                    <option value="L">L</option>
+                                                    <option value="XL">XL</option>
+                                                    <option value="XXL">XXL</option>
+                                                    <option value="XXXL">XXXL</option>
                                             </select>
                                         </div>
                                     </div>

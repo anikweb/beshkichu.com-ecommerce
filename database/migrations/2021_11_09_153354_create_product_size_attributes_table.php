@@ -16,7 +16,7 @@ class CreateProductSizeAttributesTable extends Migration
         Schema::create('product_size_attributes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('attribute_id');
-            $table->foreignId('size_id');
+            $table->string('size_id');
             $table->timestamps();
         });
     }

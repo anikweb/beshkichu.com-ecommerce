@@ -18,7 +18,7 @@ class CreateCartsTable extends Migration
             $table->string('cookie_id');
             $table->foreignId('product_id');
             $table->foreignId('image_id')->nullable();
-            $table->foreignId('size_id')->nullable();
+            $table->string('size_id');
             $table->tinyInteger('quantity');
             $table->timestamps();
         });
