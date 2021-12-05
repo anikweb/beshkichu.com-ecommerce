@@ -78,7 +78,7 @@ Route::get('/my-account/orders/invoice/download/{billing_id}',[MyAccountControll
 Route::get('/my-account/orders/delivered',[MyAccountController::class,'indexDeliveredOrder'])->name('my-account.delivered.order')->middleware(['isCustomer','auth','verified']);
 Route::get('/my-account/orders',[MyAccountController::class,'indexOrders'])->name('my-account.orders')->middleware(['isCustomer','auth','verified']);
 Route::get('/my-account/orders/track',[MyAccountController::class,'indexTrack'])->name('my-account.orders.track')->middleware(['isCustomer','auth','verified']);
-Route::get('/my-account/orders/track/search/{invoice}',[MyAccountController::class,'TrackOrder'])->middleware(['isCustomer','auth','verified']);
+Route::get('/my-account/orders/track/search/{invoice}/{mobile}',[MyAccountController::class,'TrackOrder'])->middleware(['isCustomer','auth','verified']);
 Route::resource('my-account', MyAccountController::class)->middleware(['isCustomer','auth','verified']);
 // Dashboard
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard')->middleware(['auth','verified','verified']);

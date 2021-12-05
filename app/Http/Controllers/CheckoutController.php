@@ -100,7 +100,7 @@ class CheckoutController extends Controller
         }else{
             $order_summary->total_price = session()->get('s_subtotal');
         }
-        $order_summary->invoice_no = 'BK'.'-'.Str::upper(Str::random(5));
+        $order_summary->invoice_no = 'BK'.'-'.Str::upper(Str::random(8));
         $order_summary->save();
         if(session()->get('s_voucher')){
             Voucher::where('name',session()->get('s_voucher'))->decrement('limit');

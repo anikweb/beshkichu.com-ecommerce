@@ -31,12 +31,24 @@
                         <div class="login">
                             <div class="login_form_container">
                                 <div class="account_login_form">
-                                    <div class="input-group mb-3">
-                                        <input type="text" id="track-input-box" class="form-control" placeholder="Enter Invoice No">
-                                        <div class="input-group-append">
-                                            <button id="track-input-btn" style="border-radius: inherit;background: #000; padding: 15px; color: #ffffff;height: 50px;width: 70px;" class="btn" type="button"><i class="fa fa-search"></i></button>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" id="track-input-mobile-box" class="form-control py-3" placeholder="Billing Number">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="text" id="track-input-box" class="form-control py-3" placeholder="Enter Invoice No">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 text-center">
+                                            <div class="form-group">
+                                                <button id="track-input-btn" class="btn btn-primary" type="button">Track Order</button>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -49,19 +61,30 @@
                         <h3 class="card-title text-white "> Track Order</h3>
                     </div>
                     <div class="card-body">
-                        <h3 style="background:#3cbf155e" class="d-inline p-2 rounded">Status: <span class="status"></span></h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center" >
+                                    <img width="400px" class="img-fluid pickup-in-progress" src="{{ asset('assets/images/order-status/pickup_in_progress.png') }}" alt="">
+                                    <img width="400px" class="img-fluid shipped" src="{{ asset('assets/images/order-status/order_shipped.png') }}" alt="">
+                                    <img width="400px" class="img-fluid out-for-delivery" src="{{ asset('assets/images/order-status/out_for_delivery.png') }}" alt="">
+                                    <img width="400px" class="img-fluid order-delivered" src="{{ asset('assets/images/order-status/order_delivered.png') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
                         <div class="table-responsive mt-3">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>Status</th>
                                         <th>Invoice</th>
-                                        <th>Date</th>
+                                        <th>Order Date</th>
                                         <th>Amount</th>
                                         {{-- <th>Details</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td class="status"></td>
                                         <td class="invoice-data"></td>
                                         <td class="date-data"></td>
                                         <td class="amount-data"></td>
@@ -78,7 +101,7 @@
                     </div>
                     <div class="card-body text-center">
                         <div class="bg-danger p-3">
-                            <p class="lead text-light"><i class="fa fa-exclamation-circle"></i> No Orders Found by this Invoice <span class="fail-invoice"></span></p>
+                            <p class="lead text-light"><i class="fa fa-exclamation-circle"></i> No Orders Found by matching this Invoice <span class="fail-invoice"></span></p>
                         </div>
                     </div>
                 </div>
@@ -93,30 +116,35 @@
         $(document).ready(function(){
             $("#track-input-btn").click(function(){
                 var invoice_no = $("#track-input-box").val();
-                // alert(invoice_no);
+                var mobile = $("#track-input-mobile-box").val();
                 $.ajax({
                     type: "GET",
-                    url: "{{ url('my-account/orders/track/search') }}/"+invoice_no,
+                    url: "{{ url('my-account/orders/track/search') }}/"+invoice_no+'/'+mobile,
                     success:function(res){
-                        if(res.invoice_no){
+                        if(res){
+                            $('.order-delivered').hide();
+                            $('.out-for-delivery').hide();
+                            $('.shipped').hide();
+                            $('.pickup-in-progress').hide();
                             $('.search-fail').hide();
                             $(".search-result").show();
-                            console.log(res);
                             $('.invoice-data').html(res.invoice_no);
                             var timestamp = res.created_at;
                             var date = new Date(timestamp);
-                            // console.log(date.getTime())
-                            // console.log(date)
                             $('.date-data').html(date.getDate()+'-'+date.getMonth()+'-'+date.getFullYear());
                             $('.amount-data').html('৳'+res.total_price);
                             if(res.current_status == 1){
                                 $('.status').html('Picup in Progress');
+                                $('.pickup-in-progress').show();
                             }else if (res.current_status == 2){
                                 $('.status').html('Shipped');
+                                $('.shipped').show();
                             }else if (res.current_status == 3){
                                 $('.status').html('Out for Delivery');
+                                $('.out-for-delivery').show();
                             }else if (res.current_status == 4){
-                                $('.status').html('Delivered');
+                                $('.status').html('Order delivered');
+                                $('.order-delivered').show();
                             }else if (res.current_status == 5){
                                 $('.status').html('Canceled');
                             }
@@ -125,7 +153,7 @@
                         }else{
                             $(".search-result").hide();
                             $('.search-fail').show();
-                            $('.fail-invoice').html('\''+invoice_no+'\'');
+                            $('.fail-invoice').html('\''+invoice_no+'\' and this mobile number: \'' + mobile+ '\'');
                         }
                     }
                 });

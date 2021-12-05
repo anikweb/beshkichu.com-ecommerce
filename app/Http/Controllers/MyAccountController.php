@@ -95,9 +95,11 @@ class MyAccountController extends Controller
     public function indexTrack(){
         return view('frontend.pages.order.track');
     }
-    public function TrackOrder($invoice){
-        $order_summary = Order_Summary::where('invoice_no',$invoice)->first();
-       return response()->json($order_summary);
+    public function TrackOrder($invoice, $mobile){
+        $order_summary = Order_Summary::where('invoice_no',$invoice)->first()->billing_details->where('phone',$mobile)->first();
+        if($order_summary){
+            return response()->json(Order_Summary::where('invoice_no',$invoice)->first());
+        }
     }
 
     /**
