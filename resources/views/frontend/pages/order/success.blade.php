@@ -23,7 +23,8 @@
                         @foreach ($order_summary->order_details as $order)
                             <div class="row product-order-detail">
                                 <div class="col-3">
-                                    <img src="{{ asset('assets/images/product').'/'.$order->product->created_at->format('Y/m/d/').$order->product->id.'/thumbnail/'.$order->product->thumbnail }}" alt="{{ $order->product->name }}" class="img-fluid ">
+                                    {{-- <img src="{{ asset('assets/images/product').'/'.$cart->image->product->created_at->format('Y/m/d/').$cart->image->product->id.'/image_galleries/'.$cart->image->name }}" class="img-fluid  " alt="{{$cart->image->product->name}}"> --}}
+                                    <img src="{{ asset('assets/images/product').'/'.$order->image->product->created_at->format('Y/m/d/').$order->image->product->id.'/image_galleries/'.$order->image->name}}" alt="{{ $order->product->name }}" class="img-fluid ">
                                 </div>
                                 <div class="col-3 order_detail">
                                     <div>
@@ -61,10 +62,10 @@
                             </ul>
                         </div>
                         <div class="final-total">
-                            <h3>total <span>${{ $order_summary->total_price }}</span></h3></div>
+                            <h3>total <span>৳{{ $order_summary->total_price }}</span></h3></div>
                         </div>
                         <div class="pt-2">
-                            <i class="text-success fa fa-exclamation-circle"></i>MoveOn- Ship for me অর্ডার করার সময় টোটাল প্রাইসে শিপিং চার্জ যুক্ত থাকেনা, প্রোডাক্ট দেশে আসার পর ওজন করে (প্যাকেট সহ) ওজন অনুসারে প্রতি কেজিতে গুন করে (প্রোডাক্ট ভিত্তিক আলাদা আলাদা শিপিং চার্জ হতে পারে) শিপিং চার্জ যুক্ত হবে। এছাড়া টোটাল প্রাইসে দেশের ভিতরে ডেলিভারি চার্জও যুক্ত থাকেনা, এটি ডেলিভারি সময় পেমেন্ট করতে হবে।</p>
+                            <i class="text-success fa fa-exclamation-circle"></i>Beshkichu Sourching Company শিপমেন্ট সিলেক্টের সময় টোটাল প্রাইসে শিপিং চার্জ যুক্ত থাকেনা, প্রোডাক্ট দেশে আসার পর ওজন করে (প্যাকেট সহ) ওজন অনুসারে প্রতি কেজিতে গুন করে শিপিং চার্জ যুক্ত হবে। এছাড়া টোটাল প্রাইসে দেশের ভিতরে ডেলিভারি চার্জও যুক্ত থাকেনা, এটি ডেলিভারি সময় পেমেন্ট করতে হবে।</p>
                         </div>
                 </div>
                 <div class="col-lg-6">
@@ -80,11 +81,13 @@
                         <div class="col-sm-6">
                             <h4>shipping address</h4>
                             <ul class="order-detail">
-                                <li>{{ $order_summary->billing_details->division->name }}</li>
-                                <li>{{ $order_summary->billing_details->district->name }}</li>
+                                <li>{{ $order_summary->billing_details->street_adress2 }}</li>
+                                <li>{{ $order_summary->billing_details->street_adress1 }}</li>
                                 <li>{{ $order_summary->billing_details->upazila->name }}</li>
-                                <li>{{ $order_summary->billing_details->upazila->street_adress1 }}</li>
-                                <li>{{ $order_summary->billing_details->upazila->street_adress2 }}</li>
+                                <li>{{ $order_summary->billing_details->district->name }}</li>
+                                @if ($order_summary->billing_details->district->name !=$order_summary->billing_details->division->name )
+                                    <li>{{ $order_summary->billing_details->division->name }}</li>
+                                @endif
                             </ul>
                         </div>
                         <div class="col-sm-12 payment-mode">
