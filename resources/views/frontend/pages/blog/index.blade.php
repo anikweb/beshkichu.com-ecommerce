@@ -42,9 +42,11 @@
                                     <div>
                                         <a href="{{ route('frontend.blog.show',$blog->slug) }}"><h4>{{ $blog->title }}</h4> </a>
                                         <ul class="post-social">
+                                            @can('role management')
                                             <li>Posted By : {{ $blog->user->name.' ('.$blog->user->roles->first()->name.')'}}</li>
-                                            <li><i class="fa fa-heart"></i> 0 Hits</li>
-                                            <li><i class="fa fa-comments"></i> 0 Comment</li>
+                                            @endcan
+
+
                                         </ul>
                                         <p>
                                             @php

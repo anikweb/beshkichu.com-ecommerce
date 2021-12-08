@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use App\Models\{
     BillingDetails,
     CustomerPersonalInformation,
@@ -102,6 +102,121 @@ class MyAccountController extends Controller
         }
     }
 
+    public function productDetails($invoice_no){
+
+        $order_summary = Order_Summary::where('invoice_no',$invoice_no)->first();
+        if($order_summary->billing_details->street_adress1){
+            if(!$order_summary->billing_details->street_adress2){
+                $street_address1 = $order_summary->billing_details->street_adress1.',';
+
+            }
+        }
+        if($order_summary->billing_details->street_adress2){
+            if(!$order_summary->billing_details->street_adress1){
+                $street_address1 = $order_summary->billing_details->street_adress2.',';
+            }
+        }
+        if(!empty($order_summary->billing_details->street_adress1) && !empty($order_summary->billing_details->street_adress2)){
+            $street_address1 = $order_summary->billing_details->street_adress1.$order_summary->billing_details->street_adress2.',';
+        }
+        if ($order_summary->payment_status==1)
+        {
+           $payement_status='Unpaid';
+
+        }else{
+            $payement_status= 'Paid';
+        }
+        // <p>Delivery Deadline: '.$order_summary->order_details.'</p>
+        $outpot =
+        '<h4>Bill To</h4>
+        <p>Client:<strong>'.$order_summary->billing_details->user->name.'</strong></p>
+        <p>Company:<strong>'.$order_summary->billing_details->company.'</strong></p>
+        <p>Address:<strong> '.$street_address1.$order_summary->billing_details->upazila->name.','.$order_summary->billing_details->district->name.'</strong></p>
+        <p>Email: <strong>'.$order_summary->billing_details->email.'</strong></p>
+        <p>Order Date and time:<strong> '.$order_summary->billing_details->created_at->format('d-M-Y, h:i A').'</strong></p>
+
+        <p>Special Instruction:<strong>'.$order_summary->billing_details->note.'</strong></p>
+        <p>Payment Method:<strong>'.Str::upper($order_summary->billing_details->payment_method).'</strong></p>
+        <p>Payment Status:<strong> '.$payement_status.'</strong></p>';
+
+        return response()->json($outpot);
+
+    }
+    public function productDetailsFull($invoice){
+        $order_summary = Order_Summary::where('invoice_no',$invoice)->first()->order_details;
+        $order_summarys = Order_Summary::where('invoice_no',$invoice)->first();
+        $outpot = '';
+        foreach($order_summary as $key => $order){
+            $key = $key + 1;
+            $outpot .=
+                '<tr>
+                    <td  width="4%">'.$key.'</td>
+                    <td  width="50%">'.$order->product->name.' (sku: '.$order->product->sku.')'.'</td>
+                    <td  width="5%">'.$order->size_id.'</td>
+                    <td  width="5%">৳'.$order->product->attribute->where('image_gallery_id',$order->image_id)->first()->offer_price.'</td>
+                    <td  width="10%">৳'.$order->product->shipping_charge.'</td>
+                    <td  width="5%">'.$order->quantity.'</td>
+
+                    <td  width="5">৳'.$order->product->attribute->where('image_gallery_id',$order->image_id)->first()->offer_price *  $order->quantity.'</td>
+                </tr>';
+
+
+        }
+        if($order_summarys->discount){
+            $outpot .=
+                '<tr>
+                    <td colspan="6" class="text-right font-weight-bold">Discount</td>
+                    <td>'.$order_summarys->discount.'/-</td>
+                </tr>';
+        }
+        if($order_summarys->shipping_fee){
+            $outpot .=
+                '<tr>
+                    <td colspan="6" class="text-right font-weight-bold">Shipping Charge</td>
+                    <td>'.$order_summarys->shipping_fee.'/-</td>
+                </tr>';
+        }
+        if($order_summarys->payment_status ==1){
+            $outpot .=
+                '<tr>
+                    <td colspan="6" class="text-right font-weight-bold">Payment</td>
+                    <td>
+                        Unpaid
+                    </td>
+                </tr>';
+        }
+        if($order_summarys->payment_status ==2){
+            $outpot .=
+                '<tr>
+                    <td colspan="6" class="text-right font-weight-bold">Payment</td>
+                    <td>
+                        Paid
+                    </td>
+                </tr>';
+        }
+        if($order_summarys->shipping_fee){
+            $totalPrice = $order_summarys->total_price+$order_summarys->shipping_fee;
+            $outpot .=
+                '<tr>
+                    <td colspan="6" class="text-right font-weight-bold">Total</td>
+                    <td>
+                        '.$totalPrice.'/-
+                    </td>
+                </tr>';
+
+        }else{
+            $outpot .=
+                '<tr>
+                    <td colspan="6" class="text-right font-weight-bold">Total</td>
+                    <td>
+                        '.$order_summarys->total_price.'/-
+                    </td>
+                </tr>';
+        }
+
+        return response()->json($outpot);
+
+    }
     /**
      * Show the form for creating a new resource.
      *

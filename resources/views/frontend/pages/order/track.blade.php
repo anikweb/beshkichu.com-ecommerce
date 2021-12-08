@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="card search-result" style="display: none">
+                <div class="card search-result" style="display: none;">
                     <div class="card-header bg-primary ">
                         <h3 class="card-title text-white "> Track Order</h3>
                     </div>
@@ -79,19 +79,51 @@
                                         <th>Invoice</th>
                                         <th>Order Date</th>
                                         <th>Amount</th>
-                                        {{-- <th>Details</th> --}}
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <input class="hidden-invoice" type="hidden" value="">
                                         <td class="status"></td>
                                         <td class="invoice-data"></td>
+
                                         <td class="date-data"></td>
                                         <td class="amount-data"></td>
-                                        {{-- <td class="details-data"></td> --}}
+                                        <td><a data-invoice="" class="detail-btn" href="javascript:void(0)">Details</a></td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card details-heading">
+                            <div class="card-header">
+                                <h5 class="card-title"><i class="fa fa-info-circle"></i> Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="bill_info_container">
+                                    {{-- Ajax --}}
+                                </div>
+                                <div class="table-responsive pt-2">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th width="4%">SL</th>
+                                                <th width="50%">Product</th>
+                                                <th width="5%">Size</th>
+                                                <th width="5%">Price</th>
+                                                <th width="10%">Shipping charge per kg{{-- (notincludedintotalammount) --}}</th>
+                                                <th width="5%">QTY</th>
+                                                <th width="5">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="details-full">
+                                            {{-- Ajax --}}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,12 +154,15 @@
                     url: "{{ url('my-account/orders/track/search') }}/"+invoice_no+'/'+mobile,
                     success:function(res){
                         if(res){
+                            $('.details-heading').hide();
                             $('.order-delivered').hide();
                             $('.out-for-delivery').hide();
                             $('.shipped').hide();
                             $('.pickup-in-progress').hide();
                             $('.search-fail').hide();
                             $(".search-result").show();
+                            $(".search-result").animate({top:'10px'});
+                            $('.hidden-invoice').val(res.invoice_no);
                             $('.invoice-data').html(res.invoice_no);
                             var timestamp = res.created_at;
                             var date = new Date(timestamp);
@@ -148,12 +183,40 @@
                             }else if (res.current_status == 5){
                                 $('.status').html('Canceled');
                             }
-                            // $('.details-data').html('<a href="#"> <i class="fa fa-eye"></i> Details</a>');
+                            var invoice =  res.invoice_no;
+                            // alert(invoice);
+                            // $(".details-data").attr("data-invoice", "hello"+invoice);
+                            // $('.details-data').html('<a href="">Details<a>');
 
                         }else{
                             $(".search-result").hide();
                             $('.search-fail').show();
                             $('.fail-invoice').html('\''+invoice_no+'\' and this mobile number: \'' + mobile+ '\'');
+
+                        }
+                    }
+                });
+            });
+            $('.detail-btn').click(function() {
+                var invoice = $(".hidden-invoice").val();
+                // alert(invoice);
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('my-account/orders/track/product/details') }}/"+invoice,
+                    success:function(res){
+                        if(res){
+                            $('.details-heading').show();
+                            $('.details-heading').animate({top:'5px'});
+                            $('.bill_info_container').html(res);
+                        }
+                    }
+                });
+                $.ajax({
+                    type: "GET",
+                    url: "{{ url('my-account/orders/track/product/details/full') }}/"+invoice,
+                    success:function(res){
+                        if(res){
+                            $('.details-full').html(res);
                         }
                     }
                 });

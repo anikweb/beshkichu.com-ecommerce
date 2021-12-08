@@ -77,7 +77,7 @@
                             @endif
                             <p style="padding: 0;margin:0">Order Date and time: <strong> {{ $order->billing_details->created_at->format('d-M-Y, h:i A') }} </strong> </p>
                             @if($order->current_status !=4)
-                                <p style="padding: 0;margin:0">Delivery Deadline: <strong> 20-25 Days </strong> </p>
+                                {{-- <p style="padding: 0;margin:0">Delivery Deadline: <strong> 20-25 Days </strong> </p> --}}
                             @else
                                 <p style="padding: 0;margin:0">Delivered Date:</p>
                             @endif

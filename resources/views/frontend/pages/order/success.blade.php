@@ -94,11 +94,11 @@
                             <h4>payment method</h4>
                             <p>{{ $order_summary->billing_details->payment_method }}</p>
                         </div>
-                        <div class="col-md-12">
+                        {{-- <div class="col-md-12">
                             <div class="delivery-sec">
                                 <h3>expected date of delivery</h3>
                                 <h2>20-25 Days</h2></div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

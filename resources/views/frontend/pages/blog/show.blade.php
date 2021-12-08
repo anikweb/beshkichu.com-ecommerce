@@ -34,9 +34,12 @@
                    <h3>{{ $blog->title }}</h3>
                    <ul class="post-social">
                        <li>{{ $blog->created_at->format('d M Y') }}</li>
-                       <li>Posted By : {{ $blog->user->name.' ('.$blog->user->roles->first()->name.')'}}</li>
-                       <li><i class="fa fa-heart"></i> 0 Hits</li>
-                       <li><i class="fa fa-comments"></i> 0 Comment</li>
+                       @can('role management')
+                        <li>Posted By : {{ $blog->user->name.' ('.$blog->user->roles->first()->name.')'}}</li>
+
+                       @endcan
+
+
                    </ul>
                    <p>
                        @php

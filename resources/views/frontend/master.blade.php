@@ -176,7 +176,7 @@
                                     <!--SHOP-->
                                     <li>
                                         <a href="{{ route('frontend.product') }}" class="dark-menu-item has-submenu" id="sm-16353491369166194-3" aria-haspopup="true" aria-controls="sm-16353491369166194-4" aria-expanded="false">
-                                            shop
+                                            Retail shop
                                         </a>
                                     </li>
                                     <li>
