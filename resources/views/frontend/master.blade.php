@@ -45,6 +45,11 @@
         .icon-user {
             color:#fff;
         }
+        @media (min-width: 1680px){
+                .container {
+                max-width: 1500px;
+            }
+        }
         @media (max-width: 900px){
             .icon-user {
                 color:#000 !important;
@@ -364,7 +369,7 @@
                 <div class="col-12">
                     <div class="footer-main-contian">
                         <div class="row ">
-                            <div class="col-lg-4 col-md-12 ">
+                            <div class="col-lg-3 col-md-12">
                                 <div class="footer-left">
                                     <div class="footer-logo">
                                         <img src="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" class="img-fluid  " alt="{{ basicSettings()->site_title }}">
@@ -381,7 +386,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-12 ">
+                            <div class="col-lg-6 col-md-12">
                                 <div class="footer-right">
                                     <div class="row">
                                         <div class="col-md-12">
@@ -484,12 +489,18 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-3 col-md-12">
+                                <div style="background:#002340" class="py-3 mt-4 px-2 text-white">
+                                    <h4  class="lead">Live Location</h4>
+                                </div>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.095054157655!2d90.40505595080941!3d24.75792985537806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37564fc6f1d2085b%3A0xb182c8f4a24ad068!2sBeshkichu%20Sourcing%20Company!5e0!3m2!1sen!2sbd!4v1639074014127!5m2!1sen!2sbd" width="100%" height="310px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="app-link-block  bg-transparent">
+        {{-- <div class="app-link-block  bg-transparent">
             <div class="container">
                 <div class="row">
                     <div class="app-link-bloc-contain app-link-bloc-contain-1">
@@ -516,7 +527,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="sub-footer">
             <div class="container">
                 <div class="row">
