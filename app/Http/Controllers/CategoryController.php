@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\categoryForm;
+use App\Http\Requests\CategoryForm;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Models\{

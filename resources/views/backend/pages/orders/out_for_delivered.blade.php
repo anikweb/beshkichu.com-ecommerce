@@ -53,7 +53,7 @@
                                             </td>
                                             <td>
                                                 <span class="badge badge-info">
-                                                    Out for Delivery
+                                                    Out for Delivery 
                                                 </span>
                                             </td>
                                             <td class="text-center">
@@ -76,7 +76,7 @@
                             <div>
                                 {{ $orders->links() }}
                             </div>
-
+                            
                             <div class="modal fade" id="modal-sm">
                                 <form action="{{route('dashboard.orders.shipping.add')}}" method="POST">
                                     @csrf

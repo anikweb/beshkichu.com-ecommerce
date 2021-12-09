@@ -203,7 +203,7 @@ class MyAccountController extends Controller
                         '.$totalPrice.'/-
                     </td>
                 </tr>';
-
+            
         }else{
             $outpot .=
                 '<tr>
