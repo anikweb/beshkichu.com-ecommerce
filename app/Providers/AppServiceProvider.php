@@ -29,5 +29,6 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         Blade::withoutDoubleEncoding();
         View::share('recent_blogs',\App\Models\blog::orderBy('created_at','desc')->get());
+        View::share('map',\App\Models\GoogleMap::find(1));
     }
 }

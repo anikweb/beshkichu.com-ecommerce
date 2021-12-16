@@ -144,6 +144,8 @@ Route::resource('dashboard/slider', SliderController::class)->middleware(['auth'
 // Contact Information
 Route::get('dashboard/contact-information',[ContactInformationController::class, 'index'])->name('contact.information')->middleware(['auth','verified']);
 Route::post('dashboard/contact-information/update',[ContactInformationController::class, 'update'])->name('contact.information.update')->middleware(['auth','verified']);
+Route::get('dashboard/google-map',[ContactInformationController::class, 'indexGoogleMap'])->name('contact.information.google.map')->middleware(['auth','verified']);
+Route::post('dashboard/google-map/update',[ContactInformationController::class, 'updateGoogleMap'])->name('contact.information.google.map.update')->middleware(['auth','verified']);
 // Dashboard FAQ
 Route::get('dashboard/faq/trash',[FaqController::class, 'indexTrash'])->name('faq.trash.index')->middleware(['auth','verified']);
 Route::get('dashboard/faq/trash/restore/{faq}',[FaqController::class, 'restoreTrash'])->name('faq.trash.restore')->middleware(['auth','verified']);

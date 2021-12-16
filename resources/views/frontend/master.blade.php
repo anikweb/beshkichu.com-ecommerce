@@ -491,9 +491,11 @@
                             </div>
                             <div class="col-lg-3 col-md-12">
                                 <div style="background:#002340" class="py-3 mt-4 px-2 text-white">
-                                    <h4  class="lead">Live Location</h4>
+                                    <h4  class="lead">{{ $map->title }}</h4>
                                 </div>
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.095054157655!2d90.40505595080941!3d24.75792985537806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37564fc6f1d2085b%3A0xb182c8f4a24ad068!2sBeshkichu%20Sourcing%20Company!5e0!3m2!1sen!2sbd!4v1639074014127!5m2!1sen!2sbd" width="100%" height="310px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                @php
+                                    echo $map->embed_code;
+                                @endphp
                             </div>
                         </div>
                     </div>
