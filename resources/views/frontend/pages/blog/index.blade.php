@@ -31,7 +31,9 @@
                         <div class="row blog-media">
                             <div class="col-xl-6">
                                 <div class="blog-left">
-                                    <a href="{{ route('frontend.blog.show',$blog->slug) }}"><img src="{{ asset('assets/images/blog/'.$blog->image) }}" class="img-fluid" alt="{{ $blog->title }}"></a>
+                                    <a href="{{ route('frontend.blog.show',$blog->slug) }}">
+                                        <img src="{{ asset('assets/images/blog/'.$blog->image) }}" class="img-fluid" alt="{{ $blog->title }}">
+                                    </a>
                                     <div class="date-label">
                                         {{ $blog->created_at->format('d M Y') }}
                                     </div>
@@ -40,13 +42,13 @@
                             <div class="col-xl-6">
                                 <div class="blog-right">
                                     <div>
-                                        <a href="{{ route('frontend.blog.show',$blog->slug) }}"><h4>{{ $blog->title }}</h4> </a>
+                                        <a href="{{ route('frontend.blog.show',$blog->slug) }}">
+                                            <h4>{{ $blog->title }}</h4>
+                                        </a>
                                         <ul class="post-social">
                                             @can('role management')
                                             <li>Posted By : {{ $blog->user->name.' ('.$blog->user->roles->first()->name.')'}}</li>
                                             @endcan
-
-
                                         </ul>
                                         <p>
                                             @php
@@ -76,7 +78,7 @@
                                             <div class="media-body align-self-center">
                                                 <h5 class="m-0">{{ Str::limit($recent_blog->title,'35') }}</h5>
                                                 <h6>{{ $recent_blog->created_at->diffForHumans() }}</h6>
-                                                <p>0 hits</p>
+                                                {{-- <p>0 hits</p> --}}
                                             </div>
                                         </div>
                                     </a>

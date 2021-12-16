@@ -88,7 +88,14 @@
                                             </div>
                                         @enderror
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="slug">Slug <span>*</span></label>
+                                            <input type="text" name="slug" id="slug" value="{{ $blog->slug }}" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -104,6 +111,9 @@
         @elseif(session('error'))
             toastr["error"]("{{ session('error') }}");
         @endif
+        $('#title').keyup(function() {
+            $('#slug').val($(this).val().toLowerCase().split(',').join('').replace(/\s/g,"-"));
+        });
         // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();

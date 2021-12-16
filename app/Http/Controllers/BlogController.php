@@ -57,7 +57,7 @@ class BlogController extends Controller
             $blog->user_id = Auth::user()->id;
             $blog->category_id = $request->category_id;
             $blog->title = $request->title;
-            $blog->slug = Str::slug($request->title);
+            $blog->slug = preg_replace('/\s+/u', '-', trim(Str::remove('?',$request->slug)));
             $blog->description = $request->description;
             $blog->save();
             if($request->hasFile('feature_image')){
@@ -120,7 +120,7 @@ class BlogController extends Controller
         if(auth()->user()->can('blog management')){
             $blog->category_id = $request->category_id;
             $blog->title = $request->title;
-            $blog->slug = Str::slug($request->title);
+            $blog->slug = preg_replace('/\s+/u', '-', trim(Str::remove('?',$request->slug)));
             $blog->description = $request->description;
 
             if($request->hasFile('feature_image')){
