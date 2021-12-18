@@ -21,6 +21,7 @@ use App\Http\Controllers\{
     GetAjaxController,
     MyAccountController,
     OrderController,
+    ProductRequestController,
     SslCommerzPaymentController,
     SliderController,
     Wishlist,
@@ -51,6 +52,7 @@ Route::get('/faq',[FrontController::class, 'faqIndex'])->name('frontend.faq.inde
 Route::get('/about',[FrontController::class, 'aboutIndex'])->name('frontend.about.index');
 Route::get('/blogs',[FrontController::class, 'blogIndex'])->name('frontend.blog.index');
 Route::get('/blogs/{slug}',[FrontController::class, 'blogShow'])->name('frontend.blog.show');
+Route::get('/requested-product',[FrontController::class, 'indexProductRequest'])->name('frontend.requested.product.index');
 
 // wishlist add by ajax
 Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
@@ -166,6 +168,7 @@ Route::get('github/redirect',[GithubController::class,'githubRedirect']);
 Route::get('github/callback',[GithubController::class,'githubCallback']);
 
 // SSLCOMMERZ Start
+
 // Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
 // Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
@@ -178,5 +181,9 @@ Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
 Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
+
+// Product Request
+
+Route::resource('product-request', ProductRequestController::class)->middleware(['auth','isCustomer','verified']);
 
 require __DIR__.'/auth.php';

@@ -663,6 +663,7 @@ class ComposerStaticInit3819b40bfeebfafd7891abef523ea543
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ProductColor' => __DIR__ . '/../..' . '/app/Models/ProductColor.php',
         'App\\Models\\ProductImageGallery' => __DIR__ . '/../..' . '/app/Models/ProductImageGallery.php',
+        'App\\Models\\ProductRequest' => __DIR__ . '/../..' . '/app/Models/ProductRequest.php',
         'App\\Models\\ProductReturn' => __DIR__ . '/../..' . '/app/Models/ProductReturn.php',
         'App\\Models\\ProductSize' => __DIR__ . '/../..' . '/app/Models/ProductSize.php',
         'App\\Models\\Product_Attribute' => __DIR__ . '/../..' . '/app/Models/Product_Attribute.php',

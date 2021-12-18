@@ -30,7 +30,7 @@
         <div class="row section-big-pb-space">
             <div class="col-sm-12 blog-detail">
                <div class="creative-card">
-                   <img src="{{ asset('assets/images/blog/'.$blog->image) }}" class="img-fluid w-100 " alt="blog">
+                   <img src="{{ asset('assets/images/blog/'.$blog->image) }}" class="img-fluid w-100 " alt="{{ $blog->title }}">
                    <h3>{{ $blog->title }}</h3>
                    <ul class="post-social">
                        <li>{{ $blog->created_at->format('d M Y') }}</li>

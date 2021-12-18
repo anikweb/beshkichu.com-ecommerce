@@ -11,11 +11,13 @@ use App\Models\{
     Faq,
     Product,
     Product_Attribute,
+    ProductRequest,
     productSizeAttribute,
     Slider,
     Wishlist,
 };
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontController extends Controller
 {
@@ -88,7 +90,7 @@ class FrontController extends Controller
         $wishlistCheck->delete();
         return back()->with('success','Deleted!');
     }
-    function getColorSizeId($imid,$pid){
+    public function getColorSizeId($imid,$pid){
         $sizes = Product_Attribute::where('product_id',$pid)->where('image_gallery_id',$imid)->get();
         $outpot ='';
         foreach ($sizes as $key => $value) {
@@ -100,24 +102,29 @@ class FrontController extends Controller
         }
         return response()->json($outpot);
     }
-    function faqIndex(){
+    public function faqIndex(){
         return view('frontend.pages.faq.faq',[
             'faqs' => Faq::latest()->get(),
         ]);
     }
-    function aboutIndex(){
+    public function aboutIndex(){
         return view('frontend.pages.about.about',[
             'about' => About::first(),
         ]);
     }
-    function blogIndex(){
+    public function blogIndex(){
         return view('frontend.pages.blog.index',[
             'blogs' => blog::latest()->paginate(10),
         ]);
     }
-    function blogShow($slug){
+    public function blogShow($slug){
         return view('frontend.pages.blog.show',[
             'blog' => blog::where('slug',$slug)->first(),
+        ]);
+    }
+    public function indexProductRequest(){
+        return view('frontend.pages.product_request.requested_product',[
+            'requests' => ProductRequest::where('user_id',Auth::user()->id)->paginate(5),
         ]);
     }
 

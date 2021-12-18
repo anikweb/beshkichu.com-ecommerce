@@ -89,6 +89,7 @@ return array(
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\ProductColor' => $baseDir . '/app/Models/ProductColor.php',
     'App\\Models\\ProductImageGallery' => $baseDir . '/app/Models/ProductImageGallery.php',
+    'App\\Models\\ProductRequest' => $baseDir . '/app/Models/ProductRequest.php',
     'App\\Models\\ProductReturn' => $baseDir . '/app/Models/ProductReturn.php',
     'App\\Models\\ProductSize' => $baseDir . '/app/Models/ProductSize.php',
     'App\\Models\\Product_Attribute' => $baseDir . '/app/Models/Product_Attribute.php',

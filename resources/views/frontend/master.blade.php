@@ -38,6 +38,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color2.css') }}" media="screen" id="color">
     <!-- Add site Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon/'.basicSettings()->icon) }}" type="image/x-icon">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('inline_style')
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
@@ -69,32 +70,11 @@
     </div>
     <!-- loader end -->
     <header>
-        <div class="mobile-fix-option"></div>
+        {{-- <div class="mobile-fix-option"></div> --}}
         <div class="layout-header2">
             <div class="container">
                 <div class="col-md-12">
                     <div class="main-menu-block">
-                        <div class="sm-nav-block">
-                            <span class="sm-nav-btn"><i class="fa fa-bars"></i></span>
-                            <ul class="nav-slide">
-                                <li>
-                                <div class="nav-sm-back">
-                                    back <i class="fa fa-angle-right pl-2"></i>
-                                </div>
-                                </li>
-                                @foreach (category() as $category)
-                                    <li><a href="{{ route('frontend.category.product',$category->slug) }}">{{ $category->name }}</a></li>
-                                @endforeach
-                                </li>
-                                {{-- <li>
-                                <a class="mor-slide-click">
-                                    more category
-                                    <i class="fa fa-angle-down pro-down"></i>
-                                    <i class="fa fa-angle-up pro-up" style="display: none;"></i>
-                                </a>
-                                </li> --}}
-                            </ul>
-                        </div>
                         <div class="logo-block">
                             <a href="{{ route('frontend') }}"><img style="max-width:250px;" src="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" class="img-fluid  " alt="{{ basicSettings()->site_title }}"></a>
                         </div>
@@ -185,9 +165,14 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">Services<span class="sub-arrow"></span></a>
+                                        <a href="#" class="dark-menu-item has-submenu" id="sm-16353491369166194-15" aria-haspopup="true" aria-controls="sm-16353491369166194-16" aria-expanded="false">
+                                            Services<span class="sub-arrow"></span>
+                                        </a>
                                         <ul id="sm-16353491369166194-16" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-15" aria-expanded="false">
-                                            <li><a href="javascript:void(0)">Sourching</a></li>
+
+                                            <li>
+                                                <a href="{{ route('product-request.index') }}">Product Request</a>
+                                            </li>
                                         </ul>
                                     </li>
 
@@ -225,6 +210,7 @@
                                                 <ul id="sm-16353491369166194-16" role="group" aria-hidden="true" aria-labelledby="sm-16353491369166194-15" aria-expanded="false">
                                                     @if (auth()->user()->roles->first()->name == 'Customer')
                                                         <li><a href="{{ route('my-account.index') }}">My Account</a></li>
+                                                        <li><a href="{{ route('frontend.requested.product.index') }}">Requested Product</a></li>
                                                     @else
                                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
 
@@ -450,7 +436,12 @@
 
                                                                         @if (auth()->user()->roles->first()->name == 'Customer')
                                                                         <li><a href="{{ route('my-account.index') }}"> my account</a></li>
-                                                                        <li><a href="{{ route('my-account.orders.track') }}"> orders tracking</a></li>
+                                                                        <li>
+                                                                            <a href="{{ route('my-account.orders.track') }}"> orders tracking</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="{{ route('product-request.index') }}"> Product Request</a>
+                                                                        </li>
                                                                         @else
                                                                             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                                                                         @endif
@@ -823,6 +814,7 @@
     <!-- Theme js-->
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/modal.js') }}"></script>
+    <script src="sweetalert2.all.min.js"></script>
     @yield('footer_js')
 </body>
 

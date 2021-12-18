@@ -1,6 +1,5 @@
 @extends('frontend.master')
 @section('content')
-<!-- Messenger Chat Plugin Code -->
 <div id="fb-root"></div>
 
 <!-- Your Chat Plugin code -->
