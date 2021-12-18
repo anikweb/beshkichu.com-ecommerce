@@ -184,6 +184,10 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 // Product Request
 
+Route::get('dashboard/requested-product',[ProductRequestController::class, 'indexProduct'])->name('backend.requested.product.index')->middleware(['auth','verified']);
+Route::get('dashboard/requested-product/details/{id}',[ProductRequestController::class, 'showProduct'])->name('backend.requested.product.show')->middleware(['auth','verified']);
+Route::post('dashboard/requested-product/approve',[ProductRequestController::class, 'ApproveProductRequest'])->name('backend.requested.product.approve')->middleware(['auth','verified']);
+Route::post('dashboard/requested-product/decline',[ProductRequestController::class, 'DeclineProductRequest'])->name('backend.requested.product.decline')->middleware(['auth','verified']);
 Route::resource('product-request', ProductRequestController::class)->middleware(['auth','isCustomer','verified']);
 
 require __DIR__.'/auth.php';

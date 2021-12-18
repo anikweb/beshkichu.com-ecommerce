@@ -22,9 +22,10 @@ class CreateProductRequestsTable extends Migration
             $table->string('product_name');
             $table->text('details');
             $table->string('image')->nullable();
-            $table->integer('quantity');
+            $table->string('quantity');
+            $table->string('targeted_price');
             $table->tinyInteger('status')->comment('1=pending, 2=picked, 3=declined');
-            $table->timestamp('valid_to');
+            $table->date('valid_to');
             $table->timestamps();
         });
     }

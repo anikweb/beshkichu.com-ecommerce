@@ -9,7 +9,7 @@
     <meta property="og:title" content="{{ basicSettings()->site_title }}" />
     <meta property="og:description" content="{{ basicSettings()->tagline }}" />
     <meta property="og:image" content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" />
-    <title> @if(Route::is('frontend')) Home | @elseif(Route::is('frontend.product')) Products | @elseif(Route::is('frontend.category.product')) {{$category->name}} - Products | @elseif(Route::is('frontend.product.single')) {{ $product->name }} | @elseif(Route::is('frontend.wishlist.index')) Wishlist | @elseif(Route::is('cart.index')) Carts | @elseif(Route::is('checkout.index')) Checkout | @elseif(Route::is('checkout.success')) Success | @elseif(Route::is('my-account.index')) Profile | @elseif(Route::is('my-account.personal.information.edit')) Update Profile | @elseif(Route::is('my-account.orders')) Orders | @elseif(Route::is('my-account.delivered.order')) Delevered Orders | @elseif(Route::is('my-account.orders.track')) Track Orders | @elseif(Route::is('login')) Login | @elseif(Route::is('register')) Register | @elseif(Route::is('password.request')) Forgot Password | @elseif(Route::is('password.reset')) Reset Password | @elseif(Route::is('my-account.changePassword')) Change Password | @elseif(Route::is('frontend.faq.index')) FAQ | @elseif(Route::is('frontend.about.index')) About | @elseif(Route::is('frontend.blog.index')) Blogs | @elseif(Route::is('frontend.blog.show')) {{ Str::limit($blog->title,'15') }} | @endif  {{ basicSettings()->site_title }}</title>
+    <title> @if(Route::is('frontend')) Home | @elseif(Route::is('frontend.product')) Products | @elseif(Route::is('frontend.category.product')) {{$category->name}} - Products | @elseif(Route::is('frontend.product.single')) {{ $product->name }} | @elseif(Route::is('frontend.wishlist.index')) Wishlist | @elseif(Route::is('cart.index')) Carts | @elseif(Route::is('checkout.index')) Checkout | @elseif(Route::is('checkout.success')) Success | @elseif(Route::is('my-account.index')) Profile | @elseif(Route::is('my-account.personal.information.edit')) Update Profile | @elseif(Route::is('my-account.orders')) Orders | @elseif(Route::is('my-account.delivered.order')) Delevered Orders | @elseif(Route::is('my-account.orders.track')) Track Orders | @elseif(Route::is('login')) Login | @elseif(Route::is('register')) Register | @elseif(Route::is('password.request')) Forgot Password | @elseif(Route::is('password.reset')) Reset Password | @elseif(Route::is('my-account.changePassword')) Change Password | @elseif(Route::is('frontend.faq.index')) FAQ | @elseif(Route::is('product-request.index')) Product Request | @elseif(Route::is('product-request.show')) Requested Product Details | @elseif(Route::is('frontend.requested.product.index')) Requested Product | @elseif(Route::is('frontend.about.index')) About | @elseif(Route::is('frontend.blog.index')) Blogs | @elseif(Route::is('frontend.blog.show')) {{ Str::limit($blog->title,'15') }} | @endif  {{ basicSettings()->site_title }}</title>
     <meta name="description" content="{{ basicSettings()->tagline }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,6 +38,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color2.css') }}" media="screen" id="color">
     <!-- Add site Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon/'.basicSettings()->icon) }}" type="image/x-icon">
+    {{-- Plugins --}}
+    <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @yield('inline_style')
     <!-- Main Style -->
@@ -815,6 +817,8 @@
     <script src="{{ asset('assets/js/script.js') }}"></script>
     <script src="{{ asset('assets/js/modal.js') }}"></script>
     <script src="sweetalert2.all.min.js"></script>
+    
+    <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @yield('footer_js')
 </body>
 
