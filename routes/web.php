@@ -21,6 +21,7 @@ use App\Http\Controllers\{
     GetAjaxController,
     MyAccountController,
     OrderController,
+    PrivacyPolicyController,
     ProductRequestController,
     SslCommerzPaymentController,
     SliderController,
@@ -53,6 +54,7 @@ Route::get('/about',[FrontController::class, 'aboutIndex'])->name('frontend.abou
 Route::get('/blogs',[FrontController::class, 'blogIndex'])->name('frontend.blog.index');
 Route::get('/blogs/{slug}',[FrontController::class, 'blogShow'])->name('frontend.blog.show');
 Route::get('/requested-product',[FrontController::class, 'indexProductRequest'])->name('frontend.requested.product.index')->middleware(['auth','verified','isCustomer']);
+Route::get('/privacy-policy',[FrontController::class, 'indexPrivacyPolicy'])->name('frontend.privacy.policy');
 
 // wishlist add by ajax
 // Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
@@ -190,5 +192,7 @@ Route::get('dashboard/requested-product/details/{id}',[ProductRequestController:
 Route::post('dashboard/requested-product/approve',[ProductRequestController::class, 'ApproveProductRequest'])->name('backend.requested.product.approve')->middleware(['auth','verified']);
 Route::post('dashboard/requested-product/decline',[ProductRequestController::class, 'DeclineProductRequest'])->name('backend.requested.product.decline')->middleware(['auth','verified']);
 Route::resource('product-request', ProductRequestController::class)->middleware(['auth','isCustomer','verified']);
+
+Route::resource('dashboard/privacy-policy',PrivacyPolicyController::class)->middleware(['auth','verified']);
 
 require __DIR__.'/auth.php';

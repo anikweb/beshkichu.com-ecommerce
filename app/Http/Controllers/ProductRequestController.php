@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductRequestController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -53,7 +54,7 @@ class ProductRequestController extends Controller
         ]);
         if($request->valid_to < date('Y-m-d')){
             return back()->with('date_error','Please Set Valid Date!');
-        } 
+        }
         $product = new ProductRequest;
         $product->user_id = Auth::user()->id;
         $product->request_id = Str::random(8);
@@ -123,35 +124,56 @@ class ProductRequestController extends Controller
      * @param  \App\Models\ProductRequest  $productRequest
      * @return \Illuminate\Http\Response
      */
-    
+
     public function destroy(ProductRequest $productRequest)
     {
         //
     }
     public function indexProduct()
     {
-        return view('backend.pages.requested_product.index',[
-            'requests' => ProductRequest::latest()->paginate(10),
-        ]);
+        if(auth()->user()->can('order management')){
+            return view('backend.pages.requested_product.index',[
+                'requests' => ProductRequest::latest()->paginate(10),
+            ]);
+        }else{
+            return abort(404);
+        }
+
     }
     public function showProduct($id)
     {
-        return view('backend.pages.requested_product.show',[
-            'request' => ProductRequest::find($id),
-        ]);
+        if(auth()->user()->can('order management')){
+            return view('backend.pages.requested_product.show',[
+                'request' => ProductRequest::find($id),
+            ]);
+        }else{
+            return abort(404);
+        }
+
     }
     public function ApproveProductRequest(Request $request)
     {
-        $s = ProductRequest::find($request->request_id);
-        $s->status = 2;
-        $s->save();
-        return back()->with('success','Request picked!');
+        if(auth()->user()->can('order management')){
+            $s = ProductRequest::find($request->request_id);
+            $s->status = 2;
+            $s->save();
+            return back()->with('success','Request picked!');
+        }else{
+            return abort(404);
+        }
+
     }
     public function DeclineProductRequest(Request $request)
     {
-        $s = ProductRequest::find($request->request_id);
-        $s->status = 3;
-        $s->save();
-        return back()->with('success','Request declined!');
+        if(auth()->user()->can('order management')){
+            $s = ProductRequest::find($request->request_id);
+            $s->status = 3;
+            $s->save();
+            return back()->with('success','Request declined!');
+        }else{
+            return abort(404);
+        }
+
+
     }
 }

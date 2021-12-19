@@ -9,6 +9,7 @@ use App\Models\{
     blog,
     Category,
     Faq,
+    PrivacyPolicy,
     Product,
     Product_Attribute,
     ProductRequest,
@@ -125,6 +126,11 @@ class FrontController extends Controller
     public function indexProductRequest(){
         return view('frontend.pages.product_request.requested_product',[
             'requests' => ProductRequest::latest()->where('user_id',Auth::user()->id)->paginate(5),
+        ]);
+    }
+    public function indexPrivacyPolicy(){
+        return view('frontend.pages.privacy_policy.index',[
+            'policy' => PrivacyPolicy::find(1),
         ]);
     }
 
