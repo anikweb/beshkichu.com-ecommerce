@@ -253,6 +253,6 @@
         $("#quantity_type").select2();
         // $("").selectize(options);
     });
-   
+
 </script>
 @endsection

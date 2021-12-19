@@ -124,7 +124,7 @@ class FrontController extends Controller
     }
     public function indexProductRequest(){
         return view('frontend.pages.product_request.requested_product',[
-            'requests' => ProductRequest::where('user_id',Auth::user()->id)->paginate(5),
+            'requests' => ProductRequest::latest()->where('user_id',Auth::user()->id)->paginate(5),
         ]);
     }
 

@@ -33,6 +33,7 @@
                                        <th>Mobile</th>
                                        <th>Email</th>
                                        <th>Status</th>
+                                       <th>Requested at</th>
                                        <th>Action</th>
                                    </tr>
                                </thead>
@@ -45,6 +46,7 @@
                                             <td>{{ $request->mobile }}</td>
                                             <td>{{ $request->email }}</td>
                                             <td>@if ($request->status==1) <span class="badge badge-primary p-2">Pending</span> @elseif ($request->status==2) <span class="badge badge-success p-2">Picked</span> @elseif ($request->status==3) <span class="badge badge-danger p-2">Declined</span> @endif </td>
+                                            <td>{{ $request->created_at->format('m/d/Y, h:i A') }}</td>
                                             <td>
                                                 <a  href="{{ route('backend.requested.product.show',$request->id) }}"  class="btn btn-primary"><i class="fa fa-eye"></i> Details</a>
                                                 @if ($request->status == 1||$request->status == 3)
@@ -65,12 +67,12 @@
                                                         <input type="hidden" value="{{ $request->id }}" name="request_id">
                                                     </form>
                                                 @endif
-                                                
+
                                             </td>
                                         </tr>
                                    @empty
                                     <tr class="text-center">
-                                        <td colspan="7"><i class="fa fa-exclamation-circle"></i> No Request Found</td>
+                                        <td colspan="8"><i class="fa fa-exclamation-circle"></i> No Request Found</td>
                                     </tr>
                                    @endforelse
                                </tbody>

@@ -30,6 +30,7 @@
                                     <th class="text-center">Product Name</th>
                                     <th class="text-center">Request Id</th>
                                     <th class="text-center">Status</th>
+                                    <th class="text-center">Requested at</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -40,6 +41,7 @@
                                         <td class="text-center">{{ $request->product_name }}</td>
                                         <td class="text-center">{{ $request->request_id }}</td>
                                         <td class="text-center">@if ($request->status ==1) <span class="badge badge-primary p-2">Pending</span> @elseif ($request->status ==2)  <span class="badge badge-success p-2">Picked</span> @elseif ($request->status ==3)  <span class="badge badge-danger p-2">Declined</span> @endif</td>
+                                        <td class="text-center">{{ $request->created_at->format('d/m/Y, h:i A') }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('product-request.show',$request->id) }}" class="btn btn-primary"><i class="fa fa-eye"></i> <span class="d-none d-sm-inline-block ">Details</span></a>
                                             {{-- <button type="button" class="btn btn-danger mt-2 mt-sm-0"><i class="fa fa-times"></i> <span class="d-none d-sm-inline-block ">Cancel</span> </button> --}}
@@ -47,7 +49,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td class="text-center" colspan="4"><i class="fa fa-exclamation-circle"></i> No Product Request Exists</td>
+                                        <td class="text-center" colspan="6"><i class="fa fa-exclamation-circle"></i> No Product Request Exists</td>
                                     </tr>
                                 @endforelse
                             </tbody>
