@@ -27,7 +27,7 @@ use App\Http\Controllers\{
     Wishlist,
 };
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+// use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,10 +52,10 @@ Route::get('/faq',[FrontController::class, 'faqIndex'])->name('frontend.faq.inde
 Route::get('/about',[FrontController::class, 'aboutIndex'])->name('frontend.about.index');
 Route::get('/blogs',[FrontController::class, 'blogIndex'])->name('frontend.blog.index');
 Route::get('/blogs/{slug}',[FrontController::class, 'blogShow'])->name('frontend.blog.show');
-Route::get('/requested-product',[FrontController::class, 'indexProductRequest'])->name('frontend.requested.product.index');
+Route::get('/requested-product',[FrontController::class, 'indexProductRequest'])->name('frontend.requested.product.index')->middleware(['auth','verified','isCustomer']);
 
 // wishlist add by ajax
-Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
+// Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
 // Cart
 Route::get('cart/voucher/remove',[CartController::class, 'cartRemoveVoucher'])->name('cart.remove.voucher');
 Route::get('cart/delete/all',[CartController::class, 'cartDeleteAll'])->name('cart.all.delete');
@@ -64,6 +64,7 @@ Route::get('/cart/{voucher}',[CartController::class, 'index']);
 Route::get('/cart/quantity/update/{cart_id}/{quantity}',[CartController::class, 'quantityUpdate']);
 Route::get('/cart/quantity/total-price/{cart_id}',[CartController::class, 'totalPriceCart']);
 Route::resource('cart', CartController::class);
+
 // Checkout
 Route::get('/checkout/success/{invoice}',[CheckoutController::class,'checkoutSuccess'])->name('checkout.success');
 
