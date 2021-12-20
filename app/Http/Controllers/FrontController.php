@@ -14,6 +14,7 @@ use App\Models\{
     Product_Attribute,
     ProductRequest,
     productSizeAttribute,
+    ReturnPolicy,
     Slider,
     Wishlist,
 };
@@ -131,6 +132,11 @@ class FrontController extends Controller
     public function indexPrivacyPolicy(){
         return view('frontend.pages.privacy_policy.index',[
             'policy' => PrivacyPolicy::find(1),
+        ]);
+    }
+    public function indexReturnPolicy(){
+        return view('frontend.pages.return_policy.index',[
+            'policy' => ReturnPolicy::find(1),
         ]);
     }
 
