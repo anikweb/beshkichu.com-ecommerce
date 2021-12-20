@@ -26,6 +26,7 @@ use App\Http\Controllers\{
     ReturnPolicyController,
     SslCommerzPaymentController,
     SliderController,
+    TermConditionController,
     Wishlist,
 };
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,7 @@ Route::get('/blogs/{slug}',[FrontController::class, 'blogShow'])->name('frontend
 Route::get('/requested-product',[FrontController::class, 'indexProductRequest'])->name('frontend.requested.product.index')->middleware(['auth','verified','isCustomer']);
 Route::get('/privacy-policy',[FrontController::class, 'indexPrivacyPolicy'])->name('frontend.privacy.policy');
 Route::get('/return-policy',[FrontController::class, 'indexReturnPolicy'])->name('frontend.return.policy');
+Route::get('/terms-and-conditions',[FrontController::class, 'indexTermsConditions'])->name('frontend.terms.conditions');
 
 // wishlist add by ajax
 // Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
@@ -188,15 +190,16 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 //SSLCOMMERZ END
 
 // Product Request
-
 Route::get('dashboard/requested-product',[ProductRequestController::class, 'indexProduct'])->name('backend.requested.product.index')->middleware(['auth','verified']);
 Route::get('dashboard/requested-product/details/{id}',[ProductRequestController::class, 'showProduct'])->name('backend.requested.product.show')->middleware(['auth','verified']);
 Route::post('dashboard/requested-product/approve',[ProductRequestController::class, 'ApproveProductRequest'])->name('backend.requested.product.approve')->middleware(['auth','verified']);
 Route::post('dashboard/requested-product/decline',[ProductRequestController::class, 'DeclineProductRequest'])->name('backend.requested.product.decline')->middleware(['auth','verified']);
 Route::resource('product-request', ProductRequestController::class)->middleware(['auth','isCustomer','verified']);
-
+// Privacy Policy
 Route::resource('dashboard/privacy-policy',PrivacyPolicyController::class)->middleware(['auth','verified']);
-
+// Return Policy
 Route::resource('dashboard/return-policy',ReturnPolicyController::class)->middleware(['auth','verified']);
+// Terms and Conditions
+Route::resource('dashboard/terms-and-conditions',TermConditionController::class)->middleware(['auth','verified']);
 
 require __DIR__.'/auth.php';

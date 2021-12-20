@@ -16,6 +16,7 @@ use App\Models\{
     productSizeAttribute,
     ReturnPolicy,
     Slider,
+    TermCondition,
     Wishlist,
 };
 use Illuminate\Http\Request;
@@ -82,8 +83,6 @@ class FrontController extends Controller
                 return response()->json($wishlist);
 
             }
-
-
     }
     public function wishlistRemove($id){
         // return $id;
@@ -137,6 +136,11 @@ class FrontController extends Controller
     public function indexReturnPolicy(){
         return view('frontend.pages.return_policy.index',[
             'policy' => ReturnPolicy::find(1),
+        ]);
+    }
+    public function indexTermsConditions(){
+        return view('frontend.pages.term_condition.index',[
+            'termsCondition' => TermCondition::find(1)
         ]);
     }
 
