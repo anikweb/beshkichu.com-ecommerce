@@ -149,5 +149,8 @@ class FrontController extends Controller
             'ship' => ShipDelivery::find(1),
         ]);
     }
+    public function indexContactUs(){
+        return view('frontend.pages.contact_us.index');
+    }
 
 }
