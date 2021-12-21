@@ -15,6 +15,7 @@ use App\Models\{
     ProductRequest,
     productSizeAttribute,
     ReturnPolicy,
+    ShipDelivery,
     Slider,
     TermCondition,
     Wishlist,
@@ -141,6 +142,11 @@ class FrontController extends Controller
     public function indexTermsConditions(){
         return view('frontend.pages.term_condition.index',[
             'termsCondition' => TermCondition::find(1)
+        ]);
+    }
+    public function indexShipDelivery(){
+        return view('frontend.pages.ship_delivery.index',[
+            'ship' => ShipDelivery::find(1),
         ]);
     }
 

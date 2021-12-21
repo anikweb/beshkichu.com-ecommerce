@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     GithubController,
     ProductController,
     SubcategoryController,
+    ShipDeliveryController,
     VoucherController,
     WishlistController,
     CartController,
@@ -59,6 +60,7 @@ Route::get('/requested-product',[FrontController::class, 'indexProductRequest'])
 Route::get('/privacy-policy',[FrontController::class, 'indexPrivacyPolicy'])->name('frontend.privacy.policy');
 Route::get('/return-policy',[FrontController::class, 'indexReturnPolicy'])->name('frontend.return.policy');
 Route::get('/terms-and-conditions',[FrontController::class, 'indexTermsConditions'])->name('frontend.terms.conditions');
+Route::get('/shipping-and-delivery',[FrontController::class, 'indexShipDelivery'])->name('frontend.shipping.delivery');
 
 // wishlist add by ajax
 // Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
@@ -201,5 +203,6 @@ Route::resource('dashboard/privacy-policy',PrivacyPolicyController::class)->midd
 Route::resource('dashboard/return-policy',ReturnPolicyController::class)->middleware(['auth','verified']);
 // Terms and Conditions
 Route::resource('dashboard/terms-and-conditions',TermConditionController::class)->middleware(['auth','verified']);
-
+// Ship and delivery
+Route::resource('dashboard/shipping-and-delivery',ShipDeliveryController::class)->middleware(['auth','verified']);
 require __DIR__.'/auth.php';
