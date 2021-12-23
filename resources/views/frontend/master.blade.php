@@ -41,6 +41,8 @@
     {{-- Plugins --}}
     <link href="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('assets/jquery-ui/jquery-ui.min.css') }}">
     @yield('inline_style')
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="assets/css/style.css" /> -->
@@ -820,6 +822,9 @@
     <script src="sweetalert2.all.min.js"></script>
 
     <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script src="//code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="//code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
     @yield('footer_js')
 </body>
 
