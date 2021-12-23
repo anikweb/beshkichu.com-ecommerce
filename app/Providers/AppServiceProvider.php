@@ -31,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('recent_blogs',\App\Models\blog::orderBy('created_at','desc')->get());
         View::share('map',\App\Models\GoogleMap::find(1));
         View::share('size_guide_inches',\App\Models\SizeGuideInches::get());
+        View::share('size_guide_cms',\App\Models\SizeGuideCm::get());
     }
 }

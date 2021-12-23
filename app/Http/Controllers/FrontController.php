@@ -152,5 +152,8 @@ class FrontController extends Controller
     public function indexContactUs(){
         return view('frontend.pages.contact_us.index');
     }
+    public function indexSizeGuide(){
+        return view('frontend.pages.size_guide.index');
+    }
 
 }

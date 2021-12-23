@@ -85,93 +85,104 @@
                                     @enderror
 
                                     <h6 class="product-title size-text sizeName"> {{-- Size name ajax --}}</h6>
-
-
-                                    <div id="size_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header" style="background: #002340">
-                                                <h5 class="modal-title text-white" >MEN'S AND WOMEN'S FOOTWEAR SIZING</h5>
-                                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                  </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row ">
-                                                    <div class="col-md-12 mx-auto">
-                                                        <div id="tabs">
-                                                            <ul >
-                                                                <li><a  href="#tabs-1">Inches</a></li>
-                                                                <li><a href="#tabs-2">cm</a></li>
-                                                            </ul>
-                                                            <div id="tabs-1">
-                                                                <div class="table-responsive">
-                                                                    <table class="table table-bordered">
-                                                                        <thead class="table-head">
-                                                                            <tr style="background: #002340;color:white;" class="table-row">
-                                                                                <th >Inches</th>
-                                                                                <th>US Men's</th>
-                                                                                <th>US Woman's</th>
-                                                                                <th>UK</th>
-                                                                                <th>EU</th>
-                                                                                <th>JP</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            @foreach($size_guide_inches as $size_guide_inche)
-                                                                                <tr>
-                                                                                    <td style="background: #002340;color:white">{{$size_guide_inche->inches.'"'}}</td>
-                                                                                    <td>@if ($size_guide_inche->us_mens){{$size_guide_inche->us_mens}} @else -- @endif</td>
-                                                                                    <td>@if ($size_guide_inche->us_womans){{$size_guide_inche->us_womans}} @else -- @endif</td>
-                                                                                    <td>@if ($size_guide_inche->uk){{$size_guide_inche->uk}} @else -- @endif</td>
-                                                                                    <td>@if ($size_guide_inche->eu){{$size_guide_inche->eu}} @else -- @endif</td>
-                                                                                    <td>@if ($size_guide_inche->jp){{$size_guide_inche->jp}} @else -- @endif</td>
+                                        @if($product->subcategory->name == 'Shoes')
+                                            <div id="size_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background: #002340">
+                                                    <h5 class="modal-title text-white" >MEN'S AND WOMEN'S FOOTWEAR SIZING</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row ">
+                                                        <div class="col-md-12 mx-auto">
+                                                            <div id="tabs">
+                                                                <ul >
+                                                                    <li><a  href="#tabs-1">Inches</a></li>
+                                                                    <li><a href="#tabs-2">cm</a></li>
+                                                                </ul>
+                                                                <div id="tabs-1">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered">
+                                                                            <thead class="table-head">
+                                                                                <tr style="background: #002340;color:white;" class="table-row">
+                                                                                    <th >Inches</th>
+                                                                                    <th>US Men's</th>
+                                                                                    <th>US Woman's</th>
+                                                                                    <th>UK</th>
+                                                                                    <th>EU</th>
+                                                                                    <th>JP</th>
                                                                                 </tr>
-                                                                            @endforeach
-                                                                        </tbody>
-                                                                    </table>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach($size_guide_inches as $size_guide_inche)
+                                                                                    <tr>
+                                                                                        <td style="background: #002340;color:white">{{$size_guide_inche->inches.'"'}}</td>
+                                                                                        <td>@if ($size_guide_inche->us_mens){{$size_guide_inche->us_mens}} @else -- @endif</td>
+                                                                                        <td>@if ($size_guide_inche->us_womans){{$size_guide_inche->us_womans}} @else -- @endif</td>
+                                                                                        <td>@if ($size_guide_inche->uk){{$size_guide_inche->uk}} @else -- @endif</td>
+                                                                                        <td>@if ($size_guide_inche->eu){{$size_guide_inche->eu}} @else -- @endif</td>
+                                                                                        <td>@if ($size_guide_inche->jp){{$size_guide_inche->jp}} @else -- @endif</td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div id="tabs-2">
-                                                                <div class="table-responsive">
-                                                                    <table class="table table-bordered">
-                                                                        <thead>
-                                                                            <tr style="background: #002340;color:white;">
-                                                                                <th >Inches</th>
-                                                                                <th>US Men's</th>
-                                                                                <th>US Woman's</th>
-                                                                                <th>UK</th>
-                                                                                <th>EU</th>
-                                                                                <th>JP</th>
-                                                                            </tr>                                                                        </thead>
-                                                                    </table>
+                                                                <div id="tabs-2">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered">
+                                                                            <thead>
+                                                                                <tr style="background: #002340;color:white;">
+                                                                                    <th>cm</th>
+                                                                                    <th>US Men's</th>
+                                                                                    <th>US Woman's</th>
+                                                                                    <th>UK</th>
+                                                                                    <th>EU</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                @foreach ($size_guide_cms as $size_guide_cm)
+                                                                                    <tr>
+                                                                                        <td style="background: #002340;color:white;">{{ $size_guide_cm->cm }}</td>
+                                                                                        <td>@if ($size_guide_cm->us_mens){{ $size_guide_cm->us_mens }} @else -- @endif</td>
+                                                                                        <td>@if ($size_guide_cm->us_womans){{ $size_guide_cm->us_womans }} @else -- @endif</td>
+                                                                                        <td>@if ($size_guide_cm->uk){{ $size_guide_cm->uk }} @else -- @endif</td>
+                                                                                        <td>@if ($size_guide_cm->eu){{ $size_guide_cm->eu }} @else -- @endif</td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-12 mt-3">
-                                                        <h2 class="m-0"><em>HOW TO MEASURE</em></h2>
-                                                        <p class="mb-2">Follow these easy steps to get the right size. For the best fit, measure your feet at the end of the day.</p>
-                                                        <div class="card bg-light">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <div class="card-body">
-                                                                        <p class="text-dark">1.Step on а piece of paper with your heel slightly touching a wall behind.</p>
-                                                                        <p class="text-dark">2.Мark the end of your longest toe on the paper (you might need a friend to help you) and measure from the wall to the marking.</p>
-                                                                        <p class="text-dark">3.Do the same for the other foot and compare measurements with our size chart to get the right size.</p>
+                                                        <div class="col-md-12 mt-3">
+                                                            <h2 class="m-0"><em>HOW TO MEASURE</em></h2>
+                                                            <p class="mb-2">Follow these easy steps to get the right size. For the best fit, measure your feet at the end of the day.</p>
+                                                            <div class="card bg-light">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="card-body">
+                                                                            <p class="text-dark">1.Step on а piece of paper with your heel slightly touching a wall behind.</p>
+                                                                            <p class="text-dark">2.Мark the end of your longest toe on the paper (you might need a friend to help you) and measure from the wall to the marking.</p>
+                                                                            <p class="text-dark">3.Do the same for the other foot and compare measurements with our size chart to get the right size.</p>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <img src="{{ asset('assets/images/Measure-length.jpg') }}" alt="Measure-length" class="card-img-top">
+                                                                    <div class="col-md-6">
+                                                                        <img src="{{ asset('assets/images/Measure-length.jpg') }}" alt="Measure-length" class="card-img-top">
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                          </div>
                                         </div>
-                                      </div>
-                                    </div>
+                                        @endif
                                     <!-- Modal -->
                                     <div class="size-box ">
                                         <ul class="size">
@@ -497,7 +508,12 @@
                             // console.log(res);
                             $('.sizeName').empty();
                             // <button type="button" class="btn btn-primary" data-toggle="modal" data-target="">Large modal</button>
-                            $('.sizeName').html('Select Size <span><a href="" data-toggle="modal" data-target=".bd-example-modal-lg">Size Guide</a></span>');
+                            @if($product->subcategory->name == 'Shoes')
+                                $('.sizeName').html('Select Size <span><a href="" data-toggle="modal" data-target=".bd-example-modal-lg">Size Guide</a></span>');
+                            @else
+                                $('.sizeName').html('Select Size');
+
+                            @endif
                             $('.size').empty();
                             $('.size').html(res);
                             $('.sizeCheck').click(function(){

@@ -16,11 +16,10 @@ class CreateSizeGuideCmsTable extends Migration
         Schema::create('size_guide_cms', function (Blueprint $table) {
             $table->id();
             $table->float('cm');
-            $table->float('us_mens')->nullable();
-            $table->float('us_womans')->nullable();
-            $table->float('uk')->nullable();
-            $table->float('eu')->nullable();
-            $table->float('jp')->nullable();
+            $table->float('us_mens');
+            $table->float('us_womans');
+            $table->float('uk');
+            $table->float('eu');
             $table->timestamps();
         });
     }

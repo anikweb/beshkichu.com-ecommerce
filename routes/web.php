@@ -62,6 +62,7 @@ Route::get('/return-policy',[FrontController::class, 'indexReturnPolicy'])->name
 Route::get('/terms-and-conditions',[FrontController::class, 'indexTermsConditions'])->name('frontend.terms.conditions');
 Route::get('/shipping-and-delivery',[FrontController::class, 'indexShipDelivery'])->name('frontend.shipping.delivery');
 Route::get('/contact-us',[FrontController::class, 'indexContactUs'])->name('frontend.contact.us');
+Route::get('/size-guide',[FrontController::class, 'indexSizeGuide'])->name('frontend.size.guide');
 
 // wishlist add by ajax
 // Route::get('/wishlist/add/{product_id}',[FrontController::class, 'wishliststore']);
