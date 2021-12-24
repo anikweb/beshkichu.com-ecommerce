@@ -24,7 +24,7 @@
                    </div>
                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="delivered_table" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="20px">#</th>
@@ -34,13 +34,13 @@
                                         <th>Delivered Date</th>
                                         <th>Payment Status</th>
                                         <th>Current Status</th>
-                                        <th colspan="2" class="text-center">Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($orders as $order)
                                         <tr>
-                                            <td>{{ $orders->firstItem() + $loop->index }}</td>
+                                            <td>{{ $loop->index + 1 }}</td>
                                             <td>{{ $order->invoice_no }}</td>
                                             <td>{{ $order->billing_details->user->name }}</td>
                                             <td>{{ $order->billing_details->created_at->format('M-D-Y') }}</td>
@@ -57,8 +57,6 @@
                                             </span></td>
                                             <td class="text-center">
                                                 <a href="{{ route('dashboard.orders.details',$order->invoice_no) }}" class="btn btn-primary"><i class="fa fa-eye"></i> Details</a>
-                                            </td >
-                                            <td class="text-center">
                                                 <a href="#" class="btn btn-primary"><i class="fa fa-download"></i> Download Invoice</a>
                                             </td >
                                         </tr>
@@ -69,9 +67,6 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <div>
-                                {{ $orders->links() }}
-                            </div>
                         </div>
                    </div>
                </div>
@@ -128,7 +123,9 @@
             }
             })
         });
-
+        $(document).ready( function () {
+            $('#delivered_table').DataTable();
+        } );
 
     </script>
 

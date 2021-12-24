@@ -26,7 +26,7 @@ class SubcategoryController extends Controller
     {
         if(auth()->user()->can('subcategory view')){
             return view('backend.pages.subcategory.index',[
-                "subcategories" => Subcategory::latest()->paginate(10),
+                "subcategories" => Subcategory::latest()->get(),
             ]);
         }else{
             return abort(404);

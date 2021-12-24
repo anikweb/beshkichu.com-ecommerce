@@ -26,6 +26,7 @@
 
         {{--  Favicon  --}}
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon/'.basicSettings()->icon) }}" type="image/png">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
         @yield('internal_style')
         </head>
         <body class="hold-transition sidebar-mini layout-fixed">
@@ -644,6 +645,7 @@
         {{--  select2  --}}
         <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+        <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
         @yield('footer_js')
         </body>
         </html>

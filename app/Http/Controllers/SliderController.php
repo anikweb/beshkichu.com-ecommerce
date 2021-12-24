@@ -20,7 +20,7 @@ class SliderController extends Controller
     {
         if(auth()->user()->can('slider view')){
             return view('backend.pages.slider.index',[
-                'sliders' => Slider::latest()->paginate('10'),
+                'sliders' => Slider::latest()->get(),
             ]);
         }else{
             return abort(404);

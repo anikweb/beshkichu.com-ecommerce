@@ -21,7 +21,7 @@ class VoucherController extends Controller
     {
         if(auth()->user()->can('voucher actives view')){
             return view('backend.pages.voucher.index',[
-                'vouchers' => Voucher::latest()->where('status',1)->paginate(10),
+                'vouchers' => Voucher::latest()->where('status',1)->get(),
             ]);
         }else{
             return abort(404);
@@ -32,7 +32,7 @@ class VoucherController extends Controller
     {
         if(auth()->user()->can('voucher deactivates view')){
             return view('backend.pages.voucher.deactivated_voucher',[
-                'vouchers' => Voucher::latest()->where('status',2)->paginate(10),
+                'vouchers' => Voucher::latest()->where('status',2)->get(),
             ]);
         }else{
             return abort(404);

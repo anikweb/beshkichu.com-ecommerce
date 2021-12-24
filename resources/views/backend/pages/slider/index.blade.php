@@ -24,7 +24,7 @@
                    </div>
                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="slider_table" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -35,14 +35,14 @@
                                         <th>Status</th>
                                         <th>Created</th>
                                         @if (auth()->user()->can('slider deactivate')||auth()->user()->can('slider activate')||auth()->user()->can('slider trash'))
-                                            <th colspan="3" class="text-center">Action</th>
+                                            <th class="text-center">Action</th>
                                         @endif
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($sliders as $slider)
                                     <tr>
-                                        <td>{{ $sliders->firstItem() + $loop->index }}</td>
+                                        <td>{{ $loop->index + 1 }}</td>
                                         <td class="text-center">
                                             <img width="120px" src="{{ asset('assets/images/slider-image/'.$slider->image) }}" alt="{{ $slider->title }}">
                                         </td>
@@ -57,34 +57,32 @@
                                             @endif
                                         </td>
                                         <td>{{ $slider->created_at->format('d-M-Y, h:i A') }}</td>
-                                        @can('slider edit')
-                                            <td class="text-center">
+                                        <td>
+
+
+                                            @can('slider edit')
                                                 <a href="{{ route('slider.edit',$slider->id) }}" class="btn btn-primary"> <i class="fa fa-edit"></i> Edit</a>
-                                            </td>
-                                        @endcan
+                                            @endcan
                                             @if (auth()->user()->can('slider deactivate')||auth()->user()->can('slider activate'))
-                                                <td class="text-center">
-                                                    @if ($slider->status == 1)
-                                                        @can('slider deactivate')
-                                                            <button data-slider="{{$slider->id}}" type="button" class="btn btn-danger slider-deactive_btn"> <i class="fab fa-creative-commons-zero"></i> Deactive</button>
-                                                        @endcan
-                                                    @elseif ($slider->status == 2)
-                                                        @can('slider activate')
-                                                            <button type="button"  data-slider="{{$slider->id}}" class="btn btn-success slider-active_btn"> <i class="fa fa-check-circle"></i> Active</button>
-                                                        @endcan
-                                                    @endif
-                                                </td>
+                                                @if ($slider->status == 1)
+                                                    @can('slider deactivate')
+                                                        <button data-slider="{{$slider->id}}" type="button" class="btn btn-danger slider-deactive_btn"> <i class="fab fa-creative-commons-zero"></i> Deactive</button>
+                                                    @endcan
+                                                @elseif ($slider->status == 2)
+                                                    @can('slider activate')
+                                                        <button type="button"  data-slider="{{$slider->id}}" class="btn btn-success slider-active_btn"> <i class="fa fa-check-circle"></i> Active</button>
+                                                    @endcan
+                                                @endif
                                             @endif
 
-                                        @can('slider trash')
-                                            <td class="text-center">
+                                            @can('slider trash')
                                                 <button data-slider="{{$slider->id}}" type="button" class="btn btn-danger trash_btn"><i class="fa fa-trash"></i> Trash </button>
                                                 <form id="slider_trash_form{{ $slider->id }}" action="{{ route('slider.destroy',$slider->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
-                                            </td>
-                                        @endcan
+                                            @endcan
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -96,9 +94,6 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <div>
-                                {{ $sliders->links() }}
-                            </div>
                         </div>
                    </div>
                </div>
@@ -236,5 +231,8 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#slider_table').DataTable();
+        } );
     </script>
 @endsection

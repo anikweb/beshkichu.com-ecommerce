@@ -24,7 +24,7 @@
                    </div>
                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="voucher_table" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -36,14 +36,14 @@
                                         <th>Expiry Date</th>
                                         <th>Created</th>
                                         @can('voucher active')
-                                            <th class="text-center" colspan="2">Action</th>
+                                            <th class="text-center">Action</th>
                                         @endcan
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($vouchers as $voucher)
                                     <tr>
-                                        <td>{{ $vouchers->firstItem() + $loop->index }}</td>
+                                        <td>{{ $loop->index +1 }}</td>
                                         <td>{{ $voucher->name }}</td>
                                         <td>{{ $voucher->discount.'%' }}</td>
                                         <td>{{ $voucher->limit }}</td>
@@ -51,20 +51,18 @@
                                         <td>{{ $voucher->min_checkout_price }}</td>
                                         <td>{{ $voucher->expiry_date }}</td>
                                         <td>{{ $voucher->created_at->format('d-M-Y, h:i A') }}</td>
-                                        @can('voucher active')
-                                            <td class="text-center">
+                                        <td>
+                                            @can('voucher active')
                                                 <button data-voucher="{{ $voucher->id }}" class="btn btn-success voucher-active_btn"> <i class="fas fa-check-circle"></i> Active</button>
-                                            </td>
-                                        @endcan
-                                        @can('voucher trash')
-                                            <td class="text-center">
+                                            @endcan
+                                            @can('voucher trash')
                                                 <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i> Trash </button>
                                                 {{--  <form action="{{ route('voucher.destroy',$voucher->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>  --}}
-                                            </td>
-                                        @endcan
+                                            @endcan
+                                        </td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -76,9 +74,6 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <div>
-                                {{ $vouchers->links() }}
-                            </div>
                         </div>
                    </div>
                </div>
@@ -133,5 +128,8 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#voucher_table').DataTable();
+        } );
     </script>
 @endsection

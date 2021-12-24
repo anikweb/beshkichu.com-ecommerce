@@ -133,7 +133,7 @@ class ProductRequestController extends Controller
     {
         if(auth()->user()->can('order management')){
             return view('backend.pages.requested_product.index',[
-                'requests' => ProductRequest::latest()->paginate(10),
+                'requests' => ProductRequest::latest()->get(),
             ]);
         }else{
             return abort(404);

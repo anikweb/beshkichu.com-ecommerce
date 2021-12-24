@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="faq_table" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -39,7 +39,7 @@
                                 <tbody>
                                     @forelse ($faqs as $faq)
                                         <tr>
-                                            <td>{{ $faqs->firstItem() + $loop->index }}</td>
+                                            <td>{{ $loop->index +1 }}</td>
                                             <td>{{ $faq->title }}</td>
                                             <td>{{ $faq->summary }}</td>
                                             <td>{{ $faq->created_at->format('d-M-Y') }}</td>
@@ -65,9 +65,6 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <div>
-                                {{ $faqs->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -116,5 +113,8 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#faq_table').DataTable();
+        } );
     </script>
 @endsection

@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table id="subcategory_table" class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -42,7 +42,7 @@
                                         <tbody>
                                             @foreach ($subcategories as $subcategory)
                                                 <tr>
-                                                    <td>{{$subcategories->firstItem() + $loop->index }}</td>
+                                                    <td>{{ $loop->index + 1 }}</td>
                                                     <td>{{ $subcategory->name }}</td>
                                                     <td>{{ $subcategory->slug }}</td>
                                                     <td>{{ $subcategory->category->name }}</td>
@@ -65,9 +65,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    <div>
-                                        {{ $subcategories->links() }}
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -121,5 +118,8 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#subcategory_table').DataTable();
+        } );
     </script>
 @endsection

@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table id="category_table" class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -117,5 +117,8 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#category_table').DataTable();
+        } );
     </script>
 @endsection

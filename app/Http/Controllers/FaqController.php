@@ -17,7 +17,7 @@ class FaqController extends Controller
     {
         if(auth()->user()->can('faq view')){
             return view('backend.pages.faq.index',[
-                'faqs' => Faq::latest()->paginate(10),
+                'faqs' => Faq::latest()->get(),
             ]);
         }else{
             return abort('404');

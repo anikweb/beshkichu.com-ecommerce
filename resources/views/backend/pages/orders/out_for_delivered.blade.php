@@ -24,7 +24,7 @@
                    </div>
                    <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="out_for_delivery_table" class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th width="20px">#</th>
@@ -33,13 +33,13 @@
                                         <th>Date</th>
                                         <th>Payment Status</th>
                                         <th>Current Status</th>
-                                        <th class="text-center" colspan="3">Action</th>
+                                        <th class="text-center" >Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($orders as $order)
                                         <tr>
-                                            <td>{{ $orders->firstItem() + $loop->index }}</td>
+                                            <td>{{ $loop->index + 1 }}</td>
                                             <td>{{ $order->invoice_no }}</td>
                                             <td>{{ $order->billing_details->user->name }}</td>
                                             <td>{{ $order->billing_details->created_at->format('M-D-Y') }}</td>
@@ -53,16 +53,12 @@
                                             </td>
                                             <td>
                                                 <span class="badge badge-info">
-                                                    Out for Delivery 
+                                                    Out for Delivery
                                                 </span>
                                             </td>
                                             <td class="text-center">
                                                 <a href="{{ route('dashboard.orders.details',$order->invoice_no) }}" class="btn btn-primary"><i class="fa fa-eye"></i> Details</a>
-                                            </td >
-                                            <td class="text-center">
                                                 <button data-invoice="{{ $order->invoice_no }}" class="btn btn-success upgrade-to-delivered" data-target="#modal-sm" data-toggle="modal"><i class="fa fa-truck-loading"></i> Upgrade to Delivered</button>
-                                            </td>
-                                            <td class="text-center">
                                                 <button data-invoice="{{ $order->invoice_no }}" class="btn btn-danger cancel-order-btn"><i class="fa fa-times-circle"></i> Cencel Order</button>
                                             </td>
                                         </tr>
@@ -73,10 +69,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <div>
-                                {{ $orders->links() }}
-                            </div>
-                            
+                            {{-- Modal  --}}
                             <div class="modal fade" id="modal-sm">
                                 <form action="{{route('dashboard.orders.shipping.add')}}" method="POST">
                                     @csrf
@@ -205,6 +198,9 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#out_for_delivery_table').DataTable();
+        } );
     </script>
 
 @endsection

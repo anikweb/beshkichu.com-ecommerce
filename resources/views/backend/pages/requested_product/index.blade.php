@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                           <table class="table table-bordered">
+                           <table id="request_table" class="table table-bordered">
                                <thead>
                                    <tr class="text-center">
                                        <th>#</th>
@@ -40,7 +40,7 @@
                                <tbody>
                                    @forelse ($requests as $request)
                                         <tr class="text-center">
-                                            <td>{{ $requests->firstItem() +$loop->index }}</td>
+                                            <td>{{ $loop->index + 1 }}</td>
                                             <td>{{ $request->product_name }}</td>
                                             <td>{{ $request->request_id }}</td>
                                             <td>{{ $request->mobile }}</td>
@@ -157,5 +157,8 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#request_table').DataTable();
+        } );
     </script>
 @endsection

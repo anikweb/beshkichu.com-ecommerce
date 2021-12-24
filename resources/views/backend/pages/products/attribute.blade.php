@@ -213,5 +213,6 @@
         });
         $('#size').select2();
         $('.size_input').select2();
+
     </script>
 @endsection

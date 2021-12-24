@@ -39,7 +39,7 @@ class ProductController extends Controller
     {
         if(auth()->user()->can('product view')){
             return view('backend.pages.products.index',[
-                'products' =>Product::latest()->paginate(10),
+                'products' =>Product::latest()->get(),
             ]);
         }else{
             return abort(404);

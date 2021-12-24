@@ -24,7 +24,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="product_table"  class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -34,13 +34,13 @@
                                         <th>Subcategory</th>
                                         <th>Created</th>
                                         <th>Last Update</th>
-                                        <th colspan="3" class="text-center">Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($products as $product)
                                         <tr>
-                                            <td>{{ $products->firstItem() + $loop->index }}</td>
+                                            <td>{{ $loop->index +1 }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td><img width="120px" class="image-responsive rounded" src="{{ asset('assets/images/product/'.$product->created_at->format('Y/m/d/').$product->id.'/thumbnail/'.$product->thumbnail) }}" alt="{{ $product->name }}"></td>
                                             <td>{{ $product->category->name }}</td>
@@ -49,14 +49,10 @@
                                             <td>{{ $product->updated_at->diffForHumans() }}</td>
                                             <td>
                                                 @can('product edit')
-                                                    <a href="{{ route('product.edit',$product->slug) }}" class="btn btn-primary text-center"><i class="fa fa-edit"></i> Edit</a>
+                                                    <a href="{{ route('product.edit',$product->slug) }}" class=" mt-1 btn btn-primary text-center"><i class="fa fa-edit"></i> Edit</a>
+                                                     <a href="{{ route('products.attribute.index',$product->slug) }}" class=" mt-1 btn btn-warning text-center"><i class="fa fa-book"></i> Attribute </a>
                                                 @endcan
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('products.attribute.index',$product->slug) }}" class="btn btn-warning text-center"><i class="fa fa-book"></i> Attribute </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('product.show',$product->slug) }}" class="btn btn-info text-center"><i class="fa fa-eye"></i> Details</a>
+                                                <a href="{{ route('product.show',$product->slug) }}" class=" mt-1 btn btn-info text-center"><i class="fa fa-eye"></i> Details</a>
                                             </td>
                                         </tr>
                                     @empty
@@ -66,9 +62,6 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            <div>
-                                {{ $products->links() }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,5 +77,9 @@
         @elseif(session('error'))
             toastr["error"]("{{ session('error') }}");
         @endif
+        $(document).ready( function () {
+            $('#product_table').DataTable();
+        } );
+        // $('#').DataTable();
     </script>
 @endsection

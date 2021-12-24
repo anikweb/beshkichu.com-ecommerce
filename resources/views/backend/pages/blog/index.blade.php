@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                    <table id="blog_table" class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -40,7 +40,7 @@
                                         <tbody>
                                             @forelse ($blogs as $blog)
                                                 <tr>
-                                                    <td style="width:4%">{{$blogs->firstItem() + $loop->index }}</td>
+                                                    <td style="width:4%">{{ $loop->index +1 }}</td>
                                                     <td class="text-center" style="width:8%">
                                                         <img width="300px" src="{{ asset('assets/images/blog/'.$blog->image) }}" alt="{{ $blog }}">
                                                     </td>
@@ -72,9 +72,6 @@
                                             @endforelse
                                         </tbody>
                                     </table>
-                                    <div>
-                                        {{ $blogs->links() }}
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -127,5 +124,8 @@
             }
             })
         });
+        $(document).ready( function () {
+            $('#blog_table').DataTable();
+        } );
     </script>
 @endsection
