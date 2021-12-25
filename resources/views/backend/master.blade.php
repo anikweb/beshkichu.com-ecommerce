@@ -646,6 +646,7 @@
         <script src="//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="//cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
         <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/chart.js"></script>
         @yield('footer_js')
         </body>
         </html>

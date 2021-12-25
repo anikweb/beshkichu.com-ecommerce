@@ -18,6 +18,7 @@ use App\Models\{
     ShipDelivery,
     Slider,
     TermCondition,
+    UniqueVisitors,
     Wishlist,
 };
 use Illuminate\Http\Request;
@@ -26,6 +27,12 @@ use Illuminate\Support\Facades\Auth;
 class FrontController extends Controller
 {
     public function index(){
+        if(!UniqueVisitors::where('ip_address',$_SERVER['REMOTE_ADDR'])->first()){
+            // return 'nai';
+            $uniqueVisitors = new UniqueVisitors;
+            $uniqueVisitors->ip_address = $_SERVER['REMOTE_ADDR'];
+            $uniqueVisitors->save();
+        }
         if(Cookie::get('beshkichu_com') == ''){
             $cookie_name = 'beshkichu_com';
             $cookie_value = time().'-'.Str::random(10);
