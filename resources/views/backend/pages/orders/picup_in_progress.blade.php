@@ -39,7 +39,7 @@
                                 <tbody>
                                     @forelse ($orders as $order)
                                         <tr>
-                                            <td>{{ $loop->index }}</td>
+                                            <td>{{ $loop->index +1 }}</td>
                                             <td>{{ $order->invoice_no }}</td>
                                             <td>{{ $order->billing_details->user->name }}</td>
                                             <td>{{ $order->billing_details->created_at->format('M-D-Y') }}</td>

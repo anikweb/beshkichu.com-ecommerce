@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ $order_summary->first()->invoice_no }}</title>
+    <title>{{ $order_summary->invoice_no }}</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon/'.basicSettings()->icon) }}" type="image/png">
     <style>
         .clearfix:after {
@@ -158,7 +158,7 @@
         @endforeach
         </p>
         <p style="padding: 0; margin:0">Payment Method: {{ Str::title($billing_Details->payment_method) }} </p>
-        <p style="padding: 0 0 10px 0; margin:0">Invoice No:  {{$order_summary->first()->invoice_no }}</p>
+        <p style="padding: 0 0 10px 0; margin:0">Invoice No:  {{$order_summary->invoice_no }}</p>
       <h1>INVOICE </h1>
       <div id="project">
         <div><span style="color: rgb(2, 144, 226); font-size:12px">Bill to</span></div>

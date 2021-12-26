@@ -130,9 +130,9 @@ class OrderController extends Controller
         $billing_Details = BillingDetails::find($billing_id);
         $order_summary = Order_Summary::where('billing_id',$billing_Details->id)->first();
         $order_details = Order_Deatail::where('order_summary_id',$order_summary->id)->get();
-        // return  $order_details;s
+
         $pdf = PDF::loadView('backend.pages.orders.invoice', compact('billing_Details','order_details','order_summary'))->setPaper('a4', 'portrait');
-        return $pdf->download($order_summary->first()->invoice_no.'.pdf');
+        return $pdf->download($order_summary->invoice_no.'.pdf');
     }
 
 }

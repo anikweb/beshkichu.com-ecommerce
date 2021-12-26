@@ -83,14 +83,15 @@
                             @endif
                             <p style="padding: 0;margin:0">Special Instruction: <strong>{{ $order->billing_details->note }}</strong> </p>
                             <p style="padding: 0;margin:0">Payment Method: <strong>{{ Str::upper($order->billing_details->payment_method) }}</strong> </p>
-                            <p style="padding: 0 0 15px 0;margin:0">Payment Status:
-                            <strong>
-                                @if ($order->payment_status==1)
+                            <p style="padding: 0;margin:0">Payment Status:
+                                <strong>
+                                    @if ($order->payment_status==1)
                                     Unpaid
-                                @else
+                                    @else
                                     Paid
-                                @endif
-                            </strong> </p>
+                                    @endif
+                                </strong> </p>
+                            <p style="padding: 0 0 15px 0;margin:0">Invoice No: <strong>{{ $order->invoice_no }}</strong> </p>
 
 
                         </div>

@@ -49,7 +49,7 @@ class MyAccountController extends Controller
         $order_details = Order_Deatail::where('order_summary_id',$order_summary->id)->get();
         // return  $order_details;s
         $pdf = PDF::loadView('frontend.pages.order.invoice', compact('billing_Details','order_details','order_summary'))->setPaper('a4', 'portrait');
-        return $pdf->download($order_summary->first()->invoice_no.'.pdf');
+        return $pdf->download($order_summary->invoice_no.'.pdf');
     }
 
     public function indexOrders()
@@ -203,7 +203,7 @@ class MyAccountController extends Controller
                         '.$totalPrice.'/-
                     </td>
                 </tr>';
-            
+
         }else{
             $outpot .=
                 '<tr>
