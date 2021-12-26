@@ -7,11 +7,11 @@
             <div class="col">
                 <div class="breadcrumb-contain">
                     <div>
-                        <h2>Return Policy</h2>
+                        <h2>Size Guide</h2>
                         <ul>
                             <li><a href="{{ route('frontend') }}">home</a></li>
                             <li><i class="fa fa-angle-double-right"></i></li>
-                            <li><a href="javascript:void(0)">Return Policy</a></li>
+                            <li><a href="javascript:void(0)">Size Guide</a></li>
                         </ul>
                     </div>
                 </div>

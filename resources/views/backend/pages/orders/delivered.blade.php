@@ -57,7 +57,7 @@
                                             </span></td>
                                             <td class="text-center">
                                                 <a href="{{ route('dashboard.orders.details',$order->invoice_no) }}" class="btn btn-primary"><i class="fa fa-eye"></i> Details</a>
-                                                <a href="#" class="btn btn-primary"><i class="fa fa-download"></i> Download Invoice</a>
+                                                <a href="{{route('dashboard.orders.invoice',$order->billing_details->id)}}" class="btn btn-primary"><i class="fa fa-download"></i> Download Invoice</a>
                                             </td >
                                         </tr>
                                     @empty
