@@ -127,12 +127,16 @@ class OrderController extends Controller
     public function downloadInvoice($billing_id)
     {
         // return $billing_id;
-        $billing_Details = BillingDetails::find($billing_id);
-        $order_summary = Order_Summary::where('billing_id',$billing_Details->id)->first();
-        $order_details = Order_Deatail::where('order_summary_id',$order_summary->id)->get();
+        if(auth()->user()->can('order management')){
+            $billing_Details = BillingDetails::find($billing_id);
+            $order_summary = Order_Summary::where('billing_id',$billing_Details->id)->first();
+            $order_details = Order_Deatail::where('order_summary_id',$order_summary->id)->get();
 
-        $pdf = PDF::loadView('backend.pages.orders.invoice', compact('billing_Details','order_details','order_summary'))->setPaper('a4', 'portrait');
-        return $pdf->download($order_summary->invoice_no.'.pdf');
+            $pdf = PDF::loadView('backend.pages.orders.invoice', compact('billing_Details','order_details','order_summary'))->setPaper('a4', 'portrait');
+            return $pdf->download($order_summary->invoice_no.'.pdf');
+        }else{
+            return abort(404);
+        }
     }
 
 }

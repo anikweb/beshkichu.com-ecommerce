@@ -24,6 +24,7 @@ use App\Http\Controllers\{
     OrderController,
     PrivacyPolicyController,
     ProductRequestController,
+    ReportController,
     ReturnPolicyController,
     SslCommerzPaymentController,
     SliderController,
@@ -210,4 +211,5 @@ Route::resource('dashboard/return-policy',ReturnPolicyController::class)->middle
 Route::resource('dashboard/terms-and-conditions',TermConditionController::class)->middleware(['auth','verified']);
 // Ship and delivery
 Route::resource('dashboard/shipping-and-delivery',ShipDeliveryController::class)->middleware(['auth','verified']);
+Route::get('export',[ReportController::class,'monthlySelesExport'])->name('monthly.seles.export')->middleware(['auth','verified']);
 require __DIR__.'/auth.php';

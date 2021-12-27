@@ -17,13 +17,41 @@
   <div class="container-fluid">
     <!-- Small boxes (Stat box) -->
     <div class="row">
+        <!-- ./col -->
         <div class="col-lg-3 col-6">
-        <!-- small box -->
+            <!-- small box -->
+            <div class="small-box bg-success">
+            <div class="inner">
+                {{-- number_format($monthReport->sum('total_price'), 2, ',', '.'); --}}
+                <h3>{{number_format($monthReport->sum('total_price')+$monthReport->sum('shipping_fee'), 2, '.', ',')}}৳</h3>
+
+                <p>Total Seles Amount ( {{ date('F-Y') }} )</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+            <div class="inner">
+                <h3>{{ $uniqueVisitors->count() }}</h3>
+                <p>Total Unique Visitors</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
             <div class="small-box bg-info">
                 <div class="inner">
-
                     <h3>{{ count($new_order) }}</h3>
-
                     <p>Unpaid Orders</p>
                 </div>
                 <div class="icon">
@@ -32,57 +60,41 @@
                 <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
         </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-success">
-          <div class="inner">
-            {{-- number_format($monthReport->sum('total_price'), 2, ',', '.'); --}}
-            <h3>{{number_format($monthReport->sum('total_price')+$monthReport->sum('shipping_fee'), 2, '.', ',')}}৳</h3>
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-secondary">
+                <div class="inner">
+                    <h3>{{ $pickup_order->count() }}</h3>
+                    <p>Order:Pickup In Progress</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ $customerRole->count() }}</h3>
 
-            <p>Total Seles Amount ( {{ date('F-Y') }} )</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-stats-bars"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <p>Total Customer</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
         </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-warning">
-          <div class="inner">
-            <h3>{{ count($users) }}</h3>
-
-            <p>User Registrations</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-person-add"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
-      <!-- ./col -->
-      <div class="col-lg-3 col-6">
-        <!-- small box -->
-        <div class="small-box bg-danger">
-          <div class="inner">
-            <h3>{{ $uniqueVisitors->count() }}</h3>
-            <p>Total Unique Visitors</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-pie-graph"></i>
-          </div>
-          <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-      </div>
       <!-- ./col -->
     </div>
     <!-- /.row -->
     <!-- Main row -->
     <div class="row">
       <!-- Left col -->
+      {{-- {{ $users->getPermissionNames() }} --}}
       <section class="col-lg-7 connectedSortable ui-sortable">
         <!-- Custom tabs (Charts with tabs)-->
         <div class="card">
@@ -106,6 +118,7 @@
             <div class="tab-content p-0">
               <!-- Morris chart - Sales -->
             <div class="chart tab-pane active" id="monthly-chart" >
+                    <a class="btn-sm btn-primary" href="{{ route('monthly.seles.export') }}">  Export All Transaction to Exel</a>
                 <div>
                     <canvas id="monthlyReport"></canvas>
                 </div>

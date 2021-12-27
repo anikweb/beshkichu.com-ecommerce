@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Models\{
     Order_Summary,
     User,
@@ -14,9 +15,13 @@ class DashboardController extends Controller
 {
     public function index(){
         if(auth()->user()->roles->first()->name != 'Customer'){
+
+            $users = User::all();
             return view('backend.dashboard',[
                 'new_order' => Order_Summary::where('payment_status',1)->get(),
-                'users' =>User::all(),
+                'pickup_order' => Order_Summary::where('current_status',1)->get(),
+                'users' => $users,
+                 'customerRole' => User::role('Customer')->get(),
                 'yearReport' => Order_Summary::whereYear('created_at',date('Y'))->get(),
                 'monthReport' => Order_Summary::whereMonth('created_at',date('m'))->get(),
                 // Year Report Start
