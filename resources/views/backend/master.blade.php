@@ -3,12 +3,12 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta property="og:url" content="http://www.beshkichu.com" />
+            <meta property="og:url" content="http://www.beshkichu.com"/>
             <meta property="og:type" content="ecommerce, wholesale business, Dropshipping Business, Shoes" />
             <meta property="og:title" content="{{ basicSettings()->site_title }}" />
             <meta property="og:description" content="{{ basicSettings()->tagline }}" />
             <meta property="og:image" content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}" />
-            <title>@if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details   @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('about.index')) About @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider @elseif(Route::is('contact.information')) Contact Information @elseif(Route::is('backend.user')) Profile  @elseif(Route::is('backend.user.edit')) Edit Profile @elseif(Route::is('backend.change.password')) Change Password  @elseif(Route::is('products.attribute.index')) Attributes @elseif(Route::is('products.attribute.edit')) Edit Attributes @elseif(Route::is('faq.create')) Create FAQ @elseif(Route::is('faq.edit')) Edit FAQ @elseif(Route::is('faq.index')) FAQs @elseif(Route::is('faq.trash.index'))  FAQs Trash @elseif(Route::is('blog.index'))  Blogs @elseif(Route::is('blog.edit'))  Edit Blog @elseif(Route::is('blog.create'))  Create Blog @elseif(Route::is('contact.information.google.map')) Live Google Map @elseif(Route::is('backend.requested.product.index')) Requested Products @elseif(Route::is('backend.requested.product.show')) Requested Products Details @elseif(Route::is('privacy-policy.index')) Privacy Policy @elseif(Route::is('privacy-policy.edit')) Edit - Privacy Policy @elseif(Route::is('return-policy.index')) Return Policy @elseif(Route::is('return-policy.edit')) Edit - Return Policy @elseif(Route::is('terms-and-conditions.index')) Terms & Conditions @elseif(Route::is('terms-and-conditions.edit')) Edit - Terms & Conditions @elseif(Route::is('shipping-and-delivery.index')) Shipping & Delivery @elseif(Route::is('shipping-and-delivery.edit')) Edit - Shipping & Delivery @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
+            <title>@if (Route::is('role.create')) Create Role @elseif(Route::is('role.edit')) Edit Role @elseif(Route::is('role.index')) Roles @elseif(Route::is('role.show')) Role Details   @elseif(Route::is('assign.user')) Assign User Role @elseif(Route::is('about.index')) About @elseif(Route::is('create.user')) Create User @elseif(Route::is('category.create')) Create Category @elseif(Route::is('category.edit')) Edit Category @elseif(Route::is('category.index')) Categories @elseif(Route::is('subcategory.create')) Create Subcategory @elseif(Route::is('subcategory.edit')) Edit Subcategory @elseif(Route::is('subcategory.index')) Subcategories @elseif(Route::is('product.index')) Products @elseif(Route::is('product.edit')) Edit Product @elseif(Route::is('product.create')) Add Product @elseif(Route::is('product.show')) {{ $product->name }} @elseif(Route::is('products.image.gallery')) Image Gallery-{{ $product->name }} @elseif(Route::is('voucher.create')) Create Voucher @elseif(Route::is('voucher.deactivate.list')) Deactivated Vouchers @elseif(Route::is('voucher.edit')) Edit Voucher @elseif(Route::is('voucher.index')) Active Vouchers @elseif(Route::is('dashboard.orders.index')) Picup In Progress - Orders @elseif(Route::is('dashboard.orders.shipped')) Shipped - Orders @elseif(Route::is('dashboard.orders.outForDelivered')) Out for Delivery - Orders @elseif(Route::is('dashboard.orders.delivered')) Delivered - Orders @elseif(Route::is('dashboard.orders.details')) {{ $order->invoice_no }} - Orders @elseif(Route::is('dashboard.orders.canceled')) Canceled - Orders  @elseif(Route::is('dashboard.wishlist')) Active Wishlists @elseif(Route::is('basic-settings.index')) Basic Settings @elseif(Route::is('slider.create')) Create Slider @elseif(Route::is('slider.index')) Sliders @elseif(Route::is('slider.edit')) Edit Slider @elseif(Route::is('contact.information')) Contact Information @elseif(Route::is('backend.user')) Profile  @elseif(Route::is('backend.user.edit')) Edit Profile @elseif(Route::is('backend.change.password')) Change Password  @elseif(Route::is('products.attribute.index')) Attributes @elseif(Route::is('products.attribute.edit')) Edit Attributes @elseif(Route::is('faq.create')) Create FAQ @elseif(Route::is('faq.edit')) Edit FAQ @elseif(Route::is('faq.index')) FAQs @elseif(Route::is('faq.trash.index'))  FAQs Trash @elseif(Route::is('blog.index'))  Blogs @elseif(Route::is('blog.edit'))  Edit Blog @elseif(Route::is('blog.create'))  Create Blog @elseif(Route::is('contact.information.google.map')) Live Google Map @elseif(Route::is('backend.requested.product.index')) Requested Products @elseif(Route::is('backend.requested.product.show')) Requested Products Details @elseif(Route::is('privacy-policy.index')) Privacy Policy @elseif(Route::is('privacy-policy.edit')) Edit - Privacy Policy @elseif(Route::is('return-policy.index')) Return Policy @elseif(Route::is('return-policy.edit')) Edit - Return Policy @elseif(Route::is('terms-and-conditions.index')) Terms & Conditions @elseif(Route::is('terms-and-conditions.edit')) Edit - Terms & Conditions @elseif(Route::is('shipping-and-delivery.index')) Shipping & Delivery @elseif(Route::is('shipping-and-delivery.edit')) Edit - Shipping & Delivery @elseif(Route::is('report.index')) Report @elseif(Route::is('report.search')) Search Report @endif @if(Route::is('dashboard')) {{basicSettings()->site_title}} | Dashboard @else | Dashboard @endif </title>
             <!-- Google Font: Source Sans Pro -->
             <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
             <!-- Font Awesome -->
@@ -131,24 +131,16 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
+                    <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link @if (Route::is('dashboard')) active @endif ">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Dashboard
-                    </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('backend.user') }}" class="nav-link @if (Route::is('backend.user')||Route::is('backend.change.password')||Route::is('backend.user.edit')) active @endif ">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                        Profile
-                    </p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link @if (Route::is('dashboard')) active @endif ">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Dashboard
+                        </p>
+                        </a>
+                    </li>
                     {{-- Category --}}
                     @can("category view")
                         <li class="nav-item @if (Route::is('category.create')||Route::is('category.edit')||Route::is('category.index')) menu-open @endif">
@@ -377,6 +369,19 @@
                             </a>
                         </li>
                     @endcan
+
+                    {{--  Reports   --}}
+                    {{-- @can('slider view') --}}
+                        <li class="nav-item">
+                            <a href="{{ route('report.index') }}" class="nav-link @if(Route::is('report.search')||Route::is('report.index')) active @endif ">
+                                <i class="nav-icon fa fa-database"></i>
+                                <p>
+                                    Reports
+                                    {{-- <i class="fas fa-angle-left right"></i> --}}
+                                </p>
+                            </a>
+                        </li>
+                    {{-- @endcan --}}
                     {{--  Sliders   --}}
                     @can('slider view')
                         <li class="nav-item @if(Route::is('slider.create')||Route::is('slider.edit')||Route::is('slider.index')) menu-open @endif">

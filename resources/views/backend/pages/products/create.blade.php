@@ -292,7 +292,7 @@
         $('#return').select2();
         $('#promotions').select2();
         $('#authentic').select2();
-       
+
         $('#delivery_deadline_min').select2();
         $('#delivery_deadline_max').select2();
         $('#category').select2();
@@ -317,5 +317,6 @@
                 }
             });
         });
+
     </script>
 @endsection
