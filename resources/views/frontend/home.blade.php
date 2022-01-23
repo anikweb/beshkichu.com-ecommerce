@@ -1,4 +1,12 @@
 @extends('frontend.master')
+@section('meta_tag')
+    <meta name="keywords"                  content="{{ basicSettings()->key_words }}">
+    <meta property="og:url"                content="{{ url()->current() }}" />
+    <meta property="og:type"               content="eccommerce, sourcing, products, shoes, baby items" />
+    <meta property="og:title"              content="{{ basicSettings()->site_title }}" />
+    <meta property="og:description"        content="{{ basicSettings()->tagline }}" />
+    <meta property="og:image"              content="{{ asset('assets/images/logo/'.basicSettings()->logo) }}"/>
+@endsection
 @section('content')
 <div id="fb-root"></div>
 
