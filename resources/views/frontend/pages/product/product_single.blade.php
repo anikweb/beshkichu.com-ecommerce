@@ -1,4 +1,12 @@
 @extends('frontend.master')
+@section('meta_tag')
+    <meta name="keywords"                  content="{{ $product->category->name }}">
+    <meta property="og:url"                content="{{ url()->current() }}" />
+    <meta property="og:type"               content="{{ $product->category->name }}" />
+    <meta property="og:title"              content="{{ $product->name }}" />
+    <meta property="og:description"        content="{{ $product->summary }}" />
+    <meta property="og:image"              content="{{ asset('assets/images/product').'/'.$product->created_at->format('Y/m/d/').$product->id.'/thumbnail/'.$product->thumbnail }}" />
+@endsection
 @section('inline_style')
 <style>
     .product-right .size-box ul li {

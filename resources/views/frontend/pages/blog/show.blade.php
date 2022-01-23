@@ -1,4 +1,12 @@
 @extends('frontend.master')
+@section('meta_tag')
+    {{-- <meta name="keywords"                  content="{{ $product->category->name }}"> --}}
+    <meta property="og:url"                content="{{ url()->current() }}" />
+    {{-- <meta property="og:type"               content="{{ $product->category->name }}" /> --}}
+    <meta property="og:title"              content="{{ $blog->title }}" />
+    <meta property="og:description"        content="{{ $blog->description   }}" />
+    <meta property="og:image"              content="{{ asset('assets/images/blog/'.$blog->image) }}" />
+@endsection
 @section('content')
 {{-- Facebook Comment Plugin  --}}
 <div id="fb-root"></div>
