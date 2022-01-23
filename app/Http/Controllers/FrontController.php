@@ -133,9 +133,16 @@ class FrontController extends Controller
         ]);
     }
     public function blogShow($slug){
-        return view('frontend.pages.blog.show',[
-            'blog' => blog::where('slug',$slug)->first(),
-        ]);
+
+        $blog = blog::where('slug',$slug)->first();
+
+        $SocialShare = Share::page(route('frontend.blog.show',$blog->slug),$blog->title)
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->whatsapp()->getRawLinks();
+
+        return view('frontend.pages.blog.show',compact(['blog','SocialShare']));
     }
     public function indexProductRequest(){
         return view('frontend.pages.product_request.requested_product',[
