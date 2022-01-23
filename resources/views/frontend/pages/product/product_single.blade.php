@@ -239,14 +239,26 @@
                                 <div class="border-product">
                                     <div class="product-icon">
                                         <ul class="product-social">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                            @foreach ($SocialShare as $key => $item)
+                                                @if ($key == 'facebook')
+                                                    <a target="_blank" href="{{ $item }}" class="btn text-white mr-2 my-1" style="background: #4267b2"> <i class="fa fa-facebook"></i> {{ Str::title($key) }}</a>
+                                                @endif
+                                                @if ($key == 'linkedin')
+                                                    <a target="_blank" href="{{ $item }}" class="btn text-white  mr-2 my-1" style="background: #0176af"> <i class="fa fa-linkedin"></i> {{ Str::title($key) }}</a>
+                                                @endif
+                                                @if ($key == 'twitter')
+                                                    <a target="_blank" href="{{ $item }}" class="btn text-white  mr-2 my-1" style="background: #1c99e6"> <i class="fa fa-twitter"></i> {{ Str::title($key) }}</a>
+                                                @endif
+                                                @if ($key == 'whatsapp')
+                                                    <a target="_blank" href="{{ $item }}" class="btn text-white  mr-2 my-1" style="background: #44bc54"> <i class="fa fa-whatsapp"></i> {{ Str::title($key) }}</a>
+                                                @endif
+                                                @if ($key == 'telegram')
+                                                    <a target="_blank" href="{{ $item }}" class="btn text-white  mr-2 my-1" style="background: #0393d9"> <i class="fa fa-telegram-plane"></i> {{ Str::title($key) }}</a>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                         {{-- <form class="d-inline-block"> --}}
-                                            <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
+                                            {{-- <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button> --}}
                                         {{-- </form> --}}
                                     </div>
                                 </div>

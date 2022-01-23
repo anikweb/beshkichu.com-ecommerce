@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'f4d3402a4d2163022fd9f9a33f37599ac7a8c4c5',
+    'reference' => '67dcafd54b9c4cfc38e4cd959370dbcd728e72fd',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -449,6 +449,15 @@
       ),
       'reference' => '9a8cc99d30415ec0b3f7649e1647d03a55698545',
     ),
+    'jorenvanhocht/laravel-share' => 
+    array (
+      'pretty_version' => '4.1.0',
+      'version' => '4.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '9ad09ee5f65a64cf993169636366d9fa0b6a993c',
+    ),
     'kodova/hamcrest-php' => 
     array (
       'replaced' => 
@@ -481,7 +490,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'f4d3402a4d2163022fd9f9a33f37599ac7a8c4c5',
+      'reference' => '67dcafd54b9c4cfc38e4cd959370dbcd728e72fd',
     ),
     'laravel/sail' => 
     array (

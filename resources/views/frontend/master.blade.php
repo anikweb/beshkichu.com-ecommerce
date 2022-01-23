@@ -817,6 +817,7 @@
 
     <script src="//code.jquery.com/jquery-3.6.0.js"></script>
     <script src="//code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+    <script src="{{ asset('js/share.js') }}"></script>
     @yield('footer_js')
 </body>
 

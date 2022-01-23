@@ -21,6 +21,7 @@ use App\Models\{
     UniqueVisitors,
     Wishlist,
 };
+use Share;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,9 +65,14 @@ class FrontController extends Controller
     }
     public function productSingle($slug){
 
-        return view('frontend.pages.product.product_single',[
-            'product' => Product::where('slug',$slug)->first(),
-        ]);
+        $product = Product::where('slug',$slug)->first();
+        $SocialShare = Share::page(route('frontend.product.single',$product->slug),$product->name)
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->whatsapp()->getRawLinks();
+
+        return view('frontend.pages.product.product_single',compact(['product','SocialShare']));
     }
     public function wishlistIndex(){
 

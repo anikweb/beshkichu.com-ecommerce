@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Exports\\MonthlySelesReport' => $baseDir . '/app/Exports/MonthlySelesReport.php',
     'App\\Http\\Controllers\\AboutController' => $baseDir . '/app/Http/Controllers/AboutController.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -2693,6 +2694,9 @@ return array(
     'Intervention\\Image\\Point' => $vendorDir . '/intervention/image/src/Intervention/Image/Point.php',
     'Intervention\\Image\\Response' => $vendorDir . '/intervention/image/src/Intervention/Image/Response.php',
     'Intervention\\Image\\Size' => $vendorDir . '/intervention/image/src/Intervention/Image/Size.php',
+    'Jorenvh\\Share\\Providers\\ShareServiceProvider' => $vendorDir . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+    'Jorenvh\\Share\\Share' => $vendorDir . '/jorenvanhocht/laravel-share/src/Share.php',
+    'Jorenvh\\Share\\ShareFacade' => $vendorDir . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'Laravel\\Breeze\\BreezeServiceProvider' => $vendorDir . '/laravel/breeze/src/BreezeServiceProvider.php',
     'Laravel\\Breeze\\Console\\InstallCommand' => $vendorDir . '/laravel/breeze/src/Console/InstallCommand.php',
